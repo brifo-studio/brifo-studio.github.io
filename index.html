@@ -127,7 +127,7 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 .tab-btn:hover:not(.active){color:var(--text-dim);background:var(--bg)}
 
 /* ── CLIENT ── */
-#client{min-height:100vh;display:flex;flex-direction:column}
+#client{height:100vh;display:flex;flex-direction:column}
 .tab-content{flex:1;padding:28px 24px;max-width:960px;margin:0 auto;width:100%}
 .section-title{font-size:20px;font-weight:700;letter-spacing:-.02em;margin-bottom:20px}
 
@@ -635,8 +635,25 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
   </div>
 
   <!-- WORKLOAD / CLIENT KANBAN -->
-  <div id="tab-workload" class="tab-content hidden">
-    <div class="kanban" id="kanban-board-client"></div>
+  <div id="tab-workload" class="tab-content hidden" style="flex:1;overflow:hidden;padding:0">
+    <div class="kanban" id="kanban-board-client">
+      <div class="kcol">
+        <div class="kcol-head"><div class="kcol-stripe" style="background:#4285f4"></div><span class="kcol-label">НОВОЕ</span><span class="kcol-count" id="cnt-new-c">0</span></div>
+        <div class="kcol-body" id="col-new-c"></div>
+      </div>
+      <div class="kcol">
+        <div class="kcol-head"><div class="kcol-stripe" style="background:#fbbc04"></div><span class="kcol-label">В РАБОТЕ</span><span class="kcol-count" id="cnt-progress-c">0</span></div>
+        <div class="kcol-body" id="col-progress-c"></div>
+      </div>
+      <div class="kcol">
+        <div class="kcol-head"><div class="kcol-stripe" style="background:#ea4335"></div><span class="kcol-label">НА ПРАВКАХ</span><span class="kcol-count" id="cnt-review-c">0</span></div>
+        <div class="kcol-body" id="col-review-c"></div>
+      </div>
+      <div class="kcol">
+        <div class="kcol-head"><div class="kcol-stripe" style="background:#34a853"></div><span class="kcol-label">ГОТОВО</span><span class="kcol-count" id="cnt-done-c">0</span></div>
+        <div class="kcol-body" id="col-done-c"></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -2205,7 +2222,7 @@ function subscribeClientKanban(){
   unsubTasks = onSnapshot(q, snap=>{
     lastTasks = [];
     snap.forEach(d => lastTasks.push({id:d.id,...d.data()}));
-    renderKanban(lastTasks, 'kanban-board-client');
+    renderKanban(lastTasks);
   });
 }
 
@@ -2314,6 +2331,12 @@ function renderKanban(allTasks, boardId){
     document.getElementById('col-'+s).innerHTML=
       cols[s].length?cols[s].map(taskCard).join(''):emptyCol();
     document.getElementById('cnt-'+s).textContent=cols[s].length;
+  });
+  ['new','progress','review','done'].forEach(s=>{
+    const el=document.getElementById('col-'+s+'-c');
+    if(el) el.innerHTML=document.getElementById('col-'+s)?.innerHTML||'';
+    const cnt=document.getElementById('cnt-'+s+'-c');
+    if(cnt) cnt.textContent=document.getElementById('cnt-'+s)?.textContent||'0';
   });
 }
 
