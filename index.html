@@ -2382,10 +2382,19 @@ function buildTZBlock(t) {
   if (ex.refLink) rows.push(['Референс стиля', `<a href="${esc(ex.refLink)}" target="_blank" style="color:var(--accent)">Открыть →</a>`]);
   if (ex.matFiles?.length) rows.push(['Доп. материалы', ex.matFiles.map(f => `<a href="${esc(f.url||f)}" target="_blank" style="color:var(--accent);display:block">📎 ${esc(f.name||'Файл')}</a>`).join('')]);
 
-  if (ex.presSlides?.length) {
-    const slidesHtml = ex.presSlides.map((s,i) => {
-      const blocks = (s.blocks||[]).map(b => b.type==='image' && b.url ? `<img src="${esc(b.url)}" style="max-width:100%;border-radius:6px;margin-top:6px">` : b.type==='text' ? `<div style="font-size:12px;color:var(--text-dim);margin-top:4px">${esc(b.tag||'')} — ${esc(b.text||'')}</div>` : '').join('');
-      return `<div style="margin-bottom:10px;padding:8px;background:var(--bg);border-radius:8px"><div style="font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:4px">СЛАЙД ${i+1}</div>${blocks}</div>`;
+  if (ex['pres-reflink']) rows.push(['Референс стиля', `<a href="${esc(ex['pres-reflink'])}" target="_blank" style="color:var(--accent)">Открыть →</a>`]);
+  if (ex['pres-matfiles']?.length) rows.push(['Доп. материалы', ex['pres-matfiles'].map(f=>`<span style="display:block">📎 ${esc(f)}</span>`).join('')]);
+
+  const presSlides = ex['pres-slides-new'] || ex['pres-slides-edits'] || ex['pres-slides-adapt'] || ex.presSlides;
+  const parsedSlides = typeof presSlides === 'string' ? (() => { try { return JSON.parse(presSlides); } catch(e) { return null; } })() : presSlides;
+  if (parsedSlides?.length) {
+    const slidesHtml = parsedSlides.map((s,i) => {
+      const blocks = (s.blocks||[]).map(b => {
+        if (b.type==='image') return `<div style="font-size:12px;color:var(--text-dim);margin-top:4px">🖼 ${esc(b.description||'Изображение')}${b.hasFile?' (файл прикреплён)':''}</div>`;
+        if (b.type==='text') return `<div style="font-size:12px;color:var(--text-dim);margin-top:4px"><b>${esc(b.tag||'')}</b>${b.content?' — '+esc(b.content):''}</div>`;
+        return '';
+      }).join('');
+      return `<div style="margin-bottom:10px;padding:8px;background:var(--surface);border-radius:8px;border:1px solid var(--border)"><div style="font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:4px">СЛАЙД ${i+1} ${s.status==='discuss'?'💬 Нужно обсудить':''}</div>${blocks}</div>`;
     }).join('');
     rows.push(['Слайды', slidesHtml]);
   }
