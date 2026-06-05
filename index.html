@@ -86,11 +86,16 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 
 /* step 2 profile setup */
 .profile-photo-row{display:flex;align-items:center;gap:14px;margin-bottom:20px}
-.profile-photo-circle{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#fff;flex-shrink:0;cursor:pointer;overflow:hidden;transition:opacity .15s}
-.profile-photo-circle:hover{opacity:.85}
-.profile-photo-circle img{width:100%;height:100%;object-fit:cover}
+.profile-photo-circle{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
 .profile-photo-hint{font-size:12px;color:var(--text-muted);margin-top:3px}
 .profile-photo-upload-btn{font-size:13px;color:var(--accent);cursor:pointer;font-weight:500}
+/* dino picker */
+.dino-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px}
+.dino-opt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px 6px;border-radius:10px;border:1.5px solid var(--border);cursor:pointer;transition:all .15s;font-size:22px}
+.dino-opt span{font-size:10px;color:var(--text-muted)}
+.dino-opt:hover{border-color:var(--accent);background:var(--accent-lt)}
+.dino-opt.active{border-color:var(--accent);background:var(--accent-lt)}
+.dino-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .color-swatches{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
 .cswatch{width:36px;height:36px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:all .15s;position:relative}
 .cswatch.active{border-color:rgba(0,0,0,.25);box-shadow:inset 0 0 0 3px #fff}
@@ -188,7 +193,7 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 
 /* ── KANBAN ── */
 #designer{height:100vh;display:flex;flex-direction:row}
-.designer-sidebar{width:200px;min-width:200px;height:100vh;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;position:relative;z-index:10}
+.designer-sidebar{width:240px;min-width:240px;height:100vh;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;position:relative;z-index:10}
 .ds-profile{padding:16px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;cursor:pointer;transition:background .15s;border-radius:0}
 .ds-profile:hover{background:var(--bg)}
 .ds-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff;flex-shrink:0;overflow:hidden;border:2px solid transparent}
@@ -470,7 +475,8 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 
 <!-- Client name modal -->
 <div id="client-name-modal" class="name-modal-overlay hidden">
-  <div class="name-modal">
+  <div class="name-modal" style="position:relative">
+    <button onclick="document.getElementById('client-name-modal').classList.add('hidden')" style="position:absolute;top:12px;right:12px;background:none;border:none;font-size:18px;color:var(--text-muted);cursor:pointer;line-height:1;padding:4px">✕</button>
     <h3>Как вас зовут?</h3>
     <p>Имя будет видно дизайнерам в задаче</p>
     <div class="fg" style="margin-bottom:16px">
@@ -483,7 +489,8 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 
 <!-- Designer auth modal -->
 <div id="designer-auth-modal" class="dauth-overlay hidden">
-  <div class="dauth-modal">
+  <div class="dauth-modal" style="position:relative">
+    <button onclick="document.getElementById('designer-auth-modal').classList.add('hidden')" style="position:absolute;top:12px;right:12px;background:none;border:none;font-size:18px;color:var(--text-muted);cursor:pointer;line-height:1;padding:4px">✕</button>
     <div class="dauth-steps">
       <div class="dauth-dot active" id="dauth-dot-1"></div>
       <div class="dauth-dot" id="dauth-dot-2"></div>
@@ -504,15 +511,13 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
       <p class="dauth-sub">Это увидят коллеги на доске</p>
 
       <div class="profile-photo-row">
-        <div class="profile-photo-circle" id="dauth-photo-circle" onclick="document.getElementById('dauth-photo-input').click()">
-          <span id="dauth-photo-initials"></span>
-        </div>
+        <div class="profile-photo-circle" id="dauth-photo-circle" style="background:var(--accent-lt)">🦕</div>
         <div>
-          <div class="profile-photo-upload-btn" onclick="document.getElementById('dauth-photo-input').click()">📎 Загрузить фото</div>
-          <div class="profile-photo-hint">JPG или PNG, до 2 МБ</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text)">Выбери своего динозавра</div>
+          <div class="profile-photo-hint">Он будет на карточках и в профиле</div>
         </div>
-        <input type="file" id="dauth-photo-input" accept="image/jpeg,image/png" style="display:none" onchange="dAuthHandlePhoto(this)">
       </div>
+      <div class="dino-grid" id="dauth-dino-grid"></div>
 
       <div class="display-name-field">
         <label class="field-label">Имя на доске <span style="color:var(--text-muted);font-weight:400">(можно сократить)</span></label>
@@ -532,13 +537,13 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
   <div class="profile-edit-modal">
     <h3>Редактировать профиль</h3>
     <div class="profile-photo-row">
-      <div class="profile-photo-circle" id="pe-photo-circle" onclick="document.getElementById('pe-photo-input').click()"></div>
+      <div class="profile-photo-circle" id="pe-photo-circle" style="background:var(--accent-lt)">🦕</div>
       <div>
-        <div class="profile-photo-upload-btn" onclick="document.getElementById('pe-photo-input').click()">📎 Изменить фото</div>
-        <div class="profile-photo-hint">JPG или PNG, до 2 МБ</div>
+        <div style="font-size:13px;font-weight:600;color:var(--text)">Твой динозавр</div>
+        <div class="profile-photo-hint">Выбери ниже чтобы сменить</div>
       </div>
-      <input type="file" id="pe-photo-input" accept="image/jpeg,image/png" style="display:none" onchange="peHandlePhoto(this)">
     </div>
+    <div class="dino-grid" id="pe-dino-grid" style="margin-bottom:16px"></div>
     <div class="fg" style="margin-bottom:16px">
       <label class="field-label">Имя на доске</label>
       <input type="text" id="pe-name-input">
@@ -825,9 +830,12 @@ const db = getFirestore(initializeApp({
 
 // ── CONSTANTS ──
 const DESIGNERS = [
-  {id:'artem',  name:'Артём',      color:'#1a73e8'},
-  {id:'des2',   name:'Дизайнер 2', color:'#0f9d58'},
-  {id:'des3',   name:'Дизайнер 3', color:'#e37400'},
+  {id:'artem',    name:'Артём',    color:'#4285f4'},
+  {id:'masha',    name:'Маша',     color:'#34a853'},
+  {id:'dima',     name:'Дима',     color:'#9c27b0'},
+  {id:'nastya',   name:'Настя',    color:'#f57c00'},
+  {id:'katya',    name:'Катя',     color:'#e91e63'},
+  {id:'sasha',    name:'Саша',     color:'#00897b'},
 ];
 
 const TYPES = [
@@ -1454,12 +1462,12 @@ window.openDesignerAuth = openDesignerAuth;
 window.dAuthSelectDesigner = dAuthSelectDesigner;
 window.dAuthStep1Next = dAuthStep1Next;
 window.dAuthSelectColor = dAuthSelectColor;
-window.dAuthHandlePhoto = dAuthHandlePhoto;
-window.dAuthConfirm   = dAuthConfirm;
+window.dAuthSelectDino  = dAuthSelectDino;
+window.peSelectDino     = peSelectDino;
+window.dAuthConfirm     = dAuthConfirm;
 window.openProfileEdit = openProfileEdit;
 window.closeProfileEdit = closeProfileEdit;
 window.peSelectColor   = peSelectColor;
-window.peHandlePhoto   = peHandlePhoto;
 window.saveProfileEdit = saveProfileEdit;
 window.setFilter       = setFilter;
 window.toggleCheck  = toggleCheck;
@@ -1603,6 +1611,18 @@ const DESIGNER_COLORS = [
   {color:'#00897b',name:'Бирюзовый'},
 ];
 
+const DINOS = [
+  {id:'brax',  emoji:'🦕', name:'Брахиозавр'},
+  {id:'rex',   emoji:'🦖', name:'Тираннозавр'},
+  {id:'dragon',emoji:'🐉', name:'Дракон'},
+  {id:'raptor',emoji:'🦎', name:'Раптор'},
+  {id:'croc',  emoji:'🐊', name:'Спинозавр'},
+  {id:'trex',  emoji:'🦷', name:'Трицератопс'},
+  {id:'stego', emoji:'🌿', name:'Стегозавр'},
+  {id:'ptero', emoji:'🦅', name:'Птеродактиль'},
+  {id:'anky',  emoji:'🛡️', name:'Анкилозавр'},
+];
+
 function openClientEntry(){
   const saved = localStorage.getItem('df_client_name');
   if(saved){
@@ -1626,9 +1646,9 @@ function doClientLogin(){
 
 // Designer auth
 let dAuthSelectedDesigner = null;
-let dAuthPhotoData = null;
-let pePhotoData = null;
+let dAuthSelectedDino = null;
 let peSelectedColor = null;
+let peSelectedDino = null;
 
 function openDesignerAuth(){
   // Check localStorage first
@@ -1698,13 +1718,15 @@ async function dAuthStep1Next(){
   // First login — show step 2
   pendingDesignerName = name;
   document.getElementById('dauth-display-name').value = name;
-  document.getElementById('dauth-photo-initials').textContent = name[0].toUpperCase();
-  document.getElementById('dauth-photo-circle').style.background = dAuthSelectedDesigner.color;
+  document.getElementById('dauth-photo-circle').textContent = '🦕';
+  document.getElementById('dauth-photo-circle').style.background = dAuthSelectedDesigner.color+'22';
   document.getElementById('dauth-step1').classList.add('hidden');
   document.getElementById('dauth-step2').classList.remove('hidden');
   document.getElementById('dauth-dot-1').classList.remove('active');
   document.getElementById('dauth-dot-2').classList.add('active');
   pendingDesignerColor = dAuthSelectedDesigner.color;
+  dAuthSelectedDino = null;
+  renderDinoGrid('dauth-dino-grid', 'dauth');
   // Pre-select color
   document.querySelectorAll('#dauth-color-swatches .cswatch').forEach(el=>{
     el.classList.toggle('active', el.dataset.color===dAuthSelectedDesigner.color);
@@ -1730,39 +1752,48 @@ function dAuthSelectColor(color){
 
 function updateDAuthStep2Btn(){
   const btn = document.getElementById('dauth-step2-btn');
-  if(pendingDesignerColor){
-    btn.style.opacity='1'; btn.style.pointerEvents='auto';
-  } else {
-    btn.style.opacity='.5'; btn.style.pointerEvents='none';
-  }
+  const ready = pendingDesignerColor && dAuthSelectedDino;
+  btn.style.opacity = ready ? '1' : '.5';
+  btn.style.pointerEvents = ready ? 'auto' : 'none';
 }
 
-function dAuthHandlePhoto(input){
-  const file=input.files[0];
-  if(!file)return;
-  if(file.size>2*1024*1024){ toast('Файл больше 2 МБ','err'); return; }
-  const reader=new FileReader();
-  reader.onload=e=>{
-    dAuthPhotoData=e.target.result;
-    const circle=document.getElementById('dauth-photo-circle');
-    circle.innerHTML=`<img src="${dAuthPhotoData}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
-  };
-  reader.readAsDataURL(file);
+function renderDinoGrid(containerId, ctx){
+  const container = document.getElementById(containerId);
+  const selectedId = ctx==='dauth' ? dAuthSelectedDino : peSelectedDino;
+  container.innerHTML = DINOS.map(d=>`
+    <div class="dino-opt${selectedId===d.id?' active':''}" onclick="${ctx==='dauth'?'dAuthSelectDino':'peSelectDino'}('${d.id}')">
+      ${d.emoji}<span>${d.name}</span>
+    </div>`).join('');
+}
+
+function dAuthSelectDino(id){
+  dAuthSelectedDino = id;
+  const dino = DINOS.find(d=>d.id===id);
+  document.getElementById('dauth-photo-circle').textContent = dino.emoji;
+  renderDinoGrid('dauth-dino-grid','dauth');
+  updateDAuthStep2Btn();
+}
+
+function peSelectDino(id){
+  peSelectedDino = id;
+  const dino = DINOS.find(d=>d.id===id);
+  document.getElementById('pe-photo-circle').textContent = dino.emoji;
+  renderDinoGrid('pe-dino-grid','pe');
 }
 
 async function dAuthConfirm(){
-  if(!pendingDesignerColor||!pendingDesignerName)return;
+  if(!pendingDesignerColor||!pendingDesignerName||!dAuthSelectedDino)return;
   const name=pendingDesignerName;
   const color=pendingDesignerColor;
   const displayName=document.getElementById('dauth-display-name').value.trim()||name;
-  const photo=dAuthPhotoData||null;
+  const dino=dAuthSelectedDino;
   try{
-    await setDoc(doc(db,'designers',name),{name,color,displayName,photo,lastSeen:serverTimestamp()},{merge:true});
+    await setDoc(doc(db,'designers',name),{name,color,displayName,dino,lastSeen:serverTimestamp()},{merge:true});
   }catch(e){}
-  user={name,displayName,role:'designer',color,id:name.toLowerCase(),photo};
+  user={name,displayName,role:'designer',color,id:name.toLowerCase(),dino};
   localStorage.setItem('df_user',JSON.stringify(user));
   document.getElementById('designer-auth-modal').classList.add('hidden');
-  pendingDesignerName=null; pendingDesignerColor=null; dAuthPhotoData=null;
+  pendingDesignerName=null; pendingDesignerColor=null; dAuthSelectedDino=null;
   enterApp();
 }
 
@@ -1795,19 +1826,15 @@ function showClient(){
 
 function showDesigner(){
   document.getElementById('designer').classList.remove('hidden');
-  const color=user.color||getDesignerColor(user.name)||'#1a73e8';
+  const color=user.color||'#4285f4';
   const displayName=user.displayName||user.name;
-  // Sidebar avatar
+  const dinoObj=DINOS.find(d=>d.id===user.dino);
+  const dinoEmoji=dinoObj?dinoObj.emoji:'🦕';
   const av=document.getElementById('d-av');
-  if(user.photo){
-    av.innerHTML=`<img src="${user.photo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
-  } else {
-    av.textContent=displayName[0].toUpperCase();
-  }
-  av.style.background=user.photo?'transparent':color;
+  av.innerHTML=`<span style="font-size:18px">${dinoEmoji}</span>`;
+  av.style.background=color+'22';
   av.style.borderColor=color;
   document.getElementById('d-nm').textContent=displayName;
-  // Set active nav item to current filterMode
   document.querySelectorAll('.ds-nav-item').forEach(b=>{
     b.classList.toggle('active', b.dataset.f===filterMode);
   });
@@ -1852,18 +1879,14 @@ function setFilter(f, el){
 // ── PROFILE EDIT ──
 function openProfileEdit(){
   if(!user||user.role!=='designer')return;
-  pePhotoData=null;
   peSelectedColor=user.color;
+  peSelectedDino=user.dino||null;
   const circle=document.getElementById('pe-photo-circle');
-  if(user.photo){
-    circle.innerHTML=`<img src="${user.photo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
-    circle.style.background='transparent';
-  } else {
-    circle.textContent=(user.displayName||user.name)[0].toUpperCase();
-    circle.style.background=user.color;
-  }
+  const dino=DINOS.find(d=>d.id===user.dino);
+  circle.textContent=dino?dino.emoji:'🦕';
+  circle.style.background=(user.color||'#4285f4')+'22';
   document.getElementById('pe-name-input').value=user.displayName||user.name;
-  // Render color swatches
+  // Color swatches
   const container=document.getElementById('pe-color-swatches');
   container.innerHTML=DESIGNER_COLORS.map(c=>`
     <div class="cswatch" data-color="${c.color}" style="background:${c.color}" onclick="peSelectColor('${c.color}')" title="${c.name}"></div>
@@ -1871,12 +1894,13 @@ function openProfileEdit(){
   document.querySelectorAll('#pe-color-swatches .cswatch').forEach(el=>{
     el.classList.toggle('active',el.dataset.color===user.color);
   });
+  // Dino grid
+  renderDinoGrid('pe-dino-grid','pe');
   document.getElementById('profile-edit-modal').classList.remove('hidden');
 }
 
 function closeProfileEdit(){
   document.getElementById('profile-edit-modal').classList.add('hidden');
-  pePhotoData=null;
 }
 
 function peSelectColor(color){
@@ -1884,45 +1908,26 @@ function peSelectColor(color){
   document.querySelectorAll('#pe-color-swatches .cswatch').forEach(el=>{
     el.classList.toggle('active',el.dataset.color===color);
   });
-  const circle=document.getElementById('pe-photo-circle');
-  if(!pePhotoData&&!user.photo) circle.style.background=color;
-}
-
-function peHandlePhoto(input){
-  const file=input.files[0];
-  if(!file)return;
-  if(file.size>2*1024*1024){ toast('Файл больше 2 МБ','err'); return; }
-  const reader=new FileReader();
-  reader.onload=e=>{
-    pePhotoData=e.target.result;
-    const circle=document.getElementById('pe-photo-circle');
-    circle.innerHTML=`<img src="${pePhotoData}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
-    circle.style.background='transparent';
-  };
-  reader.readAsDataURL(file);
+  document.getElementById('pe-photo-circle').style.background=color+'22';
 }
 
 async function saveProfileEdit(){
   const newName=document.getElementById('pe-name-input').value.trim();
   if(!newName){ toast('Введите имя','err'); return; }
   const color=peSelectedColor||user.color;
-  const photo=pePhotoData!==null?pePhotoData:user.photo;
+  const dino=peSelectedDino||user.dino;
   try{
-    await setDoc(doc(db,'designers',user.name),{displayName:newName,color,photo,lastSeen:serverTimestamp()},{merge:true});
+    await setDoc(doc(db,'designers',user.name),{displayName:newName,color,dino,lastSeen:serverTimestamp()},{merge:true});
   }catch(e){}
   user.displayName=newName;
   user.color=color;
-  user.photo=photo||null;
+  user.dino=dino;
   localStorage.setItem('df_user',JSON.stringify(user));
-  // Update sidebar
+  // Update sidebar avatar
   const av=document.getElementById('d-av');
-  if(user.photo){
-    av.innerHTML=`<img src="${user.photo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
-    av.style.background='transparent';
-  } else {
-    av.textContent=newName[0].toUpperCase();
-    av.style.background=color;
-  }
+  const dinoObj=DINOS.find(d=>d.id===dino);
+  av.innerHTML=`<span style="font-size:18px">${dinoObj?dinoObj.emoji:'🦕'}</span>`;
+  av.style.background=color+'22';
   av.style.borderColor=color;
   document.getElementById('d-nm').textContent=newName;
   closeProfileEdit();
@@ -2219,6 +2224,13 @@ function getDesignerColor(name){
   return allDesigners.find(d=>d.name===name)?.color||'#9aa0a6';
 }
 
+function getDesignerDino(name){
+  // Try to find from allDesigners firebase data first, fallback to default
+  const d=allDesigners.find(x=>x.name===name);
+  if(d&&d.dino){ const obj=DINOS.find(x=>x.id===d.dino); return obj?obj.emoji:'🦕'; }
+  return '🦕';
+}
+
 function hexToRgba(hex,alpha){
   if(!hex||hex.length<7)return`rgba(0,0,0,${alpha})`;
   const r=parseInt(hex.slice(1,3),16);
@@ -2255,7 +2267,7 @@ function taskCard(t){
     <div class="tcard-divider"></div>
     <div class="tcard-row3">
       <div class="tcard-designer">
-        <div class="avatar" style="width:20px;height:20px;font-size:9px;background:${dColor}">${dInitial}</div>
+        <div class="dino-avatar" style="background:${dColor}22">${getDesignerDino(t.assignedTo)}</div>
         ${esc(t.assignedTo||'—')}
       </div>
       <div class="tcard-deadline ${dlClass}">📅 ${dlTxt}</div>
@@ -2324,8 +2336,8 @@ function subscribeDesigners(){
     const merged=[...DESIGNERS];
     dbD.forEach(d=>{
       const ex=merged.find(x=>x.name===d.name);
-      if(ex){ex.color=d.color||ex.color;}
-      else{merged.push({id:d.name.toLowerCase(),name:d.name,color:d.color||'#9aa0a6'});}
+      if(ex){ex.color=d.color||ex.color; ex.dino=d.dino||null;}
+      else{merged.push({id:d.name.toLowerCase(),name:d.name,color:d.color||'#9aa0a6',dino:d.dino||null});}
     });
     allDesigners=merged;
     buildAssigneeSelect();
@@ -2334,12 +2346,13 @@ function subscribeDesigners(){
     if(user?.role==='designer'){
       const me=allDesigners.find(x=>x.name===user.name);
       if(me){
-        const av=document.getElementById('d-av');
-        if(!user.photo){
-          av.style.background=me.color;
-        }
-        av.style.borderColor=me.color;
         user.color=me.color;
+        if(me.dino) user.dino=me.dino;
+        const av=document.getElementById('d-av');
+        const dinoObj=DINOS.find(d=>d.id===user.dino);
+        av.innerHTML=`<span style="font-size:18px">${dinoObj?dinoObj.emoji:'🦕'}</span>`;
+        av.style.background=me.color+'22';
+        av.style.borderColor=me.color;
       }
     }
   });
@@ -4059,6 +4072,11 @@ try{
   if(saved){
     user=JSON.parse(saved);
     selRole=user.role;
+    // Restore photo from localStorage (not stored in df_user to keep it small)
+    if(user.role==='designer'){
+      const savedPhoto=localStorage.getItem('df_photo_'+user.name);
+      if(savedPhoto) user.photo=savedPhoto;
+    }
     enterApp();
   }
 }catch(e){localStorage.removeItem('df_user');}
