@@ -39,26 +39,67 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 .btn-sm{padding:6px 14px;font-size:12px}
 
 /* ── LOGIN ── */
-#login{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:linear-gradient(160deg,#f8f9fa 0%,#e8f0fe 45%,#fce8e6 100%)}
+#login{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:linear-gradient(160deg,#f8f9fa 0%,#e8f0fe 45%,#fce8e6 100%);position:relative}
 .logo{font-size:28px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-.01em}
 .logo span{color:var(--accent)}
 .logo-sub{color:var(--text-dim);font-size:14px;margin-bottom:36px;text-align:center;max-width:380px;line-height:1.6}
-.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:440px;width:100%;margin-bottom:20px}
-.role-card{background:var(--card);border:2px solid var(--border);border-radius:var(--r);padding:24px 18px;text-align:center;cursor:pointer;transition:all .2s;user-select:none;box-shadow:var(--sh)}
-.role-card:hover{border-color:var(--accent);box-shadow:var(--sh-md);transform:translateY(-2px)}
-.role-card.sel{border-color:var(--accent);background:var(--accent-lt);box-shadow:0 0 0 3px rgba(26,115,232,.15)}
-.role-icon{font-size:36px;margin-bottom:8px}
-.role-title{font-size:15px;font-weight:600;margin-bottom:2px}
-.role-desc{font-size:12px;color:var(--text-dim)}
-.login-box{max-width:440px;width:100%;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px;box-shadow:var(--sh);animation:fadeUp .2s ease}
-.login-hint{color:var(--text-muted);text-align:center;font-size:13px;padding:10px 0}
 
-/* designer picker */
-.designer-list{display:flex;flex-direction:column;gap:10px}
-.dp-card{display:flex;align-items:center;gap:14px;padding:14px 16px;border:2px solid var(--border);border-radius:var(--rs);cursor:pointer;transition:all .2s;background:var(--card)}
-.dp-card:hover{border-color:var(--accent);background:var(--accent-lt);box-shadow:var(--sh);transform:translateX(3px)}
-.dp-name{font-weight:600;font-size:15px;color:var(--text)}
-.dp-role{font-size:12px;color:var(--text-dim);margin-top:1px}
+/* designer corner btn */
+.designer-corner-btn{position:absolute;top:20px;left:20px;display:flex;align-items:center;gap:7px;padding:8px 16px;background:var(--card);border:1px solid var(--border);border-radius:100px;font-size:13px;color:var(--text-muted);cursor:pointer;transition:all .18s;box-shadow:var(--sh)}
+.designer-corner-btn:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--sh-md)}
+.designer-corner-btn .dc-icon{font-size:15px}
+
+/* client card */
+.client-entry-card{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:40px 48px;text-align:center;cursor:pointer;transition:all .22s;box-shadow:var(--sh);max-width:320px;width:100%;animation:fadeUp .2s ease}
+.client-entry-card:hover{border-color:var(--accent);box-shadow:var(--sh-md);transform:translateY(-3px)}
+.client-entry-card .ce-icon{width:64px;height:64px;border-radius:50%;background:var(--accent-lt);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px}
+.client-entry-card h2{font-size:20px;font-weight:700;color:var(--text);margin:0 0 6px}
+.client-entry-card p{font-size:13px;color:var(--text-dim);margin:0 0 24px;line-height:1.5}
+.client-entry-card .ce-btn{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;border-radius:8px;padding:10px 24px;font-size:14px;font-weight:600}
+
+/* client name modal */
+.name-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;z-index:200;animation:fadeIn .15s ease}
+.name-modal{background:var(--card);border-radius:14px;padding:28px;width:340px;box-shadow:0 8px 32px rgba(0,0,0,.15);animation:fadeUp .18s ease}
+.name-modal h3{font-size:18px;font-weight:700;margin:0 0 4px;color:var(--text)}
+.name-modal p{font-size:13px;color:var(--text-muted);margin:0 0 20px}
+
+/* designer auth modal */
+.dauth-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;z-index:200;animation:fadeIn .15s ease}
+.dauth-modal{background:var(--card);border-radius:14px;padding:28px;width:380px;box-shadow:0 8px 32px rgba(0,0,0,.15);animation:fadeUp .18s ease}
+.dauth-modal h3{font-size:18px;font-weight:700;margin:0 0 4px;color:var(--text)}
+.dauth-modal .dauth-sub{font-size:13px;color:var(--text-muted);margin:0 0 20px}
+.dauth-steps{display:flex;gap:5px;margin-bottom:20px}
+.dauth-dot{height:5px;border-radius:3px;background:var(--border);transition:all .2s}
+.dauth-dot.active{background:var(--accent);width:18px}
+.dauth-dot{width:6px}
+
+/* designer list in modal */
+.designer-list{display:flex;flex-direction:column;gap:6px;margin-bottom:4px}
+.dp-card{display:flex;align-items:center;gap:12px;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:all .18s;background:var(--card)}
+.dp-card:hover{border-color:var(--accent);background:var(--accent-lt)}
+.dp-card.sel{border-color:var(--accent);background:var(--accent-lt)}
+.dp-card .dp-check{margin-left:auto;color:var(--accent);opacity:0;transition:opacity .15s;font-size:16px}
+.dp-card.sel .dp-check{opacity:1}
+.dp-name{font-weight:600;font-size:14px;color:var(--text)}
+.dp-role{font-size:11px;color:var(--text-dim);margin-top:1px}
+.dauth-error{font-size:12px;color:#e53935;margin-top:6px;margin-bottom:10px;min-height:16px}
+
+/* step 2 profile setup */
+.profile-photo-row{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.profile-photo-circle{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#fff;flex-shrink:0;cursor:pointer;overflow:hidden;transition:opacity .15s}
+.profile-photo-circle:hover{opacity:.85}
+.profile-photo-circle img{width:100%;height:100%;object-fit:cover}
+.profile-photo-hint{font-size:12px;color:var(--text-muted);margin-top:3px}
+.profile-photo-upload-btn{font-size:13px;color:var(--accent);cursor:pointer;font-weight:500}
+.color-swatches{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.cswatch{width:36px;height:36px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:all .15s;position:relative}
+.cswatch.active{border-color:rgba(0,0,0,.25);box-shadow:inset 0 0 0 3px #fff}
+.display-name-field{margin-bottom:20px}
+
+/* profile edit modal */
+.profile-edit-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;z-index:300;animation:fadeIn .15s ease}
+.profile-edit-modal{background:var(--card);border-radius:14px;padding:28px;width:360px;box-shadow:0 8px 32px rgba(0,0,0,.15);animation:fadeUp .18s ease}
+.profile-edit-modal h3{font-size:18px;font-weight:700;margin:0 0 20px;color:var(--text)}
 
 /* ── HEADER ── */
 .app-header{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.08)}
@@ -82,20 +123,28 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 
 /* ── CLIENT ── */
 #client{min-height:100vh;display:flex;flex-direction:column}
-.tab-content{flex:1;padding:28px 24px;max-width:860px;margin:0 auto;width:100%}
+.tab-content{flex:1;padding:28px 24px;max-width:960px;margin:0 auto;width:100%}
 .section-title{font-size:20px;font-weight:700;letter-spacing:-.02em;margin-bottom:20px}
 
+/* hero */
+.create-hero{background:linear-gradient(90deg,#e8f0fe 0%,#f0e6ff 100%);border-radius:16px;padding:48px;margin-bottom:32px}
+.create-hero-title{font-size:32px;font-weight:700;color:#1a1a2e;margin-bottom:12px;letter-spacing:-.02em;line-height:1.2}
+.create-hero-sub{font-size:16px;color:#5f6368;line-height:1.5}
+
 /* type grid */
-.type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:10px;margin-bottom:24px}
-.type-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--rs);padding:14px 10px;text-align:center;cursor:pointer;transition:all .2s;user-select:none;box-shadow:var(--sh)}
-.type-card:hover{border-color:var(--accent);background:var(--accent-lt);box-shadow:var(--sh-md);transform:translateY(-1px)}
-.type-card.sel{border-color:var(--accent);background:var(--accent-lt);box-shadow:0 0 0 3px rgba(26,115,232,.12)}
-.type-emoji{font-size:24px;margin-bottom:6px;display:block}
-.type-name{font-size:11px;font-weight:600;color:var(--text-dim)}
+.type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:24px}
+.type-card{background:#fff;border:2px solid transparent;border-radius:12px;padding:24px;min-height:160px;cursor:pointer;transition:box-shadow .2s,transform .2s,border-color .15s;user-select:none;box-shadow:0 2px 8px rgba(0,0,0,.08);display:flex;flex-direction:column;position:relative}
+.type-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.12);transform:translateY(-2px)}
+.type-card.sel{border-color:#1a73e8}
+.type-card-icon{font-size:48px;margin-bottom:12px;line-height:1;display:block}
+.type-card-name{font-size:16px;font-weight:700;color:#1a1a2e;margin-bottom:6px}
+.type-card-desc{font-size:13px;color:#5f6368;line-height:1.4;flex:1}
+.type-card-arrow{position:absolute;bottom:20px;right:20px;font-size:18px;font-weight:700;line-height:1}
 
 /* form card */
-.form-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;box-shadow:var(--sh);animation:fadeUp .25s ease}
+.form-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;box-shadow:var(--sh);animation:fadeIn .3s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .form-title{font-size:17px;font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:8px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
@@ -106,6 +155,12 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 .check-tag{display:flex;align-items:center;gap:5px;background:var(--bg);border:1px solid var(--border);border-radius:100px;padding:5px 12px;cursor:pointer;font-size:12px;transition:all .15s;user-select:none;white-space:nowrap;color:var(--text-dim)}
 .check-tag input{display:none}
 .check-tag.checked{background:var(--accent-lt);border-color:var(--accent);color:var(--accent)}
+
+/* ── PRINT CATEGORY CARDS ── */
+.print-cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:4px}
+.print-cat-btn{background:var(--card);border:2px solid var(--border);border-radius:10px;padding:16px 12px;cursor:pointer;font-size:13px;font-weight:500;color:var(--text-dim);text-align:center;transition:all .2s;line-height:1.3;justify-content:center}
+.print-cat-btn:hover{border-color:var(--accent);color:var(--text)}
+.print-cat-btn.active{border-color:var(--accent);background:var(--accent-lt);color:var(--accent);font-weight:600}
 
 /* ── WORKLOAD ── */
 .wl-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);margin-bottom:14px;overflow:hidden;box-shadow:var(--sh)}
@@ -126,45 +181,123 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 .s-progress{background:#fef9e7;color:#f29900}.s-progress::before{background:var(--progress)}
 .s-review{background:#fce8e6;color:#d93025}.s-review::before{background:var(--review)}
 .s-done{background:#e6f4ea;color:#1e8e3e}.s-done::before{background:var(--done)}
-.p-urgent{background:#fce8e6;color:#d93025;border-radius:100px;padding:2px 8px;font-size:10px;font-weight:700}
-.p-high{background:#fef9e7;color:#f29900;border-radius:100px;padding:2px 8px;font-size:10px;font-weight:700}
+.pbadge{display:inline-flex;align-items:center;border-radius:100px;padding:2px 8px;font-size:10px;font-weight:700;white-space:nowrap}
+.pbadge-urgent{background:#fce8e6;color:#d93025}
+.pbadge-high{background:#fff3e0;color:#e65100}
+.pbadge-normal{background:#e6f4ea;color:#1e8e3e}
 
 /* ── KANBAN ── */
-#designer{height:100vh;display:flex;flex-direction:column}
+#designer{height:100vh;display:flex;flex-direction:row}
+.designer-sidebar{width:200px;min-width:200px;height:100vh;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;position:relative;z-index:10}
+.ds-profile{padding:16px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;cursor:pointer;transition:background .15s;border-radius:0}
+.ds-profile:hover{background:var(--bg)}
+.ds-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff;flex-shrink:0;overflow:hidden;border:2px solid transparent}
+.ds-avatar img{width:100%;height:100%;object-fit:cover}
+.ds-name{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ds-edit-hint{font-size:11px;color:var(--text-muted)}
+.ds-nav{flex:1;padding:10px 8px;display:flex;flex-direction:column;gap:2px}
+.ds-nav-item{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:8px;font-size:13px;font-weight:500;color:var(--text-dim);cursor:pointer;transition:all .15s;user-select:none}
+.ds-nav-item:hover{background:var(--bg);color:var(--text)}
+.ds-nav-item.active{background:var(--accent-lt);color:var(--accent)}
+.ds-nav-item .ds-nav-icon{font-size:16px;flex-shrink:0}
+.ds-footer{padding:10px 8px;border-top:1px solid var(--border)}
+.ds-logout{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:8px;font-size:13px;color:var(--text-muted);cursor:pointer;transition:all .15s}
+.ds-logout:hover{background:#fce8e6;color:#e53935}
+.designer-main{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden}
 .kanban{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:20px;overflow-x:auto;min-height:0}
-.kcol{background:#f1f3f4;border:2px solid transparent;border-radius:var(--r);display:flex;flex-direction:column;min-width:220px;overflow:hidden;transition:border-color .15s,background .15s}
-.kcol.drag-over{background:#e8f0fe;border-color:var(--accent);border-style:dashed}
-.kcol-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border);flex-shrink:0;background:rgba(255,255,255,.7);backdrop-filter:blur(4px)}
-.kcol-title{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-dim)}
-.col-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.kcol-cnt{background:var(--surface);color:var(--text-muted);border-radius:100px;padding:2px 8px;font-size:11px;font-weight:700;border:1px solid var(--border);box-shadow:var(--sh)}
-.kcol-body{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:9px}
+/* kanban transition */
+.kanban-wrap{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+@keyframes slideIn{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(-10px)}}
+.kanban-entering{animation:slideIn .2s ease forwards}
+.kanban-leaving{animation:slideOut .15s ease forwards}
+.kcol{background:#f8f9fa;border-radius:12px;display:flex;flex-direction:column;min-width:220px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.kcol-topbar{height:4px;flex-shrink:0}
+.kcol.drag-over{outline:2px dashed #4285f4;outline-offset:-2px;background:#e8f0fe}
+.kcol-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;flex-shrink:0}
+.kcol-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-dim)}
+.kcol-cnt{border-radius:100px;padding:2px 9px;font-size:11px;font-weight:700;color:#fff;min-width:22px;text-align:center}
+.kcol-body{flex:1;overflow-y:auto;padding:0 10px 10px;display:flex;flex-direction:column;gap:9px}
 
 /* ── TASK CARD ── */
-.tcard{background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:13px;transition:all .2s;position:relative;border-left:3px solid transparent;box-shadow:var(--sh);cursor:grab}
-.tcard:hover{box-shadow:var(--sh-md);transform:translateY(-1px);border-color:var(--border-strong)}
-.tcard:active{cursor:grabbing}
-.tcard.dragging{opacity:.45;box-shadow:var(--sh-lg);transform:rotate(1.5deg) scale(1.02)}
-.tcard[data-p="urgent"]{border-left-color:var(--review)}
-.tcard[data-p="high"]{border-left-color:var(--progress)}
-.tcard-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:7px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
-.tcard-title{font-size:13px;font-weight:600;line-height:1.4;margin-bottom:6px;color:var(--text)}
-.tcard-client{font-size:11px;color:var(--text-dim);margin-bottom:8px;display:flex;align-items:center;gap:4px}
-.tcard-extra{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
-.tcard-chip{background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:2px 7px;font-size:10px;color:var(--text-dim)}
-.tcard-desc{font-size:11px;color:var(--text-dim);line-height:1.5;border-top:1px solid var(--border);padding-top:8px;margin-top:4px;white-space:pre-line;word-break:break-word}
-.tcard-foot{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:9px;border-top:1px solid var(--border)}
-.deadline{font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:3px}
-.deadline.ov{color:var(--review);font-weight:600}
-.deadline.soon{color:var(--progress);font-weight:600}
-.edit-btn{background:none;color:var(--text-muted);font-size:18px;line-height:1;padding:2px 6px;border-radius:6px}
-.edit-btn:hover{background:var(--bg);color:var(--accent)}
+.tcard{background:#fff;border-radius:10px;padding:14px;transition:box-shadow .2s;position:relative;box-shadow:0 2px 8px rgba(0,0,0,.08);cursor:pointer;border:2px solid transparent}
+.tcard:hover{box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.tcard.dragging{opacity:.45;box-shadow:0 8px 28px rgba(0,0,0,.18);transform:rotate(1.5deg) scale(1.02)}
+.tcard-stickers{position:absolute;top:-8px;right:8px;display:flex;gap:3px;z-index:5}
+.sticker{border-radius:100px;padding:2px 6px;font-size:10px;font-weight:700;display:flex;align-items:center;gap:2px;box-shadow:0 1px 4px rgba(0,0,0,.15);white-space:nowrap}
+.sticker-comment{background:#e8f0fe;color:#1a73e8;border:1.5px solid #4285f4}
+.sticker-change{background:#fff8e1;color:#e37400;border:1.5px solid #fbbc04}
+.sticker-status{background:#e6f4ea;color:#1e8e3e;border:1.5px solid #34a853}
+.tcard-row1{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.tcard-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);display:flex;align-items:center;gap:4px}
+.tcard-title{font-size:15px;font-weight:700;line-height:1.35;margin-bottom:10px;color:#1a1a2e;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tcard-divider{height:1px;background:#f0f0f0;margin-bottom:10px}
+.tcard-row3{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tcard-designer{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-dim);flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.tcard-deadline{font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:3px;white-space:nowrap;flex-shrink:0}
+.tcard-deadline.ov{color:#d93025;font-weight:600}
+.tcard-deadline.soon{color:#f29900;font-weight:600}
+
+/* ── TASK MODAL ── */
+.task-modal-box{background:#fff;border-radius:16px;width:100%;max-width:860px;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.22);animation:scaleIn .2s ease;overflow:hidden}
+.tm-header{display:flex;align-items:flex-start;justify-content:space-between;padding:22px 28px 16px;border-bottom:1px solid var(--border);flex-shrink:0;gap:16px}
+.tm-type-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-muted);margin-bottom:4px}
+.tm-title-text{font-size:21px;font-weight:700;color:#1a1a2e;line-height:1.25;margin-bottom:8px}
+.tm-meta-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tm-header-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;margin-top:2px}
+.tm-status-select{border:1.5px solid var(--border);border-radius:8px;padding:6px 10px;font-size:13px;font-weight:500;background:#f8f9fa;cursor:pointer;font-family:inherit;color:var(--text);outline:none;min-width:130px;transition:border-color .2s}
+.tm-status-select:focus{border-color:var(--accent)}
+.tm-close-btn{background:var(--bg);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;color:var(--text-dim);transition:all .15s;flex-shrink:0;line-height:1}
+.tm-close-btn:hover{background:var(--card-hover);color:var(--text)}
+.tm-body{display:grid;grid-template-columns:1fr 320px;flex:1;overflow:hidden;min-height:0}
+.tm-main{padding:22px 28px;overflow-y:auto;border-right:1px solid var(--border)}
+.tm-sidebar{display:flex;flex-direction:column;overflow:hidden;min-height:0}
+.tm-sidebar-section{display:flex;flex-direction:column;overflow:hidden;padding:14px 18px}
+.tm-sidebar-section+.tm-sidebar-section{border-top:1px solid var(--border);flex:1}
+.tm-sidebar-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-muted);margin-bottom:8px;flex-shrink:0}
+.tm-field-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:6px}
+.tm-field-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+.tm-assignee-chip{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text);padding:6px 0}
+.tm-date-input{border:1.5px solid var(--border);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;color:var(--text);outline:none;width:100%;background:#fff;transition:border-color .2s}
+.tm-date-input:focus{border-color:var(--accent)}
+.tm-desc-textarea{border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;font-family:inherit;color:var(--text);outline:none;width:100%;resize:vertical;min-height:100px;line-height:1.5;background:#fff;transition:border-color .2s}
+.tm-desc-textarea:focus{border-color:var(--accent)}
+.tm-desc-text{font-size:13px;color:var(--text);line-height:1.6;white-space:pre-line;word-break:break-word}
+.tm-log-list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:5px;min-height:0}
+.tm-log-empty{font-size:11px;color:var(--text-muted);text-align:center;padding:10px 0}
+.tm-log-entry{background:var(--bg);border-radius:6px;padding:6px 9px;font-size:11px;line-height:1.4}
+.tm-log-who{font-weight:600;color:var(--text-dim)}
+.tm-log-msg{color:var(--text);margin-top:1px}
+.tm-log-msg b{color:var(--accent)}
+.tm-log-ts{color:var(--text-muted);font-size:10px;margin-top:1px}
+.tm-comments-list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px;min-height:0;margin-bottom:8px}
+.tm-comment{display:flex;gap:7px;align-items:flex-start}
+.tm-comment-body{flex:1;min-width:0}
+.tm-comment-header{display:flex;align-items:baseline;gap:6px;margin-bottom:2px}
+.tm-comment-author{font-size:11px;font-weight:600;color:var(--text)}
+.tm-comment-ts{font-size:10px;color:var(--text-muted)}
+.tm-comment-text{font-size:12px;color:var(--text-dim);line-height:1.5;word-break:break-word;white-space:pre-wrap}
+.tm-comment-input-wrap{display:flex;flex-direction:column;gap:6px;flex-shrink:0;border-top:1px solid var(--border);padding-top:8px;margin-top:auto}
+.tm-comment-textarea{border:1.5px solid var(--border);border-radius:8px;padding:7px 10px;font-size:12px;font-family:inherit;color:var(--text);outline:none;width:100%;resize:none;line-height:1.4;background:#fff;transition:border-color .2s}
+.tm-comment-textarea:focus{border-color:var(--accent)}
+.tm-footer{display:flex;align-items:center;gap:10px;padding:14px 28px;border-top:1px solid var(--border);flex-shrink:0;background:var(--surface)}
+
+/* ── COLOR PICKER ── */
+.color-picker-box{background:#fff;border-radius:16px;padding:36px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.22);animation:scaleIn .2s ease;text-align:center}
+.color-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.color-swatch{width:60px;height:60px;border-radius:50%;cursor:pointer;transition:transform .15s,box-shadow .15s;border:3px solid rgba(255,255,255,.6);margin:0 auto;display:block}
+.color-swatch:hover{transform:scale(1.12);box-shadow:0 4px 16px rgba(0,0,0,.25)}
+.color-swatch.selected{border-color:#fff;box-shadow:0 0 0 3px #1a73e8,0 4px 16px rgba(0,0,0,.2);transform:scale(1.1)}
+.color-swatch-name{font-size:10px;color:var(--text-dim);margin-top:4px;font-weight:500}
 
 /* ── EDIT MODAL ── */
 .modal-overlay{position:fixed;inset:0;background:rgba(32,33,36,.45);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;animation:overlayIn .2s ease}
 @keyframes overlayIn{from{opacity:0}to{opacity:1}}
 .modal-box{background:var(--card);border-radius:var(--r);padding:28px;width:100%;max-width:520px;box-shadow:var(--sh-lg);animation:scaleIn .2s ease}
 @keyframes scaleIn{from{transform:scale(.96);opacity:0}to{transform:scale(1);opacity:1}}
+.edit-task-modal{background:var(--surface);border-radius:var(--r);width:100%;max-width:800px;max-height:90vh;overflow-y:auto;box-shadow:var(--sh-lg);animation:scaleIn .2s ease;display:flex;flex-direction:column}
+.edit-task-header{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface);z-index:10;flex-shrink:0}
+.edit-task-title{font-size:18px;font-weight:700;color:var(--text)}
 .modal-title{font-size:18px;font-weight:600;margin-bottom:20px;color:var(--text)}
 .modal-actions{display:flex;gap:10px;margin-top:20px;justify-content:flex-end}
 
@@ -224,7 +357,8 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 .pres-block-img{flex-direction:column}
 .pres-img-desc{padding:6px 8px!important;min-height:unset!important;resize:none;margin-bottom:7px}
 .pres-img-upload{display:flex;align-items:center;gap:7px;border:1.5px dashed var(--border);border-radius:var(--rs);padding:8px 12px;cursor:pointer;background:var(--bg);font-size:12px;color:var(--text-dim);transition:all .15s;width:100%}
-.pres-img-upload:hover{border-color:var(--accent);background:var(--accent-lt);color:var(--accent)}
+.pres-img-upload:hover,.pres-img-upload.paste-ready{border-color:var(--accent);background:var(--accent-lt);color:var(--accent)}
+.fmt-hint{color:var(--text-muted);font-size:10px;margin-left:3px;font-weight:400}
 .pres-img-upload input[type=file]{display:none}
 .pres-img-preview-wrap{position:relative;border-radius:6px;width:100%;display:block}
 .pres-img-preview{width:100%;height:220px;display:block;object-fit:cover;border-radius:5px;border:1px solid var(--border);background:#f8f9fa}
@@ -302,7 +436,12 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
   .form-row,.form-row-3{grid-template-columns:1fr}
   .kanban{grid-template-columns:repeat(2,minmax(240px,1fr))}
   .role-grid{grid-template-columns:1fr}
-  .type-grid{grid-template-columns:repeat(3,1fr)}
+  .type-grid{grid-template-columns:repeat(2,1fr)}
+  .task-modal-box{max-height:95vh;border-radius:12px}
+  .tm-body{grid-template-columns:1fr;overflow-y:auto}
+  .tm-main{border-right:none;border-bottom:1px solid var(--border)}
+  .tm-sidebar{max-height:400px}
+  .tm-field-pair{grid-template-columns:1fr}
 }
 @media(max-width:480px){
   .kanban{grid-template-columns:minmax(260px,1fr)}
@@ -313,24 +452,103 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 
 <!-- ═══════════════ LOGIN ═══════════════ -->
 <div id="login">
-  <div class="logo">Работа <span>дизайнеров</span></div>
-  <div class="logo-sub">Пространство где можно создать задачи дизайнерам и посмотреть их загруженность</div>
+  <!-- Designer corner button -->
+  <button class="designer-corner-btn" onclick="openDesignerAuth()">
+    <span class="dc-icon">🎨</span> Дизайнер
+  </button>
 
-  <div class="role-grid">
-    <div class="role-card" data-role="designer" onclick="pickRole('designer')">
-      <div class="role-icon">🎨</div>
-      <div class="role-title">Дизайнер</div>
-      <div class="role-desc">Работаю с задачами</div>
+  <div class="logo">Работа <span>дизайнеров</span></div>
+  <div class="logo-sub">Создайте задачу — дизайнеры возьмут в работу</div>
+
+  <div class="client-entry-card" onclick="openClientEntry()">
+    <div class="ce-icon">📋</div>
+    <h2>Поставить задачу</h2>
+    <p>Создайте ТЗ для дизайнера — укажите формат, сроки и детали</p>
+    <div class="ce-btn">Начать →</div>
+  </div>
+</div>
+
+<!-- Client name modal -->
+<div id="client-name-modal" class="name-modal-overlay hidden">
+  <div class="name-modal">
+    <h3>Как вас зовут?</h3>
+    <p>Имя будет видно дизайнерам в задаче</p>
+    <div class="fg" style="margin-bottom:16px">
+      <label class="field-label">Ваше имя</label>
+      <input id="client-name-input" type="text" placeholder="Введите имя…" onkeydown="if(event.key==='Enter')doClientLogin()">
     </div>
-    <div class="role-card" data-role="client" onclick="pickRole('client')">
-      <div class="role-icon">💼</div>
-      <div class="role-title">Заказчик</div>
-      <div class="role-desc">Создаю задачи</div>
+    <button class="btn-primary" style="width:100%;justify-content:center" onclick="doClientLogin()">Продолжить →</button>
+  </div>
+</div>
+
+<!-- Designer auth modal -->
+<div id="designer-auth-modal" class="dauth-overlay hidden">
+  <div class="dauth-modal">
+    <div class="dauth-steps">
+      <div class="dauth-dot active" id="dauth-dot-1"></div>
+      <div class="dauth-dot" id="dauth-dot-2"></div>
+    </div>
+
+    <!-- Step 1: pick designer -->
+    <div id="dauth-step1">
+      <h3>Выбери себя из списка</h3>
+      <p class="dauth-sub">Нажми на своё имя чтобы продолжить</p>
+      <div class="designer-list" id="dauth-designer-list"></div>
+      <div class="dauth-error" id="dauth-step1-error"></div>
+      <button class="btn-primary" style="width:100%;justify-content:center;margin-top:4px" onclick="dAuthStep1Next()">Продолжить →</button>
+    </div>
+
+    <!-- Step 2: profile setup (first login) -->
+    <div id="dauth-step2" class="hidden">
+      <h3>Настрой профиль</h3>
+      <p class="dauth-sub">Это увидят коллеги на доске</p>
+
+      <div class="profile-photo-row">
+        <div class="profile-photo-circle" id="dauth-photo-circle" onclick="document.getElementById('dauth-photo-input').click()">
+          <span id="dauth-photo-initials"></span>
+        </div>
+        <div>
+          <div class="profile-photo-upload-btn" onclick="document.getElementById('dauth-photo-input').click()">📎 Загрузить фото</div>
+          <div class="profile-photo-hint">JPG или PNG, до 2 МБ</div>
+        </div>
+        <input type="file" id="dauth-photo-input" accept="image/jpeg,image/png" style="display:none" onchange="dAuthHandlePhoto(this)">
+      </div>
+
+      <div class="display-name-field">
+        <label class="field-label">Имя на доске <span style="color:var(--text-muted);font-weight:400">(можно сократить)</span></label>
+        <input type="text" id="dauth-display-name" placeholder="Например: Артём К.">
+      </div>
+
+      <label class="field-label" style="margin-bottom:8px;display:block">Цвет карточек</label>
+      <div class="color-swatches" id="dauth-color-swatches"></div>
+
+      <button class="btn-primary" id="dauth-step2-btn" style="width:100%;justify-content:center;opacity:.5;pointer-events:none" onclick="dAuthConfirm()">Войти в доску →</button>
     </div>
   </div>
+</div>
 
-  <div class="login-box" id="login-box">
-    <p class="login-hint">Выберите роль выше</p>
+<!-- Profile edit modal -->
+<div id="profile-edit-modal" class="profile-edit-overlay hidden">
+  <div class="profile-edit-modal">
+    <h3>Редактировать профиль</h3>
+    <div class="profile-photo-row">
+      <div class="profile-photo-circle" id="pe-photo-circle" onclick="document.getElementById('pe-photo-input').click()"></div>
+      <div>
+        <div class="profile-photo-upload-btn" onclick="document.getElementById('pe-photo-input').click()">📎 Изменить фото</div>
+        <div class="profile-photo-hint">JPG или PNG, до 2 МБ</div>
+      </div>
+      <input type="file" id="pe-photo-input" accept="image/jpeg,image/png" style="display:none" onchange="peHandlePhoto(this)">
+    </div>
+    <div class="fg" style="margin-bottom:16px">
+      <label class="field-label">Имя на доске</label>
+      <input type="text" id="pe-name-input">
+    </div>
+    <label class="field-label" style="margin-bottom:8px;display:block">Цвет карточек</label>
+    <div class="color-swatches" id="pe-color-swatches" style="margin-bottom:20px"></div>
+    <div style="display:flex;gap:10px">
+      <button class="btn-ghost btn-sm" style="flex:1;justify-content:center" onclick="closeProfileEdit()">Отмена</button>
+      <button class="btn-primary" style="flex:1;justify-content:center" onclick="saveProfileEdit()">Сохранить</button>
+    </div>
   </div>
 </div>
 
@@ -355,7 +573,10 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 
   <!-- CREATE -->
   <div id="tab-create" class="tab-content">
-    <div class="section-title">Новая задача</div>
+    <div class="create-hero">
+      <div class="create-hero-title">Поставить задачу дизайнерам</div>
+      <div class="create-hero-sub">Выберите тип задачи ниже — форма подскажет что заполнить</div>
+    </div>
     <div class="type-grid" id="type-grid"></div>
     <div id="task-form" class="hidden">
       <div class="form-card">
@@ -394,8 +615,8 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
           <input id="f-refs" type="text" placeholder="https://… (через запятую)">
         </div>
         <div class="form-actions">
-          <button class="btn-primary" onclick="submitTask()">Отправить задачу</button>
-          <button class="btn-ghost" onclick="resetForm()">Отмена</button>
+          <button class="btn-primary" id="btn-submit" onclick="submitTask()">Отправить задачу</button>
+          <button class="btn-ghost" id="btn-cancel" onclick="resetForm()">Отмена</button>
         </div>
       </div>
     </div>
@@ -410,57 +631,74 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 
 <!-- ═══════════════ DESIGNER ═══════════════ -->
 <div id="designer" class="hidden">
-  <header class="app-header">
-    <div class="app-logo">Работа <span>дизайнеров</span></div>
-    <div class="header-right">
-      <div class="filter-toggle">
-        <button class="ftog active" data-f="mine" onclick="setFilter('mine')">Мои задачи</button>
-        <button class="ftog" data-f="all" onclick="setFilter('all')">Все задачи</button>
+  <!-- Sidebar -->
+  <div class="designer-sidebar">
+    <div class="ds-profile" onclick="openProfileEdit()" title="Редактировать профиль">
+      <div class="ds-avatar" id="d-av">?</div>
+      <div style="min-width:0">
+        <div class="ds-name" id="d-nm">—</div>
+        <div class="ds-edit-hint">редактировать</div>
       </div>
-      <div class="user-pill">
-        <div class="avatar" id="d-av">?</div>
-        <span id="d-nm">—</span>
-        <span class="role-tag">· Дизайнер</span>
-      </div>
-      <button class="btn-ghost btn-sm" onclick="logout()">Выйти</button>
     </div>
-  </header>
+    <div class="ds-nav">
+      <div class="ds-nav-item active" data-f="all" onclick="setFilter('all',this)">
+        <span class="ds-nav-icon">📋</span> Все задачи
+      </div>
+      <div class="ds-nav-item" data-f="mine" onclick="setFilter('mine',this)">
+        <span class="ds-nav-icon">👤</span> Мои задачи
+      </div>
+    </div>
+    <div class="ds-footer">
+      <div class="ds-logout" onclick="logout()">
+        <span style="font-size:16px">🚪</span> Выйти
+      </div>
+    </div>
+  </div>
 
-  <div class="kanban">
+  <!-- Main board area -->
+  <div class="designer-main">
+    <div class="kanban-wrap">
+      <div class="kanban" id="kanban-board">
     <div class="kcol">
+      <div class="kcol-topbar" style="background:#4285f4"></div>
       <div class="kcol-head">
-        <div class="kcol-title"><span class="col-dot" style="background:var(--new)"></span>Новое</div>
-        <span class="kcol-cnt" id="cnt-new">0</span>
+        <div class="kcol-title">Новое</div>
+        <span class="kcol-cnt" id="cnt-new" style="background:#4285f4">0</span>
       </div>
       <div class="kcol-body" id="col-new"
         ondragover="colDragOver(event)" ondragleave="colDragLeave(event)" ondrop="colDrop(event,'new')"></div>
     </div>
     <div class="kcol">
+      <div class="kcol-topbar" style="background:#fbbc04"></div>
       <div class="kcol-head">
-        <div class="kcol-title"><span class="col-dot" style="background:var(--progress)"></span>В работе</div>
-        <span class="kcol-cnt" id="cnt-progress">0</span>
+        <div class="kcol-title">В работе</div>
+        <span class="kcol-cnt" id="cnt-progress" style="background:#fbbc04">0</span>
       </div>
       <div class="kcol-body" id="col-progress"
         ondragover="colDragOver(event)" ondragleave="colDragLeave(event)" ondrop="colDrop(event,'progress')"></div>
     </div>
     <div class="kcol">
+      <div class="kcol-topbar" style="background:#ea4335"></div>
       <div class="kcol-head">
-        <div class="kcol-title"><span class="col-dot" style="background:var(--review)"></span>На правках</div>
-        <span class="kcol-cnt" id="cnt-review">0</span>
+        <div class="kcol-title">На правках</div>
+        <span class="kcol-cnt" id="cnt-review" style="background:#ea4335">0</span>
       </div>
       <div class="kcol-body" id="col-review"
         ondragover="colDragOver(event)" ondragleave="colDragLeave(event)" ondrop="colDrop(event,'review')"></div>
     </div>
     <div class="kcol">
+      <div class="kcol-topbar" style="background:#34a853"></div>
       <div class="kcol-head">
-        <div class="kcol-title"><span class="col-dot" style="background:var(--done)"></span>Готово</div>
-        <span class="kcol-cnt" id="cnt-done">0</span>
+        <div class="kcol-title">Готово</div>
+        <span class="kcol-cnt" id="cnt-done" style="background:#34a853">0</span>
       </div>
       <div class="kcol-body" id="col-done"
         ondragover="colDragOver(event)" ondragleave="colDragLeave(event)" ondrop="colDrop(event,'done')"></div>
     </div>
-  </div>
-</div>
+      </div><!-- /kanban -->
+    </div><!-- /kanban-wrap -->
+  </div><!-- /designer-main -->
+</div><!-- /designer -->
 
 <!-- ═══════════════ EDIT MODAL ═══════════════ -->
 <div id="edit-modal" class="modal-overlay hidden" onclick="closeModal(event)">
@@ -497,6 +735,20 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 
 <div class="toast-wrap" id="toasts"></div>
 
+<!-- ═══════════════ EDIT TASK OVERLAY ═══════════════ -->
+<div id="edit-task-overlay" class="modal-overlay hidden" onclick="closeTaskEditOverlay(event)">
+  <div class="edit-task-modal" onclick="event.stopPropagation()">
+    <div class="edit-task-header">
+      <div>
+        <div class="edit-task-title">✏️ Редактировать задачу</div>
+        <div id="et-creator-line" style="font-size:12px;color:var(--text-muted);margin-top:3px"></div>
+      </div>
+      <button class="btn-ghost btn-sm" onclick="closeTaskEditOverlay()">✕ Закрыть</button>
+    </div>
+    <div id="et-form-slot" style="padding:0 28px 28px"></div>
+  </div>
+</div>
+
 <!-- ═══════════════ PRES FULLSCREEN ═══════════════ -->
 <div id="pres-fullscreen-modal" class="pres-fullscreen-overlay hidden" onclick="presFullscreenBgClick(event)">
   <button class="pres-fullscreen-close" onclick="presCloseFullscreen()">✕</button>
@@ -504,9 +756,62 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
   <div class="pres-fullscreen-hint">Кликните по изображению, чтобы добавить пометку · Esc — закрыть</div>
 </div>
 
+<!-- ═══════════════ TASK MODAL ═══════════════ -->
+<div id="task-modal" class="modal-overlay hidden" onclick="closeTaskModal(event)">
+  <div class="task-modal-box" onclick="event.stopPropagation()">
+    <div class="tm-header">
+      <div style="flex:1;min-width:0">
+        <div class="tm-type-tag" id="tm-type-tag"></div>
+        <div class="tm-title-text" id="tm-title-text"></div>
+        <div class="tm-meta-row" id="tm-meta-row"></div>
+      </div>
+      <div class="tm-header-actions">
+        <div id="tm-status-wrap"></div>
+        <button class="tm-close-btn" onclick="closeTaskModal()">✕</button>
+      </div>
+    </div>
+    <div class="tm-body">
+      <div class="tm-main">
+        <div class="tm-field-pair">
+          <div>
+            <div class="tm-field-label">Исполнитель</div>
+            <div id="tm-assignee-val" class="tm-assignee-chip"></div>
+          </div>
+          <div>
+            <div class="tm-field-label">Дедлайн</div>
+            <div id="tm-deadline-wrap"></div>
+          </div>
+        </div>
+        <div style="margin-bottom:18px">
+          <div class="tm-field-label">Описание / вводные</div>
+          <div id="tm-desc-wrap"></div>
+        </div>
+        <div id="tm-extra-wrap"></div>
+      </div>
+      <div class="tm-sidebar">
+        <div class="tm-sidebar-section" style="max-height:42%;flex:none">
+          <div class="tm-sidebar-title">История изменений</div>
+          <div id="tm-changelog" class="tm-log-list"></div>
+        </div>
+        <div class="tm-sidebar-section">
+          <div class="tm-sidebar-title">Комментарии</div>
+          <div id="tm-comments" class="tm-comments-list"></div>
+          <div class="tm-comment-input-wrap">
+            <textarea id="tm-comment-text" class="tm-comment-textarea" placeholder="Написать комментарий…" rows="2"></textarea>
+            <button class="btn-primary btn-sm" style="align-self:flex-end" onclick="sendComment()">Отправить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tm-footer" id="tm-footer"></div>
+  </div>
+</div>
+
+
+
 <script type="module">
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js';
-import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, setDoc, query, orderBy, serverTimestamp }
+import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, setDoc, query, orderBy, serverTimestamp, getDoc, increment }
   from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js';
 
 const db = getFirestore(initializeApp({
@@ -526,15 +831,15 @@ const DESIGNERS = [
 ];
 
 const TYPES = [
-  {id:'video',    e:'🎬', n:'Видео'},
-  {id:'post',     e:'📱', n:'Соцсети'},
-  {id:'pres',     e:'📊', n:'Презентация'},
-  {id:'landing',  e:'🌐', n:'Лендинг'},
-  {id:'outdoor',  e:'🏙️', n:'Наружная реклама'},
-  {id:'print',    e:'🖨️', n:'Полиграфия'},
-  {id:'brand',    e:'✨', n:'Фирм. стиль'},
-  {id:'edits',    e:'✏️', n:'Правки'},
-  {id:'campaign', e:'📣', n:'Рекл. кампания'},
+  {id:'video',    e:'🎬', n:'Видео',             desc:'Ролики, анимация, видеомонтаж',                color:'#e53935'},
+  {id:'post',     e:'📱', n:'Соцсети',           desc:'Посты, сторис, обложки, креативы',             color:'#8e24aa'},
+  {id:'pres',     e:'📊', n:'Презентация',        desc:'Презентации, питчи, коммерческие предложения', color:'#1a73e8'},
+  {id:'landing',  e:'🌐', n:'Лендинг',           desc:'Одностраничные сайты, промо-страницы',         color:'#00897b'},
+  {id:'outdoor',  e:'🏙️', n:'Наружная реклама', desc:'Билборды, сити-лайты, баннеры',               color:'#f57c00'},
+  {id:'print',    e:'🖨️', n:'Полиграфия',       desc:'Брошюры, листовки, каталоги',                 color:'#6d4c41'},
+  {id:'brand',    e:'✨', n:'Фирм. стиль',        desc:'Логотипы, гайдлайны, брендбук',               color:'#f9a825'},
+  {id:'edits',    e:'✏️', n:'Правки',           desc:'Редактирование макетов, корректировки',       color:'#546e7a'},
+  {id:'campaign', e:'📣', n:'Рекл. кампания',    desc:'Комплексные рекламные материалы',              color:'#e91e63'},
 ];
 
 const PRES_TAGS=[
@@ -547,18 +852,24 @@ const PRES_TAGS=[
 
 const TYPE_FIELDS = {
   video:`
-    <div class="form-row-3">
-      <div class="fg"><label class="field-label">Платформа</label>
-        <select id="f-platform"><option>YouTube</option><option>TikTok</option><option>Instagram</option><option>ВКонтакте</option><option>Rutube</option><option>Другое</option></select></div>
-      <div class="fg"><label class="field-label">Ориентация</label>
-        <select id="f-orient"><option>Горизонтальная 16:9</option><option>Вертикальная 9:16</option><option>Квадрат 1:1</option></select></div>
-      <div class="fg"><label class="field-label">Разрешение</label>
-        <input type="text" id="f-resolution" placeholder="1920x1080"></div>
+    <div class="fg"><label class="field-label">Платформа</label>
+      <div class="check-group">
+        ${['YouTube','TikTok','Instagram','ВКонтакте','Rutube','Другое'].map(v=>`<label class="check-tag" onclick="toggleRadio(this)"><input type="radio" name="f-platform" value="${v}"> ${v}</label>`).join('')}
+      </div>
+    </div>
+    <div class="fg"><label class="field-label">Ориентация</label>
+      <div class="check-group">
+        ${['Горизонтальная 16:9','Вертикальная 9:16','Квадрат 1:1'].map(v=>`<label class="check-tag" onclick="toggleRadio(this)"><input type="radio" name="f-orient" value="${v}"> ${v}</label>`).join('')}
+      </div>
     </div>
     <div class="form-row">
+      <div class="fg"><label class="field-label">Разрешение</label><input type="text" id="f-resolution" placeholder="1920x1080"></div>
       <div class="fg"><label class="field-label">Длительность (сек)</label><input type="number" id="f-dur" placeholder="30" min="1"></div>
-      <div class="fg"><label class="field-label">Формат файла</label>
-        <select id="f-fileformat"><option>MP4</option><option>MOV</option><option>AVI</option><option>GIF</option><option>Other</option></select></div>
+    </div>
+    <div class="fg"><label class="field-label">Формат файла</label>
+      <div class="check-group">
+        ${['MP4','MOV','AVI','GIF','Другой'].map(v=>`<label class="check-tag" onclick="toggleRadio(this)"><input type="radio" name="f-fileformat" value="${v}"> ${v}</label>`).join('')}
+      </div>
     </div>`,
   post:`
     <div class="form-row">
@@ -569,9 +880,10 @@ const TYPE_FIELDS = {
     </div>
     <div class="fg"><label class="field-label">Формат</label>
       <div class="check-group" id="cg-postfmt">
-        <label class="check-tag" onclick="toggleCheck(this)"><input type="checkbox" value="Сторис"> Сторис</label>
-        <label class="check-tag" onclick="toggleCheck(this)"><input type="checkbox" value="Пост"> Пост</label>
-        <label class="check-tag" onclick="toggleCheck(this)"><input type="checkbox" value="Вертикальный пост"> Вертикальный пост</label>
+        <label class="check-tag" onclick="toggleCheck(this)"><input type="checkbox" value="Сторис"> Сторис <span class="fmt-hint">1080×1920 px</span></label>
+        <label class="check-tag" onclick="toggleCheck(this)"><input type="checkbox" value="Пост"> Пост <span class="fmt-hint">1080×1080 px</span></label>
+        <label class="check-tag" onclick="toggleCheck(this)"><input type="checkbox" value="Вертикальный пост"> Вертикальный пост <span class="fmt-hint">1080×1350 px</span></label>
+        <label class="check-tag" onclick="toggleCheck(this)"><input type="checkbox" value="GIF"> GIF <span class="fmt-hint">до 15 сек</span></label>
       </div>
     </div>
     <div class="fg"><label class="field-label">Карточки контента</label>
@@ -924,13 +1236,56 @@ const TYPE_FIELDS = {
       </div>
     </div>`,
   print:`
-    <div class="form-row">
-      <div class="fg"><label class="field-label">Формат</label>
-        <select id="f-format"><option>А4</option><option>А3</option><option>А5</option><option>А6</option><option>Другой</option></select></div>
-      <div class="fg"><label class="field-label">Тип</label>
-        <select id="f-ptype"><option>Флаер</option><option>Буклет</option><option>Брошюра</option><option>Визитка</option><option>Плакат</option><option>Другое</option></select></div>
+    <div class="fg">
+      <label class="field-label">Категория</label>
+      <div class="print-cat-grid">
+        ${['Презентационный формат','Офисная полиграфия','Сувенирка','Навигация'].map(c=>
+          `<button type="button" class="print-cat-btn" data-cat="${c}" onclick="printSelectCategory('${c}')">${c}</button>`
+        ).join('')}
+      </div>
     </div>
-    <div class="fg"><label class="field-label">Тираж (шт)</label><input type="number" id="f-qty" placeholder="1000"></div>`,
+    <div class="fg hidden" id="print-type-row">
+      <label class="field-label">Тип</label>
+      <div class="check-group" id="print-type-tags"></div>
+    </div>
+    <div class="fg hidden" id="print-format-row">
+      <label class="field-label">Формат</label>
+      <div class="check-group" id="print-format-tags"></div>
+      <div class="hidden" id="print-custom-size-wrap" style="margin-top:10px">
+        <input type="text" id="print-custom-size" placeholder="Например: 60×40 мм">
+      </div>
+    </div>
+    <div class="fg hidden" id="print-tirazh-row">
+      <label class="field-label">Количество экземпляров</label>
+      <input type="number" id="f-print-qty" placeholder="1000">
+    </div>
+    <div class="fg hidden" id="print-duplex-row">
+      <label class="check-tag" onclick="toggleCheck(this)" style="border-radius:8px;width:fit-content">
+        <input type="checkbox" id="f-print-duplex" value="Двусторонняя печать"> Двусторонняя печать
+      </label>
+    </div>
+    <div class="fg">
+      <label class="field-label">Референс стиля</label>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start">
+        <div style="flex:1;min-width:180px">
+          <input type="text" id="f-print-reflink" placeholder="https://… ссылка на пример">
+        </div>
+        <label class="pres-file-btn" style="flex-shrink:0">
+          <input type="file" id="f-print-reffile" accept=".jpg,.jpeg,.png,.pdf" onchange="printSetRefFile(this)">
+          📎 Загрузить файл
+        </label>
+      </div>
+      <div id="f-print-reffile-display" style="margin-top:6px;font-size:12px;color:var(--accent)"></div>
+    </div>
+    <div class="fg">
+      <label class="field-label">Дополнительные материалы</label>
+      <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px">Логотип, фото, брендбук</p>
+      <label class="pres-file-btn pres-file-btn-full">
+        <input type="file" id="f-print-matfiles" multiple accept=".jpg,.jpeg,.png,.pdf,.ai,.eps,.zip" onchange="printAddMatFiles(this)">
+        📁 Добавить файлы
+      </label>
+      <div id="f-print-matfiles-list" style="margin-top:8px;display:flex;flex-direction:column;gap:5px"></div>
+    </div>`,
   brand:`
     <div class="fg"><label class="field-label">Элементы</label>
       <div class="check-group" id="cg-brand">
@@ -942,25 +1297,69 @@ const TYPE_FIELDS = {
     <div class="fg"><label class="field-label">Ссылка на файл</label><input type="text" id="f-flink" placeholder="https://…"></div>
     <div class="fg"><label class="field-label">Что изменить</label><textarea id="f-what" placeholder="Опишите правки подробно…"></textarea></div>`,
   campaign:`
-    <div class="fg"><label class="field-label">Платформы</label>
-      <div class="check-group" id="cg-plat">
-        ${['Instagram','ВКонтакте','YouTube','TikTok','Telegram','Яндекс','Google','Другое']
+    <div class="fg">
+      <label class="field-label">Название задачи</label>
+      <input type="text" id="f-campaign-title" placeholder="Кратко опишите задачу…">
+    </div>
+    <div class="fg">
+      <label class="field-label">Объект</label>
+      <select id="f-campaign-object">
+        <option value="">— Выберите объект —</option>
+        ${['Звёзды','Нова Вита','Атаманский сад','Ботаника','Ритм','Премьер','Агой','Славянка']
+          .map(v=>`<option value="${v}">${v}</option>`).join('')}
+      </select>
+    </div>
+    <div class="fg">
+      <label class="field-label">Цель кампании</label>
+      <textarea id="f-campaign-goal" placeholder="Что меняем или запускаем? Например: обновляем рекламу по городу к старту продаж второй очереди"></textarea>
+    </div>
+    <div class="fg">
+      <label class="field-label">Носители</label>
+      <div class="check-group">
+        ${['Билборд','Баннер на забор','Сити-лайт','Digital-экран']
           .map(v=>`<label class="check-tag" onclick="toggleCheck(this)"><input type="checkbox" value="${v}"> ${v}</label>`).join('')}
       </div>
     </div>
-    <div class="form-row">
-      <div class="fg"><label class="field-label">Форматы</label><input type="text" id="f-formats" placeholder="Баннеры, видео, сторис…"></div>
-      <div class="fg"><label class="field-label">Бюджет (₽)</label><input type="number" id="f-budget" placeholder="50000"></div>
+    <div class="fg">
+      <label class="field-label">Референс стиля</label>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start">
+        <div style="flex:1;min-width:180px">
+          <input type="text" id="f-campaign-reflink" placeholder="https://… ссылка на пример">
+        </div>
+        <label class="pres-file-btn" style="flex-shrink:0">
+          <input type="file" id="f-campaign-reffile" accept=".jpg,.jpeg,.png,.pdf" onchange="campaignSetRefFile(this)">
+          📎 Загрузить файл
+        </label>
+      </div>
+      <div id="f-campaign-reffile-display" style="margin-top:6px;font-size:12px;color:var(--accent)"></div>
+    </div>
+    <div class="fg">
+      <label class="field-label">Дополнительные материалы</label>
+      <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px">Логотип объекта, фото, старые макеты</p>
+      <label class="pres-file-btn pres-file-btn-full">
+        <input type="file" id="f-campaign-matfiles" multiple accept=".jpg,.jpeg,.png,.pdf,.ai,.eps,.zip" onchange="campaignAddMatFiles(this)">
+        📁 Добавить файлы
+      </label>
+      <div id="f-campaign-matfiles-list" style="margin-top:8px;display:flex;flex-direction:column;gap:5px"></div>
     </div>`,
 };
 
 // ── STATE ──
 let user = null, selRole = null, selType = null;
-let unsubTasks = null, unsubWorkload = null;
-let filterMode = 'mine';
+let unsubTasks = null, unsubWorkload = null, unsubDesigners = null;
+let filterMode = 'all';
 let lastTasks = [];
+let allDesigners = [...DESIGNERS];
 let draggedId = null;
+let wasDragging = false;
 let editingTaskId = null;
+let editMode = false;
+let taskModalId = null;
+let taskModalUnsubChangelog = null;
+let taskModalUnsubComments = null;
+let seenData = {};
+let pendingDesignerName = null;
+let pendingDesignerColor = null;
 let presFiles = [];
 let presScenario = null;
 let presSlides = [];
@@ -1012,15 +1411,57 @@ const OUTDOOR_BLOCK_TAGS = [
   {id:'qr',       label:'QR-код',         ph:'Ссылка для QR или описание…'},
 ];
 
+const PRINT_DATA = {
+  'Презентационный формат': {
+    types:   ['Каталог','Буклет','Книга продаж','Флаер','Лифлет','Другое'],
+    formats: ['А6 (105×148 мм)','А5 (148×210 мм)','А4 (210×297 мм)','А3 (297×420 мм)','Евро (99×210 мм)','Свой размер'],
+    tirazh: true, duplex: true
+  },
+  'Офисная полиграфия': {
+    types:   ['Бланк','Паспорт объекта','Визитка','Тейбл-тент','Сертификат','Купон','Бейджи','Другое'],
+    formats: ['А5 (148×210 мм)','А4 (210×297 мм)','90×50 мм (визитка)','Свой размер'],
+    tirazh: true, duplex: true
+  },
+  'Сувенирка': {
+    types:   ['Календарь','Кружка','Одежда','Пакет','Другое'],
+    formats: [],
+    tirazh: true, duplex: false
+  },
+  'Навигация': {
+    types:   ['Табличка','Дорхенгер','Генплан','Планировка','Другое'],
+    formats: [],
+    tirazh: false, duplex: false
+  }
+};
+let printCategory = null;
+let printSelectedTypes = [];
+let printSelectedFormat = null;
+let printMatFiles = [];
+
 // ── EXPOSE ──
 window.pickRole     = pickRole;
 window.doLogin      = doLogin;
+window.doDesignerLogin = ()=>{};
 window.logout       = logout;
 window.switchTab    = switchTab;
 window.selectType   = selectType;
 window.resetForm    = resetForm;
 window.submitTask   = submitTask;
 window.updateStatus = updateStatus;
+window.openClientEntry = openClientEntry;
+window.doClientLogin   = doClientLogin;
+window.openDesignerAuth = openDesignerAuth;
+window.dAuthSelectDesigner = dAuthSelectDesigner;
+window.dAuthStep1Next = dAuthStep1Next;
+window.dAuthSelectColor = dAuthSelectColor;
+window.dAuthHandlePhoto = dAuthHandlePhoto;
+window.dAuthConfirm   = dAuthConfirm;
+window.openProfileEdit = openProfileEdit;
+window.closeProfileEdit = closeProfileEdit;
+window.peSelectColor   = peSelectColor;
+window.peHandlePhoto   = peHandlePhoto;
+window.saveProfileEdit = saveProfileEdit;
+window.setFilter       = setFilter;
 window.toggleCheck  = toggleCheck;
 window.setFilter    = setFilter;
 window.cardDragStart= cardDragStart;
@@ -1028,11 +1469,29 @@ window.cardDragEnd  = cardDragEnd;
 window.colDragOver  = colDragOver;
 window.colDragLeave = colDragLeave;
 window.colDrop      = colDrop;
-window.openEdit     = openEdit;
-window.closeModal   = closeModal;
-window.saveEdit     = saveEdit;
+window.openEdit              = openEdit;
+window.closeModal            = closeModal;
+window.saveEdit              = saveEdit;
+window.openTaskEdit          = openTaskEdit;
+window.closeTaskEditOverlay  = closeTaskEditOverlay;
+window.openTaskModal         = openTaskModal;
+window.closeTaskModal        = closeTaskModal;
+window.saveTaskModal         = saveTaskModal;
+window.sendComment           = sendComment;
+window.tmChangeStatus        = tmChangeStatus;
 window.toggleScard   = toggleScard;
 window.showFileName  = showFileName;
+window.toggleRadio       = toggleRadio;
+window.activateImgBlock  = activateImgBlock;
+window.campaignSetRefFile    = campaignSetRefFile;
+window.campaignAddMatFiles   = campaignAddMatFiles;
+window.campaignRemoveMatFile = campaignRemoveMatFile;
+window.printSelectCategory = printSelectCategory;
+window.printToggleType     = printToggleType;
+window.printSelectFormat   = printSelectFormat;
+window.printSetRefFile     = printSetRefFile;
+window.printAddMatFiles    = printAddMatFiles;
+window.printRemoveMatFile  = printRemoveMatFile;
 window.presAddFiles       = presAddFiles;
 window.presRemoveFile     = presRemoveFile;
 window.selectPresScenario = selectPresScenario;
@@ -1135,45 +1594,186 @@ function toggleCheck(lbl){
 }
 
 // ── LOGIN ──
-function pickRole(r){
-  selRole=r;
-  document.querySelectorAll('.role-card').forEach(c=>c.classList.toggle('sel',c.dataset.role===r));
-  const box=document.getElementById('login-box');
-  if(r==='designer'){
-    box.innerHTML=`<p style="font-weight:600;color:var(--text-dim);font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px">Выберите дизайнера</p>
-      <div class="designer-list">
-        ${DESIGNERS.map(d=>`
-          <div class="dp-card" onclick="loginAsDesigner('${d.id}')">
-            <div class="avatar" style="background:${d.color}">${d.name[0]}</div>
-            <div><div class="dp-name">${d.name}</div><div class="dp-role">Дизайнер</div></div>
-          </div>`).join('')}
-      </div>`;
-    window.loginAsDesigner=function(id){
-      const d=DESIGNERS.find(x=>x.id===id);
-      user={name:d.name, role:'designer', color:d.color, id:d.id};
-      localStorage.setItem('df_user',JSON.stringify(user));
-      enterApp();
-    };
-  } else {
-    box.innerHTML=`<div class="fg">
-        <label class="field-label">Ваше имя</label>
-        <input id="ln" type="text" placeholder="Введите имя…" onkeydown="if(event.key==='Enter')doLogin()">
-      </div>
-      <button class="btn-primary" style="width:100%;justify-content:center" onclick="doLogin()">Войти →</button>`;
+const DESIGNER_COLORS = [
+  {color:'#4285f4',name:'Синий'},
+  {color:'#34a853',name:'Зелёный'},
+  {color:'#9c27b0',name:'Фиолетовый'},
+  {color:'#f57c00',name:'Оранжевый'},
+  {color:'#e91e63',name:'Розовый'},
+  {color:'#00897b',name:'Бирюзовый'},
+];
+
+function openClientEntry(){
+  const saved = localStorage.getItem('df_client_name');
+  if(saved){
+    user={name:saved, role:'client', color:'#1a73e8'};
+    enterApp();
+    return;
   }
+  document.getElementById('client-name-modal').classList.remove('hidden');
+  setTimeout(()=>document.getElementById('client-name-input').focus(),50);
 }
 
-function doLogin(){
-  const name=document.getElementById('ln')?.value.trim();
+function doClientLogin(){
+  const name=document.getElementById('client-name-input')?.value.trim();
   if(!name){ toast('Введите имя','err'); return; }
-  if(!selRole){ toast('Выберите роль','err'); return; }
+  localStorage.setItem('df_client_name', name);
   user={name, role:'client', color:'#1a73e8'};
   localStorage.setItem('df_user',JSON.stringify(user));
+  document.getElementById('client-name-modal').classList.add('hidden');
   enterApp();
 }
 
+// Designer auth
+let dAuthSelectedDesigner = null;
+let dAuthPhotoData = null;
+let pePhotoData = null;
+let peSelectedColor = null;
+
+function openDesignerAuth(){
+  // Check localStorage first
+  const saved = localStorage.getItem('df_user');
+  if(saved){
+    try{
+      const u = JSON.parse(saved);
+      if(u.role==='designer'){
+        user=u;
+        enterApp();
+        return;
+      }
+    }catch(e){}
+  }
+  // Show modal step 1
+  dAuthSelectedDesigner = null;
+  dAuthPhotoData = null;
+  renderDAuthDesignerList();
+  renderDAuthColorSwatches();
+  document.getElementById('dauth-step1').classList.remove('hidden');
+  document.getElementById('dauth-step2').classList.add('hidden');
+  document.getElementById('dauth-dot-1').classList.add('active');
+  document.getElementById('dauth-dot-2').classList.remove('active');
+  document.getElementById('dauth-step1-error').textContent='';
+  document.getElementById('designer-auth-modal').classList.remove('hidden');
+}
+
+function renderDAuthDesignerList(){
+  const list = document.getElementById('dauth-designer-list');
+  list.innerHTML = allDesigners.map(d=>`
+    <div class="dp-card" data-id="${d.id}" onclick="dAuthSelectDesigner('${d.id}')">
+      <div class="avatar" style="background:${d.color};width:32px;height:32px;font-size:12px">${d.name[0].toUpperCase()}</div>
+      <div>
+        <div class="dp-name">${d.name}</div>
+      </div>
+      <span class="dp-check">✓</span>
+    </div>`).join('');
+}
+
+function dAuthSelectDesigner(id){
+  dAuthSelectedDesigner = allDesigners.find(d=>d.id===id);
+  document.querySelectorAll('#dauth-designer-list .dp-card').forEach(c=>{
+    c.classList.toggle('sel', c.dataset.id===id);
+  });
+  document.getElementById('dauth-step1-error').textContent='';
+}
+
+async function dAuthStep1Next(){
+  if(!dAuthSelectedDesigner){
+    document.getElementById('dauth-step1-error').textContent='Выбери себя из списка';
+    return;
+  }
+  const name = dAuthSelectedDesigner.name;
+  // Check if designer already has profile in Firebase
+  try{
+    const snap = await getDoc(doc(db,'designers',name));
+    if(snap.exists()&&snap.data().color){
+      const d=snap.data();
+      const displayName = d.displayName||name;
+      user={name, displayName, role:'designer', color:d.color, id:dAuthSelectedDesigner.id, photo:d.photo||null};
+      localStorage.setItem('df_user',JSON.stringify(user));
+      document.getElementById('designer-auth-modal').classList.add('hidden');
+      enterApp();
+      return;
+    }
+  }catch(e){}
+  // First login — show step 2
+  pendingDesignerName = name;
+  document.getElementById('dauth-display-name').value = name;
+  document.getElementById('dauth-photo-initials').textContent = name[0].toUpperCase();
+  document.getElementById('dauth-photo-circle').style.background = dAuthSelectedDesigner.color;
+  document.getElementById('dauth-step1').classList.add('hidden');
+  document.getElementById('dauth-step2').classList.remove('hidden');
+  document.getElementById('dauth-dot-1').classList.remove('active');
+  document.getElementById('dauth-dot-2').classList.add('active');
+  pendingDesignerColor = dAuthSelectedDesigner.color;
+  // Pre-select color
+  document.querySelectorAll('#dauth-color-swatches .cswatch').forEach(el=>{
+    el.classList.toggle('active', el.dataset.color===dAuthSelectedDesigner.color);
+  });
+  updateDAuthStep2Btn();
+}
+
+function renderDAuthColorSwatches(){
+  const container = document.getElementById('dauth-color-swatches');
+  container.innerHTML = DESIGNER_COLORS.map(c=>`
+    <div class="cswatch" data-color="${c.color}" style="background:${c.color}" onclick="dAuthSelectColor('${c.color}')" title="${c.name}"></div>
+  `).join('');
+}
+
+function dAuthSelectColor(color){
+  pendingDesignerColor = color;
+  document.querySelectorAll('#dauth-color-swatches .cswatch').forEach(el=>{
+    el.classList.toggle('active', el.dataset.color===color);
+  });
+  document.getElementById('dauth-photo-circle').style.background = color;
+  updateDAuthStep2Btn();
+}
+
+function updateDAuthStep2Btn(){
+  const btn = document.getElementById('dauth-step2-btn');
+  if(pendingDesignerColor){
+    btn.style.opacity='1'; btn.style.pointerEvents='auto';
+  } else {
+    btn.style.opacity='.5'; btn.style.pointerEvents='none';
+  }
+}
+
+function dAuthHandlePhoto(input){
+  const file=input.files[0];
+  if(!file)return;
+  if(file.size>2*1024*1024){ toast('Файл больше 2 МБ','err'); return; }
+  const reader=new FileReader();
+  reader.onload=e=>{
+    dAuthPhotoData=e.target.result;
+    const circle=document.getElementById('dauth-photo-circle');
+    circle.innerHTML=`<img src="${dAuthPhotoData}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+  };
+  reader.readAsDataURL(file);
+}
+
+async function dAuthConfirm(){
+  if(!pendingDesignerColor||!pendingDesignerName)return;
+  const name=pendingDesignerName;
+  const color=pendingDesignerColor;
+  const displayName=document.getElementById('dauth-display-name').value.trim()||name;
+  const photo=dAuthPhotoData||null;
+  try{
+    await setDoc(doc(db,'designers',name),{name,color,displayName,photo,lastSeen:serverTimestamp()},{merge:true});
+  }catch(e){}
+  user={name,displayName,role:'designer',color,id:name.toLowerCase(),photo};
+  localStorage.setItem('df_user',JSON.stringify(user));
+  document.getElementById('designer-auth-modal').classList.add('hidden');
+  pendingDesignerName=null; pendingDesignerColor=null; dAuthPhotoData=null;
+  enterApp();
+}
+
+function doLogin(){} // legacy stub
+function pickRole(r){} // legacy stub
+
 async function enterApp(){
   document.getElementById('login').classList.add('hidden');
+  document.getElementById('client-name-modal').classList.add('hidden');
+  loadSeenData();
+  subscribeDesigners();
   if(user.role==='designer'){
     try{
       await setDoc(doc(db,'designers',user.name),{name:user.name,color:user.color,lastSeen:serverTimestamp()},{merge:true});
@@ -1195,26 +1795,139 @@ function showClient(){
 
 function showDesigner(){
   document.getElementById('designer').classList.remove('hidden');
-  const d=DESIGNERS.find(x=>x.name===user.name)||{color:'#1a73e8'};
-  document.getElementById('d-av').textContent=user.name[0].toUpperCase();
-  document.getElementById('d-av').style.background=d.color;
-  document.getElementById('d-nm').textContent=user.name;
+  const color=user.color||getDesignerColor(user.name)||'#1a73e8';
+  const displayName=user.displayName||user.name;
+  // Sidebar avatar
+  const av=document.getElementById('d-av');
+  if(user.photo){
+    av.innerHTML=`<img src="${user.photo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+  } else {
+    av.textContent=displayName[0].toUpperCase();
+  }
+  av.style.background=user.photo?'transparent':color;
+  av.style.borderColor=color;
+  document.getElementById('d-nm').textContent=displayName;
+  // Set active nav item to current filterMode
+  document.querySelectorAll('.ds-nav-item').forEach(b=>{
+    b.classList.toggle('active', b.dataset.f===filterMode);
+  });
   subscribeKanban();
 }
 
 function logout(){
   if(unsubTasks){unsubTasks();unsubTasks=null;}
   if(unsubWorkload){unsubWorkload();unsubWorkload=null;}
+  if(unsubDesigners){unsubDesigners();unsubDesigners=null;}
+  closeTaskModal();
+  taskModalId=null; seenData={}; pendingDesignerName=null; pendingDesignerColor=null;
+  allDesigners=[...DESIGNERS];
   localStorage.removeItem('df_user');
-  user=null; selRole=null; selType=null; filterMode='mine'; lastTasks=[];
+  // Note: df_client_name intentionally kept so client name is remembered next visit
+  user=null; selRole=null; selType=null; filterMode='all'; lastTasks=[];
   document.getElementById('client').classList.add('hidden');
   document.getElementById('designer').classList.add('hidden');
   document.getElementById('login').classList.remove('hidden');
-  document.querySelectorAll('.role-card').forEach(c=>c.classList.remove('sel'));
-  document.getElementById('login-box').innerHTML='<p class="login-hint">Выберите роль выше</p>';
+  document.getElementById('client-name-modal').classList.add('hidden');
+  document.getElementById('designer-auth-modal').classList.add('hidden');
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab==='create'));
   document.getElementById('tab-create').classList.remove('hidden');
   document.getElementById('tab-workload').classList.add('hidden');
+}
+
+// ── KANBAN FILTER ──
+function setFilter(f, el){
+  if(filterMode===f) return;
+  filterMode=f;
+  document.querySelectorAll('.ds-nav-item').forEach(b=>b.classList.toggle('active',b.dataset.f===f));
+  const board=document.getElementById('kanban-board');
+  board.classList.add('kanban-leaving');
+  setTimeout(()=>{
+    board.classList.remove('kanban-leaving');
+    renderKanban(lastTasks);
+    board.classList.add('kanban-entering');
+    setTimeout(()=>board.classList.remove('kanban-entering'),220);
+  },150);
+}
+
+// ── PROFILE EDIT ──
+function openProfileEdit(){
+  if(!user||user.role!=='designer')return;
+  pePhotoData=null;
+  peSelectedColor=user.color;
+  const circle=document.getElementById('pe-photo-circle');
+  if(user.photo){
+    circle.innerHTML=`<img src="${user.photo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+    circle.style.background='transparent';
+  } else {
+    circle.textContent=(user.displayName||user.name)[0].toUpperCase();
+    circle.style.background=user.color;
+  }
+  document.getElementById('pe-name-input').value=user.displayName||user.name;
+  // Render color swatches
+  const container=document.getElementById('pe-color-swatches');
+  container.innerHTML=DESIGNER_COLORS.map(c=>`
+    <div class="cswatch" data-color="${c.color}" style="background:${c.color}" onclick="peSelectColor('${c.color}')" title="${c.name}"></div>
+  `).join('');
+  document.querySelectorAll('#pe-color-swatches .cswatch').forEach(el=>{
+    el.classList.toggle('active',el.dataset.color===user.color);
+  });
+  document.getElementById('profile-edit-modal').classList.remove('hidden');
+}
+
+function closeProfileEdit(){
+  document.getElementById('profile-edit-modal').classList.add('hidden');
+  pePhotoData=null;
+}
+
+function peSelectColor(color){
+  peSelectedColor=color;
+  document.querySelectorAll('#pe-color-swatches .cswatch').forEach(el=>{
+    el.classList.toggle('active',el.dataset.color===color);
+  });
+  const circle=document.getElementById('pe-photo-circle');
+  if(!pePhotoData&&!user.photo) circle.style.background=color;
+}
+
+function peHandlePhoto(input){
+  const file=input.files[0];
+  if(!file)return;
+  if(file.size>2*1024*1024){ toast('Файл больше 2 МБ','err'); return; }
+  const reader=new FileReader();
+  reader.onload=e=>{
+    pePhotoData=e.target.result;
+    const circle=document.getElementById('pe-photo-circle');
+    circle.innerHTML=`<img src="${pePhotoData}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+    circle.style.background='transparent';
+  };
+  reader.readAsDataURL(file);
+}
+
+async function saveProfileEdit(){
+  const newName=document.getElementById('pe-name-input').value.trim();
+  if(!newName){ toast('Введите имя','err'); return; }
+  const color=peSelectedColor||user.color;
+  const photo=pePhotoData!==null?pePhotoData:user.photo;
+  try{
+    await setDoc(doc(db,'designers',user.name),{displayName:newName,color,photo,lastSeen:serverTimestamp()},{merge:true});
+  }catch(e){}
+  user.displayName=newName;
+  user.color=color;
+  user.photo=photo||null;
+  localStorage.setItem('df_user',JSON.stringify(user));
+  // Update sidebar
+  const av=document.getElementById('d-av');
+  if(user.photo){
+    av.innerHTML=`<img src="${user.photo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+    av.style.background='transparent';
+  } else {
+    av.textContent=newName[0].toUpperCase();
+    av.style.background=color;
+  }
+  av.style.borderColor=color;
+  document.getElementById('d-nm').textContent=newName;
+  closeProfileEdit();
+  toast('Профиль обновлён');
+  renderKanban(lastTasks);
 }
 
 // ── TABS ──
@@ -1229,16 +1942,19 @@ function switchTab(tab){
 function buildTypeGrid(){
   document.getElementById('type-grid').innerHTML=TYPES.map(t=>
     `<div class="type-card" data-type="${t.id}" onclick="selectType('${t.id}')">
-       <span class="type-emoji">${t.e}</span>
-       <span class="type-name">${t.n}</span>
+       <span class="type-card-icon">${t.e}</span>
+       <span class="type-card-name">${t.n}</span>
+       <span class="type-card-desc">${t.desc}</span>
+       <span class="type-card-arrow" style="color:${t.color}">→</span>
      </div>`
   ).join('');
 }
 
 function buildAssigneeSelect(){
   const sel=document.getElementById('f-assignee');
+  if(!sel)return;
   sel.innerHTML='<option value="">— Выберите дизайнера —</option>'+
-    DESIGNERS.map(d=>`<option value="${d.name}">${d.name}</option>`).join('');
+    allDesigners.map(d=>`<option value="${d.name}">${d.name}</option>`).join('');
 }
 
 function selectType(id){
@@ -1247,9 +1963,8 @@ function selectType(id){
   const t=TYPES.find(x=>x.id===id);
   document.getElementById('form-heading').innerHTML=`${t.e} ${t.n}`;
   document.getElementById('dyn-fields').innerHTML=TYPE_FIELDS[id]||'';
-  // for 'post' type the title is inside dyn-fields — hide the standalone one
-  document.getElementById('f-title').parentElement.style.display = id==='post' ? 'none' : '';
-  document.getElementById('f-refs').parentElement.style.display = (id==='pres'||id==='landing'||id==='outdoor') ? 'none' : '';
+  document.getElementById('f-title').parentElement.style.display = (id==='post'||id==='campaign') ? 'none' : '';
+  document.getElementById('f-refs').parentElement.style.display = (id==='pres'||id==='landing'||id==='outdoor'||id==='campaign'||id==='print') ? 'none' : '';
   document.getElementById('task-form').classList.remove('hidden');
   document.getElementById('task-form').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
@@ -1264,6 +1979,8 @@ function resetForm(){
   document.getElementById('f-priority').value='normal';
   document.getElementById('f-assignee').value='';
   presCloseFullscreen();
+  campaignMatFiles=[];
+  printCategory=null; printSelectedTypes=[]; printSelectedFormat=null; printMatFiles=[];
   presFiles=[];
   presRefFile=null; presMatFiles=[];
   presScenario=null; presSlides=[]; presSlideCounter=0; presBlockCounter=0; presAnnotCounter=0;
@@ -1285,7 +2002,7 @@ function resetForm(){
 
 // ── SUBMIT TASK ──
 async function submitTask(){
-  const titleEl=document.getElementById('f-title-post')||document.getElementById('f-title');
+  const titleEl=document.getElementById('f-title-post')||document.getElementById('f-campaign-title')||document.getElementById('f-title');
   const title=titleEl?.value.trim()||'';
   if(!title){toast('Введите название задачи','err');return;}
   if(!selType){toast('Выберите тип задачи','err');return;}
@@ -1298,12 +2015,21 @@ async function submitTask(){
       const gid=el.closest('.check-group')?.id||'checks';
       if(!extra[gid])extra[gid]=[];
       if(el.checked)extra[gid].push(el.value);
+    } else if(el.type==='radio'){
+      if(el.checked&&el.name) extra[el.name.replace('f-','')]=el.value;
     } else if(el.type==='file'){
       // skip — handled separately
     } else if(el.id){
       extra[el.id.replace('f-','')]=el.value;
     }
   });
+  if(selType==='print'){
+    if(printCategory) extra['print-category']=printCategory;
+    if(printSelectedTypes.length) extra['print-selected-types']=printSelectedTypes.join(',');
+    if(printSelectedFormat) extra['print-selected-format']=printSelectedFormat;
+    const csEl=document.getElementById('print-custom-size');
+    if(csEl?.value.trim()) extra['print-custom-size']=csEl.value.trim();
+  }
   if(selType==='pres'&&presFiles.length) extra.presFileNames=presFiles.map(f=>f.name);
   if(selType==='pres'){
     const rl=document.querySelector('#pres-new-section:not(.hidden) .pres-reflink-input')||document.querySelector('#pres-edit-section:not(.hidden) .pres-reflink-input')||document.querySelector('#pres-adapt-section:not(.hidden) .pres-reflink-input');
@@ -1369,26 +2095,37 @@ async function submitTask(){
     }
   }
 
-  try{
-    await addDoc(collection(db,'tasks'),{
-      type:selType,
-      typeName:TYPES.find(t=>t.id===selType).n,
-      typeEmoji:TYPES.find(t=>t.id===selType).e,
-      title,
-      clientName:user.name,
-      assignedTo:assignee,
-      status:'new',
-      priority:document.getElementById('f-priority').value,
-      deadline:document.getElementById('f-deadline').value||null,
-      description:document.getElementById('f-desc').value.trim(),
-      references:document.getElementById('f-refs').value.trim(),
-      extra,
-      createdAt:serverTimestamp()
-    });
-    toast('Задача создана!','ok');
-    resetForm();
-  }catch(e){
-    toast('Ошибка: '+e.message,'err');
+  const common={
+    title, assignedTo:assignee,
+    priority:document.getElementById('f-priority').value,
+    deadline:document.getElementById('f-deadline').value||null,
+    description:document.getElementById('f-desc').value.trim(),
+    references:document.getElementById('f-refs').value.trim(),
+    extra
+  };
+
+  if(editMode && editingTaskId){
+    const orig=lastTasks.find(x=>x.id===editingTaskId);
+    if(!orig||user.name!==orig.clientName){toast('Только создатель может редактировать задачу','err');return;}
+    try{
+      await updateDoc(doc(db,'tasks',editingTaskId),{...common,updatedAt:serverTimestamp()});
+      toast('Изменения сохранены','ok');
+      closeTaskEditOverlay();
+    }catch(e){toast('Ошибка: '+e.message,'err');}
+  } else {
+    try{
+      await addDoc(collection(db,'tasks'),{
+        ...common,
+        type:selType,
+        typeName:TYPES.find(t=>t.id===selType).n,
+        typeEmoji:TYPES.find(t=>t.id===selType).e,
+        clientName:user.name,
+        status:'new',
+        createdAt:serverTimestamp()
+      });
+      toast('Задача создана!','ok');
+      resetForm();
+    }catch(e){toast('Ошибка: '+e.message,'err');}
   }
 }
 
@@ -1408,7 +2145,7 @@ function loadWorkload(){
 function renderWorkload(tasks,container){
   const active=tasks.filter(t=>t.status!=='done');
   const byD={};
-  DESIGNERS.forEach(d=>{byD[d.name]=[];});
+  allDesigners.forEach(d=>{byD[d.name]=[];});
   byD['__none__']=[];
   active.forEach(t=>{
     const k=t.assignedTo&&byD[t.assignedTo]!==undefined?t.assignedTo:'__none__';
@@ -1417,7 +2154,7 @@ function renderWorkload(tasks,container){
   });
 
   let html='';
-  DESIGNERS.forEach(d=>{html+=wlBlock(d,byD[d.name]||[]);});
+  allDesigners.forEach(d=>{html+=wlBlock(d,byD[d.name]||[]);});
   const none=byD['__none__']||[];
   if(none.length)html+=wlBlock({name:'Без исполнителя',color:'#9aa0a6'},none);
   container.innerHTML=html||'<div class="empty"><div class="empty-icon">🎉</div><p>Нет активных задач</p></div>';
@@ -1451,12 +2188,6 @@ function wlBlock(d,tasks){
 }
 
 // ── KANBAN ──
-function setFilter(f){
-  filterMode=f;
-  document.querySelectorAll('.ftog').forEach(b=>b.classList.toggle('active',b.dataset.f===f));
-  renderKanban(lastTasks);
-}
-
 function subscribeKanban(){
   const q=query(collection(db,'tasks'),orderBy('createdAt','desc'));
   unsubTasks=onSnapshot(q,snap=>{
@@ -1484,22 +2215,50 @@ function emptyCol(){
   return '<div class="empty"><div class="empty-icon">📭</div><p>Нет задач</p></div>';
 }
 
+function getDesignerColor(name){
+  return allDesigners.find(d=>d.name===name)?.color||'#9aa0a6';
+}
+
+function hexToRgba(hex,alpha){
+  if(!hex||hex.length<7)return`rgba(0,0,0,${alpha})`;
+  const r=parseInt(hex.slice(1,3),16);
+  const g=parseInt(hex.slice(3,5),16);
+  const b=parseInt(hex.slice(5,7),16);
+  return`rgba(${r},${g},${b},${alpha})`;
+}
+
 function taskCard(t){
+  const dColor=getDesignerColor(t.assignedTo);
+  const dInitial=t.assignedTo?t.assignedTo[0].toUpperCase():'?';
   const dlClass=t.deadline?getDlClass(t.deadline):'';
   const dlTxt=t.deadline?fmtDl(t.deadline):'Без дедлайна';
-  const chips=buildChips(t.extra||{});
-  const ptag=t.priority==='urgent'?'<span class="p-urgent">СРОЧНО</span>':
-             t.priority==='high'?'<span class="p-high">ВЫСОКИЙ</span>':'';
-  return `<div class="tcard" draggable="true" data-id="${t.id}" data-p="${t.priority||'normal'}"
-    ondragstart="cardDragStart(event,'${t.id}')" ondragend="cardDragEnd(event)">
-    <div class="tcard-type">${t.typeEmoji||'📋'} ${esc(t.typeName||'')} ${ptag}</div>
+  const pBadge=t.priority==='urgent'?'<span class="pbadge pbadge-urgent">Срочный</span>':
+               t.priority==='high'?'<span class="pbadge pbadge-high">Высокий</span>':
+               '<span class="pbadge pbadge-normal">Обычный</span>';
+  const seen=seenData[t.id]||{comments:0,changelog:0};
+  const commNew=Math.max(0,(t._commentCount||0)-seen.comments);
+  const chgNew=Math.max(0,(t._changelogCount||0)-seen.changelog);
+  const stickers=[
+    commNew>0?`<span class="sticker sticker-comment">💬 ${commNew}</span>`:'',
+    chgNew>0?`<span class="sticker sticker-change">✏️ ${chgNew}</span>`:'',
+  ].filter(Boolean).join('');
+  return `<div class="tcard" draggable="true" data-id="${t.id}"
+    style="border-color:${dColor};background:${hexToRgba(dColor,.05)}"
+    ondragstart="cardDragStart(event,'${t.id}')" ondragend="cardDragEnd(event)"
+    onclick="openTaskModal('${t.id}')">
+    ${stickers?`<div class="tcard-stickers">${stickers}</div>`:''}
+    <div class="tcard-row1">
+      <div class="tcard-type">${esc(t.typeEmoji||'📋')} ${esc(t.typeName||'')}</div>
+      ${pBadge}
+    </div>
     <div class="tcard-title">${esc(t.title)}</div>
-    <div class="tcard-client">👤 ${esc(t.clientName||'—')}</div>
-    ${chips?`<div class="tcard-extra">${chips}</div>`:''}
-    ${t.description?`<div class="tcard-desc">${esc(t.description)}</div>`:''}
-    <div class="tcard-foot">
-      <div class="deadline ${dlClass}">📅 ${dlTxt}</div>
-      <button class="edit-btn" onclick="openEdit(event,'${t.id}')" title="Редактировать">⋯</button>
+    <div class="tcard-divider"></div>
+    <div class="tcard-row3">
+      <div class="tcard-designer">
+        <div class="avatar" style="width:20px;height:20px;font-size:9px;background:${dColor}">${dInitial}</div>
+        ${esc(t.assignedTo||'—')}
+      </div>
+      <div class="tcard-deadline ${dlClass}">📅 ${dlTxt}</div>
     </div>
   </div>`;
 }
@@ -1526,17 +2285,251 @@ function buildChips(ex){
 // ── STATUS UPDATE ──
 async function updateStatus(id,status){
   try{
+    const t=lastTasks.find(x=>x.id===id);
+    const oldStatus=t?.status||'new';
+    if(oldStatus===status)return;
     const up={status};
-    if(!lastTasks.find(t=>t.id===id)?.assignedTo) up.assignedTo=user.name;
+    if(!t?.assignedTo) up.assignedTo=user.name;
     await updateDoc(doc(db,'tasks',id),up);
+    await addDoc(collection(db,'tasks',id,'changelog'),{
+      who:user.name,what:'status',from:oldStatus,to:status,ts:serverTimestamp()
+    });
+    await updateDoc(doc(db,'tasks',id),{_changelogCount:increment(1)});
   }catch(e){
     toast('Ошибка обновления','err');
   }
 }
 
+// ── SEEN DATA ──
+function loadSeenData(){
+  try{
+    const uid=user?.name||'anon';
+    const raw=localStorage.getItem('df_seen_'+uid);
+    seenData=raw?JSON.parse(raw):{};
+  }catch(e){seenData={};}
+}
+function saveSeenData(){
+  try{
+    const uid=user?.name||'anon';
+    localStorage.setItem('df_seen_'+uid,JSON.stringify(seenData));
+  }catch(e){}
+}
+
+// ── DESIGNERS SUBSCRIPTION ──
+function subscribeDesigners(){
+  if(unsubDesigners)return;
+  unsubDesigners=onSnapshot(collection(db,'designers'),snap=>{
+    const dbD=[];
+    snap.forEach(d=>dbD.push({id:d.id,...d.data()}));
+    const merged=[...DESIGNERS];
+    dbD.forEach(d=>{
+      const ex=merged.find(x=>x.name===d.name);
+      if(ex){ex.color=d.color||ex.color;}
+      else{merged.push({id:d.name.toLowerCase(),name:d.name,color:d.color||'#9aa0a6'});}
+    });
+    allDesigners=merged;
+    buildAssigneeSelect();
+    if(lastTasks.length&&!document.getElementById('designer').classList.contains('hidden'))
+      renderKanban(lastTasks);
+    if(user?.role==='designer'){
+      const me=allDesigners.find(x=>x.name===user.name);
+      if(me){
+        const av=document.getElementById('d-av');
+        if(!user.photo){
+          av.style.background=me.color;
+        }
+        av.style.borderColor=me.color;
+        user.color=me.color;
+      }
+    }
+  });
+}
+
+
+// ── TASK MODAL ──
+function openTaskModal(id){
+  if(wasDragging)return;
+  const t=lastTasks.find(x=>x.id===id);
+  if(!t)return;
+  taskModalId=id;
+  seenData[id]={comments:t._commentCount||0,changelog:t._changelogCount||0};
+  saveSeenData();
+
+  const dColor=getDesignerColor(t.assignedTo);
+  const dInitial=t.assignedTo?t.assignedTo[0].toUpperCase():'?';
+  const isDesigner=user.role==='designer';
+  const canEdit=isDesigner||(user.name===t.clientName);
+
+  document.getElementById('tm-type-tag').innerHTML=`${esc(t.typeEmoji||'')} ${esc(t.typeName||'')}`;
+  document.getElementById('tm-title-text').textContent=t.title||'';
+
+  const pBadge=t.priority==='urgent'?'<span class="pbadge pbadge-urgent">Срочный</span>':
+               t.priority==='high'?'<span class="pbadge pbadge-high">Высокий</span>':
+               '<span class="pbadge pbadge-normal">Обычный</span>';
+  document.getElementById('tm-meta-row').innerHTML=pBadge;
+
+  const statuses=[{v:'new',l:'Новое'},{v:'progress',l:'В работе'},{v:'review',l:'На правках'},{v:'done',l:'Готово'}];
+  document.getElementById('tm-status-wrap').innerHTML=isDesigner
+    ?`<select class="tm-status-select" onchange="tmChangeStatus(this.value)">${statuses.map(s=>`<option value="${s.v}"${t.status===s.v?' selected':''}>${s.l}</option>`).join('')}</select>`
+    :`<span class="sbadge s-${t.status}">${slabel(t.status)}</span>`;
+
+  document.getElementById('tm-assignee-val').innerHTML=`
+    <div class="avatar" style="width:22px;height:22px;font-size:9px;background:${dColor}">${dInitial}</div>
+    <span style="font-size:13px;color:var(--text)">${esc(t.assignedTo||'—')}</span>`;
+
+  document.getElementById('tm-deadline-wrap').innerHTML=canEdit
+    ?`<input type="date" class="tm-date-input" id="tm-deadline-val" value="${t.deadline||''}">`
+    :`<span style="font-size:13px;color:var(--text);padding:6px 0;display:block">${t.deadline?fmtDl(t.deadline):'Не указан'}</span>`;
+
+  document.getElementById('tm-desc-wrap').innerHTML=canEdit
+    ?`<textarea class="tm-desc-textarea" id="tm-desc-val">${esc(t.description||'')}</textarea>`
+    :`<div class="tm-desc-text">${esc(t.description||'—')}</div>`;
+
+  // Extra info snippet
+  const chips=buildChips(t.extra||{});
+  document.getElementById('tm-extra-wrap').innerHTML=chips
+    ?`<div class="tm-field-label" style="margin-bottom:6px">Детали</div><div style="display:flex;flex-wrap:wrap;gap:5px">${chips.replace(/tcard-chip/g,'tcard-chip')}</div>`:'';
+
+  document.getElementById('tm-footer').innerHTML=canEdit
+    ?`<button class="btn-primary" onclick="saveTaskModal()">Сохранить</button>
+      <button class="btn-ghost" onclick="closeTaskModal()">Закрыть</button>
+      ${user.name===t.clientName?`<button class="btn-ghost btn-sm" style="margin-left:auto" onclick="openTaskEdit(event,'${id}')">✏️ Полное редактирование</button>`:''}`.trim()
+    :`<button class="btn-ghost" style="margin-left:auto" onclick="closeTaskModal()">Закрыть</button>`;
+
+  document.getElementById('task-modal').classList.remove('hidden');
+  subscribeTaskModalData(id);
+  // Re-render kanban to clear stickers
+  renderKanban(lastTasks);
+}
+
+function closeTaskModal(e){
+  if(e&&e.target!==document.getElementById('task-modal'))return;
+  document.getElementById('task-modal').classList.add('hidden');
+  if(taskModalUnsubChangelog){taskModalUnsubChangelog();taskModalUnsubChangelog=null;}
+  if(taskModalUnsubComments){taskModalUnsubComments();taskModalUnsubComments=null;}
+  taskModalId=null;
+}
+
+function subscribeTaskModalData(taskId){
+  if(taskModalUnsubChangelog){taskModalUnsubChangelog();}
+  taskModalUnsubChangelog=onSnapshot(
+    query(collection(db,'tasks',taskId,'changelog'),orderBy('ts','asc')),
+    snap=>{const e=[];snap.forEach(d=>e.push({id:d.id,...d.data()}));renderChangelog(e);}
+  );
+  if(taskModalUnsubComments){taskModalUnsubComments();}
+  taskModalUnsubComments=onSnapshot(
+    query(collection(db,'tasks',taskId,'comments'),orderBy('ts','asc')),
+    snap=>{const c=[];snap.forEach(d=>c.push({id:d.id,...d.data()}));renderTmComments(c);}
+  );
+}
+
+function renderChangelog(entries){
+  const el=document.getElementById('tm-changelog');if(!el)return;
+  if(!entries.length){el.innerHTML='<div class="tm-log-empty">Нет изменений</div>';return;}
+  el.innerHTML=entries.map(e=>{
+    const ts=e.ts?.toDate?e.ts.toDate().toLocaleString('ru',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'';
+    let msg='';
+    if(e.what==='status') msg=`изменил статус: <b>${slabel(e.from)}</b> → <b>${slabel(e.to)}</b>`;
+    else if(e.what==='deadline') msg=`изменил дедлайн: <b>${e.from||'—'}</b> → <b>${e.to||'—'}</b>`;
+    else if(e.what==='description') msg='изменил описание';
+    else msg=esc(e.what||'изменение');
+    return`<div class="tm-log-entry"><div class="tm-log-who">${esc(e.who)}</div><div class="tm-log-msg">${msg}</div><div class="tm-log-ts">${ts}</div></div>`;
+  }).join('');
+  el.scrollTop=el.scrollHeight;
+}
+
+function renderTmComments(comments){
+  const el=document.getElementById('tm-comments');if(!el)return;
+  if(!comments.length){el.innerHTML='<div class="tm-log-empty">Нет комментариев</div>';return;}
+  el.innerHTML=comments.map(c=>{
+    const ts=c.ts?.toDate?c.ts.toDate().toLocaleString('ru',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'';
+    const dColor=getDesignerColor(c.author)||'#9aa0a6';
+    const initial=c.author?c.author[0].toUpperCase():'?';
+    return`<div class="tm-comment">
+      <div class="avatar" style="width:24px;height:24px;font-size:10px;flex-shrink:0;background:${dColor}">${initial}</div>
+      <div class="tm-comment-body">
+        <div class="tm-comment-header">
+          <span class="tm-comment-author">${esc(c.author)}</span>
+          <span class="tm-comment-ts">${ts}</span>
+        </div>
+        <div class="tm-comment-text">${esc(c.text)}</div>
+      </div>
+    </div>`;
+  }).join('');
+  el.scrollTop=el.scrollHeight;
+}
+
+async function sendComment(){
+  const el=document.getElementById('tm-comment-text');
+  const text=el?.value.trim();
+  if(!text||!taskModalId)return;
+  try{
+    await addDoc(collection(db,'tasks',taskModalId,'comments'),{author:user.name,text,ts:serverTimestamp()});
+    await updateDoc(doc(db,'tasks',taskModalId),{_commentCount:increment(1)});
+    el.value='';
+    if(seenData[taskModalId]){
+      seenData[taskModalId].comments=(seenData[taskModalId].comments||0)+1;
+      saveSeenData();
+    }
+  }catch(e){toast('Ошибка: '+e.message,'err');}
+}
+
+async function saveTaskModal(){
+  if(!taskModalId)return;
+  const t=lastTasks.find(x=>x.id===taskModalId);if(!t)return;
+  const newDeadline=document.getElementById('tm-deadline-val')?.value||null;
+  const newDesc=document.getElementById('tm-desc-val')?.value.trim()||'';
+  const changes={};const logEntries=[];
+  const oldDl=t.deadline||null;
+  const oldDesc=t.description||'';
+  if(newDeadline!==oldDl){
+    changes.deadline=newDeadline||null;
+    logEntries.push({what:'deadline',from:oldDl||'',to:newDeadline||''});
+  }
+  if(newDesc!==oldDesc){
+    changes.description=newDesc;
+    logEntries.push({what:'description',from:'',to:''});
+  }
+  if(!Object.keys(changes).length){toast('Нет изменений','ok');closeTaskModal();return;}
+  changes.updatedAt=serverTimestamp();
+  try{
+    await updateDoc(doc(db,'tasks',taskModalId),changes);
+    for(const entry of logEntries){
+      await addDoc(collection(db,'tasks',taskModalId,'changelog'),{who:user.name,...entry,ts:serverTimestamp()});
+      await updateDoc(doc(db,'tasks',taskModalId),{_changelogCount:increment(1)});
+      if(seenData[taskModalId]){
+        seenData[taskModalId].changelog=(seenData[taskModalId].changelog||0)+1;
+      }
+    }
+    saveSeenData();
+    toast('Сохранено','ok');
+    closeTaskModal();
+  }catch(e){toast('Ошибка сохранения','err');}
+}
+
+async function tmChangeStatus(newStatus){
+  if(!taskModalId)return;
+  const t=lastTasks.find(x=>x.id===taskModalId);
+  if(!t||t.status===newStatus)return;
+  const oldStatus=t.status;
+  try{
+    await updateDoc(doc(db,'tasks',taskModalId),{status:newStatus});
+    await addDoc(collection(db,'tasks',taskModalId,'changelog'),{
+      who:user.name,what:'status',from:oldStatus,to:newStatus,ts:serverTimestamp()
+    });
+    await updateDoc(doc(db,'tasks',taskModalId),{_changelogCount:increment(1)});
+    if(seenData[taskModalId]){
+      seenData[taskModalId].changelog=(seenData[taskModalId].changelog||0)+1;
+      saveSeenData();
+    }
+    toast('Статус обновлён','ok');
+  }catch(e){toast('Ошибка','err');}
+}
+
 // ── DRAG & DROP ──
 function cardDragStart(e,id){
   draggedId=id;
+  wasDragging=true;
   e.currentTarget.classList.add('dragging');
   e.dataTransfer.effectAllowed='move';
   e.dataTransfer.setData('text/plain',id);
@@ -1545,6 +2538,7 @@ function cardDragStart(e,id){
 function cardDragEnd(e){
   e.currentTarget.classList.remove('dragging');
   document.querySelectorAll('.kcol').forEach(c=>c.classList.remove('drag-over'));
+  setTimeout(()=>{wasDragging=false;},120);
 }
 
 function colDragOver(e){
@@ -1606,6 +2600,138 @@ async function saveEdit(){
   }
 }
 
+// ── TASK EDIT OVERLAY ──
+function openTaskEdit(event, id){
+  if(event)event.stopPropagation();
+  if(taskModalId)closeTaskModal();
+  const t=lastTasks.find(x=>x.id===id);
+  if(!t)return;
+  if(user.name!==t.clientName){
+    toast('Редактировать может только создатель задачи ('+esc(t.clientName||'—')+')', 'err');
+    return;
+  }
+  editingTaskId=id;
+  editMode=true;
+
+  // Move task-form into overlay slot (avoids duplicate IDs)
+  const slot=document.getElementById('et-form-slot');
+  const taskForm=document.getElementById('task-form');
+  slot.appendChild(taskForm);
+
+  // Build assignee list
+  const sel=document.getElementById('f-assignee');
+  sel.innerHTML='<option value="">— Выберите дизайнера —</option>'+
+    DESIGNERS.map(d=>`<option value="${d.name}">${d.name}</option>`).join('');
+
+  // Populate type and fields
+  selType=t.type;
+  document.querySelectorAll('.type-card').forEach(c=>c.classList.toggle('sel',c.dataset.type===t.type));
+  document.getElementById('form-heading').innerHTML=(t.typeEmoji||'')+'&nbsp;'+esc(t.typeName||t.type);
+  document.getElementById('dyn-fields').innerHTML=TYPE_FIELDS[t.type]||'';
+  document.getElementById('f-title').parentElement.style.display=(t.type==='post'||t.type==='campaign')?'none':'';
+  document.getElementById('f-refs').parentElement.style.display=(t.type==='pres'||t.type==='landing'||t.type==='outdoor'||t.type==='campaign'||t.type==='print')?'none':'';
+  taskForm.classList.remove('hidden');
+
+  // Fill values
+  populateEditForm(t);
+
+  // Update buttons
+  document.getElementById('btn-submit').textContent='Сохранить изменения';
+  document.getElementById('btn-cancel').textContent='Отмена';
+  document.getElementById('btn-cancel').onclick=closeTaskEditOverlay;
+
+  // Overlay info
+  document.getElementById('et-creator-line').textContent='Создатель: '+(t.clientName||'—')+' · '+esc(t.typeName||t.type);
+
+  // Show overlay, scroll to top
+  const overlay=document.getElementById('edit-task-overlay');
+  overlay.classList.remove('hidden');
+  setTimeout(()=>overlay.querySelector('.edit-task-modal').scrollTop=0, 50);
+}
+
+function closeTaskEditOverlay(e){
+  if(e&&e.target!==document.getElementById('edit-task-overlay'))return;
+  // Move task-form back to tab-create
+  const tabCreate=document.getElementById('tab-create');
+  const taskForm=document.getElementById('task-form');
+  tabCreate.appendChild(taskForm);
+  // Restore buttons
+  document.getElementById('btn-submit').textContent='Отправить задачу';
+  document.getElementById('btn-cancel').textContent='Отмена';
+  document.getElementById('btn-cancel').onclick=resetForm;
+  // Hide overlay
+  document.getElementById('edit-task-overlay').classList.add('hidden');
+  editMode=false;
+  editingTaskId=null;
+  resetForm();
+}
+
+function populateEditForm(t){
+  // Title
+  const tId=t.type==='post'?'f-title-post':t.type==='campaign'?'f-campaign-title':'f-title';
+  const tEl=document.getElementById(tId);
+  if(tEl) tEl.value=t.title||'';
+
+  // Common fields
+  const fld=(id,val)=>{const el=document.getElementById(id);if(el)el.value=val||'';};
+  fld('f-assignee', t.assignedTo);
+  fld('f-deadline', t.deadline);
+  document.getElementById('f-priority').value=t.priority||'normal';
+  fld('f-desc', t.description);
+  fld('f-refs', t.references);
+
+  if(!t.extra) return;
+
+  // Simple text/select/radio fields from extra
+  Object.entries(t.extra).forEach(([key,val])=>{
+    if(typeof val!=='string') return;
+    if(key.startsWith('pres-slides')||key.startsWith('landing-sections')||key.startsWith('outdoor-blocks')) return;
+    const el=document.getElementById('f-'+key);
+    if(el&&el.type!=='file'&&el.type!=='checkbox'&&el.type!=='radio'){
+      el.value=val;
+    } else if(!el){
+      // radio group by name
+      document.querySelectorAll(`#dyn-fields [name="f-${key}"]`).forEach(r=>{
+        if(r.value===val){r.checked=true;r.closest('.check-tag')?.classList.add('checked');}
+      });
+    }
+  });
+
+  // Checkbox groups
+  Object.entries(t.extra).forEach(([key,val])=>{
+    if(!Array.isArray(val)) return;
+    const group=document.getElementById(key);
+    if(group){
+      group.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+        if(val.includes(cb.value)){cb.checked=true;cb.closest('.check-tag')?.classList.add('checked');}
+      });
+    } else {
+      // unnamed group (e.g. носители for campaign, duplex for print)
+      document.querySelectorAll('#dyn-fields input[type=checkbox]').forEach(cb=>{
+        if(val.includes(cb.value)){cb.checked=true;cb.closest('.check-tag')?.classList.add('checked');}
+      });
+    }
+  });
+
+  // Print: restore category / types / format
+  if(t.type==='print'){
+    const cat=t.extra['print-category'];
+    if(cat){
+      printSelectCategory(cat);
+      (t.extra['print-selected-types']||'').split(',').filter(Boolean).forEach(tp=>printToggleType(tp.trim()));
+      const fmt=t.extra['print-selected-format'];
+      if(fmt) printSelectFormat(fmt);
+      const csEl=document.getElementById('print-custom-size');
+      if(csEl&&t.extra['print-custom-size']) csEl.value=t.extra['print-custom-size'];
+    }
+  }
+
+  // Pres/Landing/Outdoor: restore scenario
+  if(t.type==='pres'&&t.extra['pres-scenario']) selectPresScenario(t.extra['pres-scenario']);
+  if(t.type==='landing'&&t.extra['landing-scenario']) selectLandingScenario(t.extra['landing-scenario']);
+  if(t.type==='outdoor'&&t.extra['outdoor-scenario']) selectOutdoorScenario(t.extra['outdoor-scenario']);
+}
+
 // ── CARD ACCORDION ──
 function toggleScard(head){
   head.classList.toggle('open');
@@ -1615,6 +2741,151 @@ function toggleScard(head){
 function showFileName(input){
   const name=input.files[0]?.name||'';
   input.closest('.file-btn').querySelector('.file-fname').textContent=name?'✓ '+name:'';
+}
+
+function toggleRadio(label){
+  const input=label.querySelector('input[type=radio]');
+  if(!input)return;
+  const group=label.closest('.check-group');
+  group?.querySelectorAll('.check-tag').forEach(l=>l.classList.remove('checked'));
+  input.checked=true;
+  label.classList.add('checked');
+}
+
+let imgPasteTarget=null;
+
+function activateImgBlock(system,id1,id2){
+  imgPasteTarget={system,id1,id2};
+  document.querySelectorAll('.pres-img-upload').forEach(el=>el.classList.remove('paste-ready'));
+}
+
+function applyImageFile(system,id1,id2,file){
+  if(!file||!file.type.startsWith('image/'))return;
+  const reader=new FileReader();
+  if(system==='pres'){
+    const block=presSlides.find(s=>s.id===id1)?.blocks.find(b=>b.id===id2);
+    if(!block)return;
+    block.file=file;
+    reader.onload=e=>{block.fileDataUrl=e.target.result;renderPresEditor();};
+  } else if(system==='landing'){
+    const block=landingSections.find(s=>s.id===id1)?.blocks.find(b=>b.id===id2);
+    if(!block)return;
+    block.file=file;
+    reader.onload=e=>{block.fileDataUrl=e.target.result;renderLandingEditor();};
+  } else if(system==='outdoor'){
+    const block=outdoorBlocks.find(b=>b.id===id2);
+    if(!block)return;
+    block.file=file;
+    reader.onload=e=>{block.fileDataUrl=e.target.result;renderOutdoorEditor();};
+  }
+  reader.readAsDataURL(file);
+}
+
+function campaignSetRefFile(input){
+  const display=document.getElementById('f-campaign-reffile-display');
+  if(!display)return;
+  display.textContent=input.files[0]?'✓ '+input.files[0].name:'';
+}
+
+let campaignMatFiles=[];
+function campaignAddMatFiles(input){
+  const list=document.getElementById('f-campaign-matfiles-list');
+  if(!list)return;
+  Array.from(input.files).forEach(f=>{
+    if(!campaignMatFiles.find(x=>x.name===f.name))campaignMatFiles.push(f);
+  });
+  list.innerHTML=campaignMatFiles.map((f,i)=>
+    `<div class="pres-file-row"><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(f.name)}</span>
+     <button type="button" class="btn-ghost btn-sm" style="padding:2px 8px;font-size:11px" onclick="campaignRemoveMatFile(${i})">✕</button></div>`
+  ).join('');
+}
+
+function campaignRemoveMatFile(i){
+  campaignMatFiles.splice(i,1);
+  const list=document.getElementById('f-campaign-matfiles-list');
+  if(list)list.innerHTML=campaignMatFiles.map((f,idx)=>
+    `<div class="pres-file-row"><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(f.name)}</span>
+     <button type="button" class="btn-ghost btn-sm" style="padding:2px 8px;font-size:11px" onclick="campaignRemoveMatFile(${idx})">✕</button></div>`
+  ).join('');
+}
+
+// ── PRINT ──
+function printSelectCategory(cat){
+  printCategory=cat;
+  printSelectedTypes=[];
+  printSelectedFormat=null;
+  document.querySelectorAll('.print-cat-btn').forEach(b=>b.classList.toggle('active',b.dataset.cat===cat));
+  const data=PRINT_DATA[cat];
+  const typeRow=document.getElementById('print-type-row');
+  document.getElementById('print-type-tags').innerHTML=data.types.map(t=>
+    `<button type="button" class="check-tag" data-ptype="${esc(t)}" onclick="printToggleType('${esc(t)}')">${esc(t)}</button>`
+  ).join('');
+  typeRow.classList.remove('hidden');
+  document.getElementById('print-format-row').classList.add('hidden');
+  document.getElementById('print-tirazh-row').classList.add('hidden');
+  document.getElementById('print-duplex-row').classList.add('hidden');
+}
+
+function printToggleType(type){
+  const idx=printSelectedTypes.indexOf(type);
+  if(idx===-1) printSelectedTypes.push(type); else printSelectedTypes.splice(idx,1);
+  document.querySelectorAll('[data-ptype]').forEach(b=>b.classList.toggle('checked',printSelectedTypes.includes(b.dataset.ptype)));
+  if(printSelectedTypes.length>0) renderPrintFormat();
+  else{
+    document.getElementById('print-format-row').classList.add('hidden');
+    document.getElementById('print-tirazh-row').classList.add('hidden');
+    document.getElementById('print-duplex-row').classList.add('hidden');
+  }
+}
+
+function renderPrintFormat(){
+  const data=PRINT_DATA[printCategory];
+  const formatTags=document.getElementById('print-format-tags');
+  const customWrap=document.getElementById('print-custom-size-wrap');
+  if(data.formats.length===0){
+    formatTags.innerHTML='';
+    customWrap.classList.remove('hidden');
+  } else {
+    formatTags.innerHTML=data.formats.map(f=>
+      `<button type="button" class="check-tag" data-pfmt="${esc(f)}" onclick="printSelectFormat('${esc(f)}')">${esc(f)}</button>`
+    ).join('');
+    customWrap.classList.add('hidden');
+  }
+  document.getElementById('print-format-row').classList.remove('hidden');
+  document.getElementById('print-tirazh-row').classList.toggle('hidden',!data.tirazh);
+  document.getElementById('print-duplex-row').classList.toggle('hidden',!data.duplex);
+}
+
+function printSelectFormat(fmt){
+  printSelectedFormat=fmt;
+  document.querySelectorAll('[data-pfmt]').forEach(b=>b.classList.toggle('checked',b.dataset.pfmt===fmt));
+  document.getElementById('print-custom-size-wrap').classList.toggle('hidden',fmt!=='Свой размер');
+}
+
+function printSetRefFile(input){
+  const d=document.getElementById('f-print-reffile-display');
+  if(d) d.textContent=input.files[0]?'✓ '+input.files[0].name:'';
+}
+
+function printAddMatFiles(input){
+  const list=document.getElementById('f-print-matfiles-list');
+  if(!list)return;
+  Array.from(input.files).forEach(f=>{if(!printMatFiles.find(x=>x.name===f.name))printMatFiles.push(f);});
+  renderPrintMatList();
+}
+
+function renderPrintMatList(){
+  const list=document.getElementById('f-print-matfiles-list');
+  if(!list)return;
+  list.innerHTML=printMatFiles.map((f,i)=>
+    `<div class="pres-file-row"><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(f.name)}</span>
+     <button type="button" class="btn-ghost btn-sm" style="padding:2px 8px;font-size:11px" onclick="printRemoveMatFile(${i})">✕</button></div>`
+  ).join('');
+}
+
+function printRemoveMatFile(i){
+  printMatFiles.splice(i,1);
+  renderPrintMatList();
 }
 
 function presAddFiles(input){
@@ -1782,7 +3053,8 @@ function renderPresBlock(slide,block){
     imgInner=`
       <div class="pres-img-preview-wrap"
         ondragover="presAnnotDragOver(event)"
-        ondrop="presAnnotDrop(event,'${sid}','${bid}')">
+        ondrop="presAnnotDrop(event,'${sid}','${bid}')"
+        onclick="activateImgBlock('pres','${sid}','${bid}')">
         <img src="${block.fileDataUrl}" class="pres-img-preview" alt="">
         <button type="button" class="pres-img-expand-btn" onclick="presOpenFullscreen('${sid}','${bid}')" title="Развернуть"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="8,1 12,1 12,5"/><polyline points="5,12 1,12 1,8"/><line x1="12" y1="1" x2="7.5" y2="5.5"/><line x1="1" y1="12" x2="5.5" y2="7.5"/></svg></button>
         <div class="pres-img-stickers">${stickers}</div>
@@ -1794,9 +3066,9 @@ function renderPresBlock(slide,block){
           onclick="presImageRemoveFile('${sid}','${bid}')">✕ Удалить фото</button>
       </div>`;
   } else {
-    imgInner=`<label class="pres-img-upload">
+    imgInner=`<label class="pres-img-upload" onclick="activateImgBlock('pres','${sid}','${bid}')">
       <input type="file" accept=".jpg,.jpeg,.png" onchange="presImageFileChange('${sid}','${bid}',this)">
-      📁 Загрузить файл
+      📁 Загрузить файл <span style="color:var(--text-muted);font-size:10px;opacity:.7">· Ctrl+V</span>
     </label>`;
   }
   return `<div class="pres-block pres-block-img">
@@ -2235,7 +3507,7 @@ function renderLandingBlock(section,block){
       ?`<button type="button" class="pres-annot-mode-btn active" onclick="landingToggleAnnotMode('${sid}','${bid}')">✓ Готово</button>`
       :`<button type="button" class="pres-annot-mode-btn" onclick="landingToggleAnnotMode('${sid}','${bid}')">📍 Добавить пометку</button>`;
     imgInner=`
-      <div class="pres-img-preview-wrap" ondragover="landingAnnotDragOver(event)" ondrop="landingAnnotDrop(event,'${sid}','${bid}')">
+      <div class="pres-img-preview-wrap" ondragover="landingAnnotDragOver(event)" ondrop="landingAnnotDrop(event,'${sid}','${bid}')" onclick="activateImgBlock('landing','${sid}','${bid}')">
         <img src="${block.fileDataUrl}" class="pres-img-preview" alt="">
         <button type="button" class="pres-img-expand-btn" onclick="landingOpenFullscreen('${sid}','${bid}')" title="Развернуть"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="8,1 12,1 12,5"/><polyline points="5,12 1,12 1,8"/><line x1="12" y1="1" x2="7.5" y2="5.5"/><line x1="1" y1="12" x2="5.5" y2="7.5"/></svg></button>
         <div class="pres-img-stickers">${stickers}</div>
@@ -2246,9 +3518,9 @@ function renderLandingBlock(section,block){
         <button type="button" class="btn-ghost btn-sm" style="font-size:11px;padding:3px 9px" onclick="landingImageRemoveFile('${sid}','${bid}')">✕ Удалить фото</button>
       </div>`;
   } else {
-    imgInner=`<label class="pres-img-upload">
+    imgInner=`<label class="pres-img-upload" onclick="activateImgBlock('landing','${sid}','${bid}')">
       <input type="file" accept=".jpg,.jpeg,.png" onchange="landingImageFileChange('${sid}','${bid}',this)">
-      📁 Загрузить файл
+      📁 Загрузить файл <span style="color:var(--text-muted);font-size:10px;opacity:.7">· Ctrl+V</span>
     </label>`;
   }
   return `<div class="pres-block pres-block-img">
@@ -2538,7 +3810,7 @@ function renderOutdoorBlock(block,idx){
     contentHtml=`
       <input type="text" class="pres-img-desc" placeholder="Описание…"
         value="${esc(block.description)}" onchange="outdoorUpdateBlockDesc('${bid}',this.value)">
-      <div class="pres-img-preview-wrap" ondragover="outdoorAnnotDragOver(event)" ondrop="outdoorAnnotDrop(event,'${bid}')">
+      <div class="pres-img-preview-wrap" ondragover="outdoorAnnotDragOver(event)" ondrop="outdoorAnnotDrop(event,'${bid}')" onclick="activateImgBlock('outdoor',null,'${bid}')">
         <img src="${block.fileDataUrl}" class="pres-img-preview" alt="">
         <button type="button" class="pres-img-expand-btn" onclick="outdoorOpenFullscreen('${bid}')" title="Развернуть"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="8,1 12,1 12,5"/><polyline points="5,12 1,12 1,8"/><line x1="12" y1="1" x2="7.5" y2="5.5"/><line x1="1" y1="12" x2="5.5" y2="7.5"/></svg></button>
         <div class="pres-img-stickers">${stickers}</div>
@@ -2552,9 +3824,9 @@ function renderOutdoorBlock(block,idx){
     contentHtml=`
       <input type="text" class="pres-img-desc" placeholder="Описание…"
         value="${esc(block.description)}" onchange="outdoorUpdateBlockDesc('${bid}',this.value)">
-      <label class="pres-img-upload">
+      <label class="pres-img-upload" onclick="activateImgBlock('outdoor',null,'${bid}')">
         <input type="file" accept=".jpg,.jpeg,.png" onchange="outdoorImageFileChange('${bid}',this)">
-        📁 Загрузить файл
+        📁 Загрузить файл <span style="color:var(--text-muted);font-size:10px;opacity:.7">· Ctrl+V</span>
       </label>`;
   }
   return `<div class="outdoor-block-card">
@@ -2777,6 +4049,7 @@ document.addEventListener('keydown',e=>{
     if(presFullscreen) presCloseFullscreen();
     else if(landingFullscreen) landingCloseFullscreen();
     else if(outdoorFullscreen) outdoorCloseFullscreen();
+    else if(taskModalId) closeTaskModal();
   }
 });
 
@@ -2789,6 +4062,19 @@ try{
     enterApp();
   }
 }catch(e){localStorage.removeItem('df_user');}
+
+document.addEventListener('paste',e=>{
+  if(!imgPasteTarget) return;
+  const active=document.activeElement;
+  if(active&&(active.tagName==='TEXTAREA'||(active.tagName==='INPUT'&&active.type!=='file')||active.isContentEditable)) return;
+  const imgItem=Array.from(e.clipboardData?.items||[]).find(i=>i.type.startsWith('image/'));
+  if(!imgItem) return;
+  const file=imgItem.getAsFile();
+  if(!file) return;
+  const {system,id1,id2}=imgPasteTarget;
+  applyImageFile(system,id1,id2,file);
+  toast('Изображение вставлено','ok');
+});
 </script>
 </body>
 </html>
