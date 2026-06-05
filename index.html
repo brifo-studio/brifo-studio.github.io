@@ -2443,7 +2443,6 @@ function openTaskModal(id){
   document.getElementById('tm-extra-wrap').innerHTML = buildTZBlock(t);
 
   // Result block
-  const isDesigner = user?.role === 'designer';
   const result = t.result || {};
   document.getElementById('tm-result-wrap').innerHTML = `
   <div class="tm-field-label" style="margin-bottom:8px;margin-top:16px">Результат работы</div>
