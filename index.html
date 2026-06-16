@@ -261,48 +261,68 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 .tcard-activity-comments svg{stroke:#5B4CF5}
 
 /* ── TASK MODAL ── */
-.task-modal-box{background:#fff;border-radius:16px;width:100%;max-width:860px;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.22);animation:scaleIn .2s ease;overflow:hidden}
-.tm-header{display:flex;align-items:flex-start;justify-content:space-between;padding:22px 28px 16px;border-bottom:1px solid var(--border);flex-shrink:0;gap:16px}
-.tm-type-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-muted);margin-bottom:4px}
-.tm-title-text{font-size:21px;font-weight:700;color:#1a1a2e;line-height:1.25;margin-bottom:8px}
+.task-modal-box{background:#FFFFFF;border-radius:16px;width:100%;max-width:860px;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.22);animation:scaleIn .2s ease;overflow:hidden}
+.tm-header{position:sticky;top:0;z-index:10;background:#FFFFFF;display:flex;align-items:flex-start;justify-content:space-between;padding:20px 24px;border-bottom:1px solid #F0F0F3;flex-shrink:0;gap:16px}
+.tm-type-tag{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.tm-type-label{font-size:10px;font-weight:700;color:#9095A6;text-transform:uppercase;letter-spacing:.6px}
+.tm-title-text{font-size:20px;font-weight:700;color:#0D0E14;line-height:1.3;margin-bottom:8px}
 .tm-meta-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.tm-header-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;margin-top:2px}
-.tm-status-select{border:1.5px solid var(--border);border-radius:8px;padding:6px 10px;font-size:13px;font-weight:500;background:#f8f9fa;cursor:pointer;font-family:inherit;color:var(--text);outline:none;min-width:130px;transition:border-color .2s}
-.tm-status-select:focus{border-color:var(--accent)}
-.tm-close-btn{background:var(--bg);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;color:var(--text-dim);transition:all .15s;flex-shrink:0;line-height:1}
-.tm-close-btn:hover{background:var(--card-hover);color:var(--text)}
-.tm-body{display:grid;grid-template-columns:1fr 320px;flex:1;overflow:hidden;min-height:0}
-.tm-main{padding:22px 28px;overflow-y:auto;border-right:1px solid var(--border)}
-.tm-sidebar{display:flex;flex-direction:column;overflow:hidden;min-height:0}
-.tm-sidebar-section{display:flex;flex-direction:column;overflow:hidden;padding:14px 18px}
-.tm-sidebar-section+.tm-sidebar-section{border-top:1px solid var(--border);flex:1}
-.tm-sidebar-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-muted);margin-bottom:8px;flex-shrink:0}
-.tm-field-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:6px}
-.tm-field-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
-.tm-assignee-chip{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text);padding:6px 0}
-.tm-date-input{border:1.5px solid var(--border);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;color:var(--text);outline:none;width:100%;background:#fff;transition:border-color .2s}
+.tm-meta-row .pbadge{padding:4px 8px;border-radius:15px;font-size:10px;font-weight:700}
+.tm-header-actions{display:flex;align-items:center;gap:12px;flex-shrink:0;margin-top:2px}
+.tm-status-select-wrap{position:relative}
+.tm-status-trigger{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;border:1px solid #E5E7EB;background:#fff;font-size:13px;font-weight:600;color:#374151;cursor:pointer;font-family:inherit}
+.tm-status-trigger svg{width:14px;height:14px;stroke:#374151;flex-shrink:0}
+.tm-status-dropdown{position:absolute;top:calc(100% + 4px);right:0;background:#FFFFFF;border-radius:10px;border:1px solid #E5E7EB;box-shadow:0 4px 12px rgba(0,0,0,.08);z-index:100;min-width:180px;overflow:hidden}
+.tm-status-option{padding:10px 14px;font-size:13px;font-weight:500;cursor:pointer;color:#374151}
+.tm-status-option:hover{background:#F4F5F7}
+.tm-status-option.active{color:#5B4CF5;font-weight:700}
+.tm-close-btn{background:#F4F5F7;border:none;border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;color:var(--text-dim);transition:background .15s;flex-shrink:0;line-height:1}
+.tm-close-btn:hover{background:#E5E7EB;color:var(--text)}
+.tm-body{display:grid;grid-template-columns:1fr 280px;gap:0;flex:1;overflow:hidden;min-height:0}
+.tm-main{padding:24px;overflow-y:auto;display:flex;flex-direction:column;gap:20px}
+.tm-meta-block{display:flex;gap:24px;align-items:flex-start}
+.tm-meta-item{flex:1;min-width:0}
+.tm-field-label{font-size:11px;font-weight:600;color:#9095A6;text-transform:uppercase;letter-spacing:.6px}
+.tm-assignee-chip{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:14px;color:#0D0E14}
+.tm-date-input{display:block;border:1px solid #E5E7EB;border-radius:8px;padding:6px 10px;font-size:14px;font-family:inherit;color:#0D0E14;outline:none;width:100%;background:#fff;margin-top:6px;box-sizing:border-box;transition:border-color .2s}
 .tm-date-input:focus{border-color:var(--accent)}
-.tm-desc-textarea{border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;font-family:inherit;color:var(--text);outline:none;width:100%;resize:vertical;min-height:100px;line-height:1.5;background:#fff;transition:border-color .2s}
+.tm-section-label{font-size:12px;font-weight:700;color:#0D0E14;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.tm-text-input{display:block;width:100%;box-sizing:border-box;padding:8px 12px;border-radius:8px;border:1px solid #E5E7EB;font-size:13px;font-family:inherit;color:#0D0E14;outline:none;background:#fff;transition:border-color .2s}
+.tm-text-input:focus{border-color:var(--accent)}
+.tm-upload-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:10px 16px;border-radius:8px;border:1.5px dashed #D1D5DB;background:#fff;cursor:pointer;font-family:inherit;box-sizing:border-box}
+.tm-upload-btn span{font-size:13px;color:#6B7280}
+.tm-desc-textarea{display:block;border:1px solid #E5E7EB;border-radius:8px;padding:10px 12px;font-size:14px;font-family:inherit;color:#0D0E14;outline:none;width:100%;resize:vertical;min-height:80px;line-height:1.5;background:#fff;box-sizing:border-box;transition:border-color .2s}
 .tm-desc-textarea:focus{border-color:var(--accent)}
-.tm-desc-text{font-size:13px;color:var(--text);line-height:1.6;white-space:pre-line;word-break:break-word}
-.tm-log-list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:5px;min-height:0}
-.tm-log-empty{font-size:11px;color:var(--text-muted);text-align:center;padding:10px 0}
-.tm-log-entry{background:var(--bg);border-radius:6px;padding:6px 9px;font-size:11px;line-height:1.4}
-.tm-log-who{font-weight:600;color:var(--text-dim)}
-.tm-log-msg{color:var(--text);margin-top:1px}
-.tm-log-msg b{color:var(--accent)}
-.tm-log-ts{color:var(--text-muted);font-size:10px;margin-top:1px}
-.tm-comments-list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px;min-height:0;margin-bottom:8px}
-.tm-comment{display:flex;gap:7px;align-items:flex-start}
-.tm-comment-body{flex:1;min-width:0}
-.tm-comment-header{display:flex;align-items:baseline;gap:6px;margin-bottom:2px}
-.tm-comment-author{font-size:11px;font-weight:600;color:var(--text)}
-.tm-comment-ts{font-size:10px;color:var(--text-muted)}
-.tm-comment-text{font-size:12px;color:var(--text-dim);line-height:1.5;word-break:break-word;white-space:pre-wrap}
-.tm-comment-input-wrap{display:flex;flex-direction:column;gap:6px;flex-shrink:0;border-top:1px solid var(--border);padding-top:8px;margin-top:auto}
-.tm-comment-textarea{border:1.5px solid var(--border);border-radius:8px;padding:7px 10px;font-size:12px;font-family:inherit;color:var(--text);outline:none;width:100%;resize:none;line-height:1.4;background:#fff;transition:border-color .2s}
+.tm-desc-text{font-size:14px;color:#0D0E14;line-height:1.6;white-space:pre-line;word-break:break-word}
+.tm-tz-wrap{background:#F8F9FA;border-radius:10px;padding:14px;border:1px solid #F0F0F3}
+.tm-tz-header{display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.tm-tz-chevron{transition:transform .15s;flex-shrink:0}
+.tm-tz-chevron.open{transform:rotate(180deg)}
+.tm-tz-content{display:none;margin-top:10px}
+.tm-tz-content.open{display:block}
+.tm-sidebar{padding:20px;display:flex;flex-direction:column;border-left:1px solid #F0F0F3;overflow:hidden;min-height:0}
+.tm-sidebar-title{font-size:12px;font-weight:700;color:#0D0E14;margin-bottom:12px;flex-shrink:0}
+.tm-activity-feed{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;min-height:0}
+.tm-activity-empty{text-align:center;font-size:13px;color:#9095A6;padding:24px 0}
+.tm-activity-event{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;font-size:12px}
+.tm-activity-dot{width:6px;height:6px;border-radius:50%;background:#5B4CF5;flex-shrink:0}
+.tm-activity-event-author{font-weight:600;color:#0D0E14}
+.tm-activity-event-text{font-weight:400;color:#6B7280}
+.tm-activity-ts{font-size:11px;color:#9095A6;margin-left:auto}
+.tm-activity-comment{background:#F8F9FA;border-radius:8px;padding:10px}
+.tm-activity-comment-head{display:flex;align-items:center;gap:6px}
+.tm-activity-comment-author{font-size:12px;font-weight:700;color:#0D0E14}
+.tm-activity-comment-text{font-size:13px;font-weight:400;color:#374151;margin-top:4px}
+.tm-comment-input-wrap{border-top:1px solid #F0F0F3;padding-top:12px;margin-top:auto;flex-shrink:0}
+.tm-comment-textarea{display:block;border:1px solid #E5E7EB;border-radius:8px;padding:8px 12px;font-size:13px;font-family:inherit;color:#0D0E14;outline:none;width:100%;resize:none;min-height:60px;background:#fff;box-sizing:border-box;transition:border-color .2s}
 .tm-comment-textarea:focus{border-color:var(--accent)}
-.tm-footer{display:flex;align-items:center;gap:10px;padding:14px 28px;border-top:1px solid var(--border);flex-shrink:0;background:var(--surface)}
+.tm-send-btn{width:100%;margin-top:8px;padding:8px;border-radius:8px;background:#5B4CF5;color:#fff;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:inherit}
+.tm-send-btn:hover{background:var(--accent-dark)}
+.tm-footer{display:flex;align-items:center;gap:12px;padding:16px 24px;border-top:1px solid #F0F0F3;flex-shrink:0}
+.tm-btn-primary{padding:10px 24px;border-radius:8px;background:#5B4CF5;color:#fff;font-size:14px;font-weight:600;border:none;cursor:pointer;font-family:inherit}
+.tm-btn-primary:hover{background:var(--accent-dark)}
+.tm-btn-ghost{padding:10px 24px;border-radius:8px;background:transparent;border:1px solid #E5E7EB;color:#6B7280;font-size:14px;cursor:pointer;font-family:inherit}
+.tm-btn-ghost:hover{background:#F4F5F7}
 
 /* ── COLOR PICKER ── */
 .color-picker-box{background:#fff;border-radius:16px;padding:36px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.22);animation:scaleIn .2s ease;text-align:center}
@@ -461,9 +481,8 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
   .type-grid{grid-template-columns:repeat(2,1fr)}
   .task-modal-box{max-height:95vh;border-radius:12px}
   .tm-body{grid-template-columns:1fr;overflow-y:auto}
-  .tm-main{border-right:none;border-bottom:1px solid var(--border)}
-  .tm-sidebar{max-height:400px}
-  .tm-field-pair{grid-template-columns:1fr}
+  .tm-sidebar{max-height:400px;border-left:none;border-top:1px solid #F0F0F3}
+  .tm-meta-block{flex-direction:column;gap:12px}
 }
 @media(max-width:480px){
   .kanban{grid-template-columns:minmax(260px,1fr)}
@@ -824,35 +843,29 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
     </div>
     <div class="tm-body">
       <div class="tm-main">
-        <div class="tm-field-pair">
-          <div>
+        <div class="tm-meta-block">
+          <div class="tm-meta-item">
             <div class="tm-field-label">Исполнитель</div>
             <div id="tm-assignee-val" class="tm-assignee-chip"></div>
           </div>
-          <div>
+          <div class="tm-meta-item">
             <div class="tm-field-label">Дедлайн</div>
             <div id="tm-deadline-wrap"></div>
           </div>
         </div>
-        <div style="margin-bottom:18px">
-          <div class="tm-field-label">Описание / вводные</div>
+        <div id="tm-result-wrap"></div>
+        <div>
+          <div class="tm-field-label" style="margin-bottom:6px">Описание / вводные</div>
           <div id="tm-desc-wrap"></div>
         </div>
-        <div id="tm-extra-wrap" style="margin-bottom:16px"></div>
-        <div id="tm-result-wrap"></div>
+        <div id="tm-extra-wrap"></div>
       </div>
       <div class="tm-sidebar">
-        <div class="tm-sidebar-section" style="max-height:42%;flex:none">
-          <div class="tm-sidebar-title">История изменений</div>
-          <div id="tm-changelog" class="tm-log-list"></div>
-        </div>
-        <div class="tm-sidebar-section">
-          <div class="tm-sidebar-title">Комментарии</div>
-          <div id="tm-comments" class="tm-comments-list"></div>
-          <div class="tm-comment-input-wrap">
-            <textarea id="tm-comment-text" class="tm-comment-textarea" placeholder="Написать комментарий…" rows="2"></textarea>
-            <button class="btn-primary btn-sm" style="align-self:flex-end" onclick="sendComment()">Отправить</button>
-          </div>
+        <div class="tm-sidebar-title">Активность</div>
+        <div id="tm-activity-feed" class="tm-activity-feed"></div>
+        <div class="tm-comment-input-wrap">
+          <textarea id="tm-comment-text" class="tm-comment-textarea" placeholder="Написать комментарий..." rows="2"></textarea>
+          <button class="tm-send-btn" onclick="sendComment()">Отправить</button>
         </div>
       </div>
     </div>
@@ -1418,6 +1431,8 @@ let editMode = false;
 let taskModalId = null;
 let taskModalUnsubChangelog = null;
 let taskModalUnsubComments = null;
+let tmLastChangelog = [];
+let tmLastComments = [];
 let seenData = {};
 let pendingDesignerName = null;
 let pendingDesignerColor = null;
@@ -2695,7 +2710,22 @@ function buildTZBlock(t) {
       <div style="font-size:13px;color:var(--text)">${val}</div>
     </div>`).join('');
 
-  return `<div class="tm-field-label" style="margin-bottom:8px">ТЗ от постановщика</div><div style="background:var(--bg);border-radius:10px;padding:14px">${html}</div>`;
+  return `<div class="tm-tz-wrap">
+    <div class="tm-tz-header" onclick="tmToggleTZ(this)">
+      <span class="tm-field-label">ТЗ от постановщика</span>
+      <svg class="tm-tz-chevron open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9095A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tm-tz-content open">${html}</div>
+  </div>`;
+}
+
+function tmToggleTZ(headerEl){
+  const wrap=headerEl.closest('.tm-tz-wrap');
+  const content=wrap.querySelector('.tm-tz-content');
+  const chevron=wrap.querySelector('.tm-tz-chevron');
+  const open=!content.classList.contains('open');
+  content.classList.toggle('open',open);
+  chevron.classList.toggle('open',open);
 }
 
 function openTaskModal(id){
@@ -2711,7 +2741,7 @@ function openTaskModal(id){
   const isDesigner=user.role==='designer';
   const canEdit=isDesigner||(user.name===t.clientName);
 
-  document.getElementById('tm-type-tag').innerHTML=`${esc(t.typeEmoji||'')} ${esc(t.typeName||'')}`;
+  document.getElementById('tm-type-tag').innerHTML=`${getTypeIcon(t.typeName||'')}<span class="tm-type-label">${esc(t.typeName||'')}</span>`;
   document.getElementById('tm-title-text').textContent=t.title||'';
 
   const pBadge=t.priority==='urgent'?'<span class="pbadge pbadge-urgent">Срочный</span>':
@@ -2721,16 +2751,24 @@ function openTaskModal(id){
 
   const statuses=[{v:'new',l:'Новое'},{v:'progress',l:'В работе'},{v:'review',l:'На правках'},{v:'done',l:'Готово'}];
   document.getElementById('tm-status-wrap').innerHTML=isDesigner
-    ?`<select class="tm-status-select" onchange="tmChangeStatus(this.value)">${statuses.map(s=>`<option value="${s.v}"${t.status===s.v?' selected':''}>${s.l}</option>`).join('')}</select>`
+    ?`<div class="tm-status-select-wrap" id="tm-status-select-wrap">
+        <button type="button" class="tm-status-trigger" onclick="tmToggleStatusDropdown(event)">
+          <span id="tm-status-trigger-label">${slabel(t.status)}</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="tm-status-dropdown hidden" id="tm-status-dropdown">
+          ${statuses.map(s=>`<div class="tm-status-option${t.status===s.v?' active':''}" onclick="tmSelectStatus('${s.v}',this)">${s.l}</div>`).join('')}
+        </div>
+      </div>`
     :`<span class="sbadge s-${t.status}">${slabel(t.status)}</span>`;
 
   document.getElementById('tm-assignee-val').innerHTML=`
-    <div class="avatar" style="width:22px;height:22px;font-size:9px;background:${dColor}">${dInitial}</div>
-    <span style="font-size:13px;color:var(--text)">${esc(t.assignedTo||'—')}</span>`;
+    <div class="avatar" style="background:${dColor}">${dInitial}</div>
+    <span style="font-size:14px;font-weight:500;color:#0D0E14">${esc(t.assignedTo||'—')}</span>`;
 
   document.getElementById('tm-deadline-wrap').innerHTML=canEdit
     ?`<input type="date" class="tm-date-input" id="tm-deadline-val" value="${t.deadline||''}" min="2025-01-01">`
-    :`<span style="font-size:13px;color:var(--text);padding:6px 0;display:block">${t.deadline?fmtDl(t.deadline):'Не указан'}</span>`;
+    :`<span style="font-size:14px;color:#0D0E14;margin-top:6px;display:block">${t.deadline?fmtDl(t.deadline):'Не указан'}</span>`;
 
   document.getElementById('tm-desc-wrap').innerHTML=canEdit
     ?`<textarea class="tm-desc-textarea" id="tm-desc-val">${esc(t.description||'')}</textarea>`
@@ -2741,36 +2779,56 @@ function openTaskModal(id){
 
   // Result block
   const result = t.result || {};
+  const uploadIconSvg='<svg class="tm-section-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B4CF5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>';
   document.getElementById('tm-result-wrap').innerHTML = `
-  <div class="tm-field-label" style="margin-bottom:8px;margin-top:16px">Результат работы</div>
-  <div style="background:var(--bg);border-radius:10px;padding:14px">
-    ${isDesigner ? `
-      <div style="margin-bottom:10px">
-        <div style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px">Ссылка на результат</div>
-        <input id="tm-result-link" type="url" placeholder="https://figma.com/..." value="${esc(result.link||'')}" style="width:100%;box-sizing:border-box">
-      </div>
-      <div>
-        <div style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px">Файл (до 10 МБ)</div>
-        ${result.fileUrl ? `<div style="margin-bottom:6px"><a href="${esc(result.fileUrl)}" target="_blank" style="color:var(--accent)">📎 ${esc(result.fileName||'Файл')}</a></div>` : ''}
-        <input type="file" id="tm-result-file" style="font-size:12px">
-      </div>
-    ` : `
-      ${result.link ? `<div style="margin-bottom:8px"><div style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;margin-bottom:3px">Ссылка</div><a href="${result.link}" target="_blank" style="color:var(--accent);font-size:13px">Открыть →</a></div>` : ''}
-      ${result.fileUrl ? `<div><div style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;margin-bottom:3px">Файл</div><a href="${result.fileUrl}" target="_blank" style="color:var(--accent);font-size:13px">📎 ${esc(result.fileName||'Скачать')}</a></div>` : ''}
-      ${!result.link && !result.fileUrl ? '<div style="font-size:13px;color:var(--text-muted)">Результат ещё не загружен</div>' : ''}
-    `}
-  </div>`;
+  <div class="tm-section-label">${uploadIconSvg}Результат работы</div>
+  ${isDesigner ? `
+    <div style="margin-bottom:10px">
+      <input id="tm-result-link" type="url" class="tm-text-input" placeholder="https://figma.com/..." value="${esc(result.link||'')}">
+    </div>
+    <div>
+      ${result.fileUrl ? `<div style="margin-bottom:8px"><a href="${esc(result.fileUrl)}" target="_blank" style="color:var(--accent);font-size:13px">📎 ${esc(result.fileName||'Файл')}</a></div>` : ''}
+      <input type="file" id="tm-result-file" style="display:none" onchange="tmFileSelected(this)">
+      <button type="button" class="tm-upload-btn" onclick="document.getElementById('tm-result-file').click()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        <span id="tm-upload-label">Прикрепить файл (до 10 МБ)</span>
+      </button>
+    </div>
+  ` : `
+    ${result.link ? `<div style="margin-bottom:8px"><a href="${result.link}" target="_blank" style="color:var(--accent);font-size:13px">Открыть результат →</a></div>` : ''}
+    ${result.fileUrl ? `<div><a href="${result.fileUrl}" target="_blank" style="color:var(--accent);font-size:13px">📎 ${esc(result.fileName||'Скачать')}</a></div>` : ''}
+    ${!result.link && !result.fileUrl ? '<div style="font-size:13px;color:#9095A6">Результат ещё не загружен</div>' : ''}
+  `}`;
 
   document.getElementById('tm-footer').innerHTML=canEdit
-    ?`<button class="btn-primary" onclick="saveTaskModal()">Сохранить</button>
-      <button class="btn-ghost" onclick="closeTaskModal()">Закрыть</button>
-      ${user.name===t.clientName?`<button class="btn-ghost btn-sm" style="margin-left:auto" onclick="openTaskEdit(event,'${id}')">✏️ Полное редактирование</button>`:''}`.trim()
-    :`<button class="btn-ghost" style="margin-left:auto" onclick="closeTaskModal()">Закрыть</button>`;
+    ?`<button class="tm-btn-primary" onclick="saveTaskModal()">Сохранить</button>
+      <button class="tm-btn-ghost" onclick="closeTaskModal()">Закрыть</button>
+      ${user.name===t.clientName?`<button class="tm-btn-ghost" style="margin-left:auto;padding:8px 14px;font-size:13px" onclick="openTaskEdit(event,'${id}')">✏️ Полное редактирование</button>`:''}`.trim()
+    :`<button class="tm-btn-ghost" style="margin-left:auto" onclick="closeTaskModal()">Закрыть</button>`;
 
   document.getElementById('task-modal').classList.remove('hidden');
   subscribeTaskModalData(id);
   // Re-render kanban to clear stickers
   renderKanban(lastTasks);
+}
+
+function tmFileSelected(input){
+  const label=document.getElementById('tm-upload-label');
+  if(label&&input.files[0]) label.textContent=input.files[0].name;
+}
+
+function tmToggleStatusDropdown(e){
+  e.stopPropagation();
+  document.getElementById('tm-status-dropdown')?.classList.toggle('hidden');
+}
+
+function tmSelectStatus(v,el){
+  document.getElementById('tm-status-dropdown')?.classList.add('hidden');
+  const label=document.getElementById('tm-status-trigger-label');
+  if(label&&el) label.textContent=el.textContent;
+  document.querySelectorAll('#tm-status-dropdown .tm-status-option').forEach(o=>o.classList.remove('active'));
+  el?.classList.add('active');
+  tmChangeStatus(v);
 }
 
 function closeTaskModal(e){
@@ -2779,52 +2837,53 @@ function closeTaskModal(e){
   if(taskModalUnsubChangelog){taskModalUnsubChangelog();taskModalUnsubChangelog=null;}
   if(taskModalUnsubComments){taskModalUnsubComments();taskModalUnsubComments=null;}
   taskModalId=null;
+  tmLastChangelog=[];tmLastComments=[];
 }
 
 function subscribeTaskModalData(taskId){
   if(taskModalUnsubChangelog){taskModalUnsubChangelog();}
   taskModalUnsubChangelog=onSnapshot(
     query(collection(db,'tasks',taskId,'changelog'),orderBy('ts','asc')),
-    snap=>{const e=[];snap.forEach(d=>e.push({id:d.id,...d.data()}));renderChangelog(e);}
+    snap=>{const e=[];snap.forEach(d=>e.push({id:d.id,...d.data()}));tmLastChangelog=e;renderActivityFeed();}
   );
   if(taskModalUnsubComments){taskModalUnsubComments();}
   taskModalUnsubComments=onSnapshot(
     query(collection(db,'tasks',taskId,'comments'),orderBy('ts','asc')),
-    snap=>{const c=[];snap.forEach(d=>c.push({id:d.id,...d.data()}));renderTmComments(c);}
+    snap=>{const c=[];snap.forEach(d=>c.push({id:d.id,...d.data()}));tmLastComments=c;renderActivityFeed();}
   );
 }
 
-function renderChangelog(entries){
-  const el=document.getElementById('tm-changelog');if(!el)return;
-  if(!entries.length){el.innerHTML='<div class="tm-log-empty">Нет изменений</div>';return;}
-  el.innerHTML=entries.map(e=>{
-    const ts=e.ts?.toDate?e.ts.toDate().toLocaleString('ru',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'';
-    let msg='';
-    if(e.what==='status') msg=`изменил статус: <b>${slabel(e.from)}</b> → <b>${slabel(e.to)}</b>`;
-    else if(e.what==='deadline') msg=`изменил дедлайн: <b>${e.from||'—'}</b> → <b>${e.to||'—'}</b>`;
-    else if(e.what==='description') msg='изменил описание';
-    else msg=esc(e.what||'изменение');
-    return`<div class="tm-log-entry"><div class="tm-log-who">${esc(e.who)}</div><div class="tm-log-msg">${msg}</div><div class="tm-log-ts">${ts}</div></div>`;
-  }).join('');
-  el.scrollTop=el.scrollHeight;
-}
-
-function renderTmComments(comments){
-  const el=document.getElementById('tm-comments');if(!el)return;
-  if(!comments.length){el.innerHTML='<div class="tm-log-empty">Нет комментариев</div>';return;}
-  el.innerHTML=comments.map(c=>{
-    const ts=c.ts?.toDate?c.ts.toDate().toLocaleString('ru',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'';
-    const dColor=getDesignerColor(c.author)||'#9aa0a6';
-    const initial=c.author?c.author[0].toUpperCase():'?';
-    return`<div class="tm-comment">
-      <div class="avatar" style="width:24px;height:24px;font-size:10px;flex-shrink:0;background:${dColor}">${initial}</div>
-      <div class="tm-comment-body">
-        <div class="tm-comment-header">
-          <span class="tm-comment-author">${esc(c.author)}</span>
-          <span class="tm-comment-ts">${ts}</span>
+function renderActivityFeed(){
+  const el=document.getElementById('tm-activity-feed');if(!el)return;
+  const items=[
+    ...tmLastChangelog.map(e=>({type:'event',...e})),
+    ...tmLastComments.map(c=>({type:'comment',...c})),
+  ].sort((a,b)=>(a.ts?.toDate?a.ts.toDate():0)-(b.ts?.toDate?b.ts.toDate():0));
+  if(!items.length){el.innerHTML='<div class="tm-activity-empty">Пока нет активности</div>';return;}
+  el.innerHTML=items.map(it=>{
+    const ts=it.ts?.toDate?it.ts.toDate().toLocaleString('ru',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'';
+    if(it.type==='comment'){
+      const dColor=getDesignerColor(it.author)||'#9aa0a6';
+      const initial=it.author?it.author[0].toUpperCase():'?';
+      return`<div class="tm-activity-comment">
+        <div class="tm-activity-comment-head">
+          <div class="avatar" style="width:24px;height:24px;font-size:10px;flex-shrink:0;background:${dColor}">${initial}</div>
+          <span class="tm-activity-comment-author">${esc(it.author)}</span>
+          <span class="tm-activity-ts">${ts}</span>
         </div>
-        <div class="tm-comment-text">${esc(c.text)}</div>
-      </div>
+        <div class="tm-activity-comment-text">${esc(it.text)}</div>
+      </div>`;
+    }
+    let msg='';
+    if(it.what==='status') msg=`изменил статус: <b>${slabel(it.from)}</b> → <b>${slabel(it.to)}</b>`;
+    else if(it.what==='deadline') msg=`изменил дедлайн: <b>${it.from||'—'}</b> → <b>${it.to||'—'}</b>`;
+    else if(it.what==='description') msg='изменил описание';
+    else msg=esc(it.what||'изменение');
+    return`<div class="tm-activity-event">
+      <span class="tm-activity-dot"></span>
+      <span class="tm-activity-event-author">${esc(it.who)}</span>
+      <span class="tm-activity-event-text">${msg}</span>
+      <span class="tm-activity-ts">${ts}</span>
     </div>`;
   }).join('');
   el.scrollTop=el.scrollHeight;
@@ -4477,6 +4536,11 @@ document.addEventListener('keydown',e=>{
     else if(outdoorFullscreen) outdoorCloseFullscreen();
     else if(taskModalId) closeTaskModal();
   }
+});
+
+document.addEventListener('click',e=>{
+  const wrap=document.getElementById('tm-status-select-wrap');
+  if(wrap&&!wrap.contains(e.target)) document.getElementById('tm-status-dropdown')?.classList.add('hidden');
 });
 
 // ── RESTORE SESSION ──
