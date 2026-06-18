@@ -300,6 +300,38 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 .tm-tz-chevron.open{transform:rotate(180deg)}
 .tm-tz-content{display:none;margin-top:10px}
 .tm-tz-content.open{display:block}
+.tz-block{border-radius:12px;overflow:hidden}
+.tz-header{display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:0 0 12px 0}
+.tz-title{font-size:20px;font-weight:700;color:#0D0E14;font-family:'Golos Text',sans-serif}
+.tz-chevron{transition:transform .2s}
+.tz-chevron.open{transform:rotate(180deg)}
+.tz-content{display:none;flex-direction:column;gap:16px}
+.tz-content.open{display:flex}
+.tz-meta-row{display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap}
+.tz-section{display:flex;flex-direction:column;gap:6px}
+.tz-label{font-size:14px;font-weight:600;color:#9095A6;font-family:'Golos Text',sans-serif}
+.tz-tags{display:flex;gap:8px;flex-wrap:wrap}
+.tz-tag{background:rgba(91,76,245,.15);color:#5B4CF5;padding:5px 8px;border-radius:20px;font-size:12px;font-family:'Golos Text',sans-serif}
+.tz-text{font-size:13px;color:#374151;font-family:'Golos Text',sans-serif;white-space:pre-line;margin:0;line-height:1.5}
+.tz-link{font-size:13px;color:#5B4CF5;font-family:'Golos Text',sans-serif;text-decoration:none;font-weight:500}
+.tz-link:hover{text-decoration:underline}
+.tz-files{display:flex;flex-direction:column;gap:4px}
+.tz-file{font-size:13px;color:#5B4CF5;text-decoration:none;font-family:'Golos Text',sans-serif}
+.tz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tz-card{background:rgba(91,76,245,.1);border-radius:7px;padding:15px;display:flex;flex-direction:column;gap:5px;position:relative}
+.tz-card-title{font-size:12px;font-weight:600;color:#0D0E14;font-family:'Golos Text',sans-serif}
+.tz-card-sublabel{font-size:8px;color:#797979;font-family:'Golos Text',sans-serif;margin-top:2px}
+.tz-card-text{font-size:10px;color:#000;font-family:'Golos Text',sans-serif}
+.tz-card-image{background:#fff;height:100px;border-radius:5px;display:flex;align-items:center;justify-content:center;margin-top:4px;overflow:hidden}
+.tz-card-image img{width:100%;height:100%;object-fit:cover;cursor:pointer}
+.tz-card-image span{font-size:8px;color:#000;font-family:'Golos Text',sans-serif}
+.tz-card-discuss{position:absolute;top:8px;right:8px;font-size:12px}
+.tz-sections-list{display:flex;flex-direction:column;gap:8px}
+.tz-section-item{display:flex;gap:12px;align-items:flex-start;background:rgba(91,76,245,.06);border-radius:8px;padding:10px 12px}
+.tz-section-number{font-size:11px;font-weight:700;color:#5B4CF5;background:rgba(91,76,245,.15);border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Golos Text',sans-serif}
+.tz-section-body{display:flex;flex-direction:column;gap:2px}
+.tz-section-name{font-size:13px;font-weight:600;color:#0D0E14;font-family:'Golos Text',sans-serif}
+.tz-section-desc{font-size:12px;color:#6B7280;font-family:'Golos Text',sans-serif}
 .tm-sidebar{padding:20px;display:flex;flex-direction:column;border-left:1px solid #F0F0F3;overflow:hidden;min-height:0}
 .tm-sidebar-title{font-size:12px;font-weight:700;color:#0D0E14;margin-bottom:12px;flex-shrink:0}
 .tm-activity-feed{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;min-height:0}
@@ -2599,130 +2631,249 @@ function subscribeDesigners(){
 // ── TASK MODAL ──
 function buildTZBlock(t) {
   const ex = t.extra || {};
-  const rows = [];
 
-  if (t.references) rows.push(['Референс', `<a href="${esc(t.references)}" target="_blank" style="color:var(--accent)">Открыть ссылку →</a>`]);
-  if (ex.platform) rows.push(['Платформа', esc(ex.platform)]);
-  if (ex['cg-postfmt']?.length) rows.push(['Форматы', ex['cg-postfmt'].join(', ')]);
-  const postContent = [1,2,3,4,5,6,7,8,9].filter(i=>ex['c'+i]).map(i=>`<div style="margin-bottom:4px"><b>Пост ${i}:</b> ${esc(ex['c'+i])}</div>`).join('');
-  if (postContent) rows.push(['Контент', postContent]);
-  if (ex.orient) rows.push(['Ориентация', esc(ex.orient)]);
-  if (ex.dur) rows.push(['Длительность', esc(ex.dur) + ' сек']);
-  if (ex.resolution) rows.push(['Разрешение', esc(ex.resolution)]);
-  if (ex.fileformat) rows.push(['Формат файла', esc(ex.fileformat)]);
-  if (ex.format) rows.push(['Формат', esc(ex.format)]);
-  if (ex.size) rows.push(['Размер', esc(ex.size)]);
-  if (ex.qty) rows.push(['Тираж', esc(ex.qty) + ' шт']);
-  if (ex.budget) rows.push(['Бюджет', Number(ex.budget).toLocaleString('ru') + '₽']);
-  if (ex['cg-brand']?.length) rows.push(['Категория', ex['cg-brand'].join(', ')]);
-  if (ex['cg-plat']?.length) rows.push(['Тип', ex['cg-plat'].join(', ')]);
-  if (ex.posts) rows.push(['Постов', esc(ex.posts)]);
-  if (ex.stories && ex.stories !== '0') rows.push(['Сторис', esc(ex.stories)]);
-  if (ex.slides) rows.push(['Слайдов', esc(ex.slides)]);
-  if (ex.sections) rows.push(['Секций', esc(ex.sections)]);
-  if (ex.flink) rows.push(['Файл', `<a href="${esc(ex.flink)}" target="_blank" style="color:var(--accent)">Скачать →</a>`]);
-  if (ex.what) rows.push(['Что исправить', `<div style="white-space:pre-line">${esc(ex.what)}</div>`]);
-  if (ex.refLink) rows.push(['Референс стиля', `<a href="${esc(ex.refLink)}" target="_blank" style="color:var(--accent)">Открыть →</a>`]);
-  if (ex.matFiles?.length) rows.push(['Доп. материалы', ex.matFiles.map(f => `<a href="${esc(f.url||f)}" target="_blank" style="color:var(--accent);display:block">📎 ${esc(f.name||'Файл')}</a>`).join('')]);
-
-  if (ex['pres-scenario']) rows.push(['Сценарий', esc({new:'Создать новую',edits:'Внести правки',adapt:'Адаптировать'}[ex['pres-scenario']]||ex['pres-scenario'])]);
-  if (ex['pres-flink']) rows.push(['Ссылка на файл', `<a href="${esc(ex['pres-flink'])}" target="_blank" style="color:var(--accent)">Открыть →</a>`]);
-  if (ex['pres-flink-adapt']) rows.push(['Ссылка для адаптации', `<a href="${esc(ex['pres-flink-adapt'])}" target="_blank" style="color:var(--accent)">Открыть →</a>`]);
-  if (ex['adapt-notes']) rows.push(['Заметки адаптации', `<div style="white-space:pre-line">${esc(ex['adapt-notes'])}</div>`]);
-  if (ex['pres-reffile']) rows.push(['Файл референса', `📎 ${esc(ex['pres-reffile'])}`]);
-  if (ex['pres-reflink']) rows.push(['Референс стиля', `<a href="${esc(ex['pres-reflink'])}" target="_blank" style="color:var(--accent)">Открыть →</a>`]);
-  if (ex['pres-matfiles']?.length) rows.push(['Доп. материалы', ex['pres-matfiles'].map(f=>`<span style="display:block">📎 ${esc(f)}</span>`).join('')]);
-
+  // Data preparation (all original ex field reads preserved)
   const presSlides = ex['pres-slides-new'] || ex['pres-slides-edits'] || ex['pres-slides-adapt'] || ex.presSlides;
   const parsedSlides = typeof presSlides === 'string' ? (() => { try { return JSON.parse(presSlides); } catch(e) { return null; } })() : presSlides;
-  if (parsedSlides?.length) {
-    const slidesHtml = parsedSlides.map((s,i) => {
-      const blocks = (s.blocks||[]).map(b => {
-        if (b.type==='image') return b.url ? `<div style="margin-top:6px"><img src="${esc(b.url)}" style="max-width:100%;border-radius:6px;cursor:pointer" onclick="window.open('${esc(b.url)}','_blank')"><div style="font-size:11px;color:var(--text-muted);margin-top:3px">${esc(b.description||'')}</div></div>` : `<div style="font-size:12px;color:var(--text-dim);margin-top:4px">🖼 ${esc(b.description||'Изображение')}</div>`;
-        if (b.type==='text') return `<div style="font-size:12px;color:var(--text-dim);margin-top:4px"><b>${esc(b.tag||'')}</b>${b.content?' — '+esc(b.content):''}</div>`;
+
+  const landingSectionsRaw = ex['landing-sections-new'] || ex['landing-sections-edits'] || ex['landing-sections-adapt'];
+  let parsedLandingSections = null;
+  if (landingSectionsRaw) { try { parsedLandingSections = JSON.parse(landingSectionsRaw); } catch(e) {} }
+
+  let outdoorBlocks = null;
+  if (ex['outdoor-blocks']) { try { outdoorBlocks = JSON.parse(ex['outdoor-blocks']); } catch(e) {} }
+
+  let outdoorAdaptSizes = null;
+  if (ex['outdoor-adapt-sizes']) { try { outdoorAdaptSizes = JSON.parse(ex['outdoor-adapt-sizes']); } catch(e) {} }
+
+  const outdoorDims = [];
+  if (ex['outdoor-width'] && ex['outdoor-height']) outdoorDims.push(`${esc(ex['outdoor-width'])} × ${esc(ex['outdoor-height'])} мм`);
+  else if (ex['outdoor-width']) outdoorDims.push(`ш ${esc(ex['outdoor-width'])} мм`);
+  else if (ex['outdoor-height']) outdoorDims.push(`в ${esc(ex['outdoor-height'])} мм`);
+  if (ex['outdoor-dpi']) outdoorDims.push(`${esc(ex['outdoor-dpi'])} dpi`);
+
+  const postIndices = [1,2,3,4,5,6,7,8,9].filter(i => ex['c'+i]);
+  const hasDuplex = ex.checks?.some(c => c.toLowerCase().includes('двусторон') || c === 'duplex');
+
+  // Rendering helpers
+  const tagSection = (label, value) => {
+    if (!value) return '';
+    const vals = Array.isArray(value) ? value : String(value).split(',').map(v => v.trim());
+    const filtered = vals.filter(Boolean);
+    if (!filtered.length) return '';
+    return `<div class="tz-section"><span class="tz-label">${label}</span><div class="tz-tags">${filtered.map(v => `<span class="tz-tag">${esc(String(v))}</span>`).join('')}</div></div>`;
+  };
+
+  const textSection = (label, text) => {
+    if (!text) return '';
+    return `<div class="tz-section"><span class="tz-label">${label}</span><p class="tz-text">${esc(text)}</p></div>`;
+  };
+
+  const linkSection = (label, url, linkText) => {
+    if (!url) return '';
+    return `<div class="tz-section"><span class="tz-label">${label}</span><a href="${esc(url)}" target="_blank" class="tz-link">${esc(linkText || 'Открыть →')}</a></div>`;
+  };
+
+  const fileSection = (label, files) => {
+    if (!files?.length) return '';
+    const links = files.map(f => {
+      const url = f.url || f;
+      const name = f.name || (typeof f === 'string' ? f : 'Файл');
+      return `<a href="${esc(url)}" target="_blank" class="tz-file">📎 ${esc(name)}</a>`;
+    }).join('');
+    return `<div class="tz-section"><span class="tz-label">${label}</span><div class="tz-files">${links}</div></div>`;
+  };
+
+  const metaRow = (...parts) => {
+    const inner = parts.filter(Boolean).join('');
+    return inner ? `<div class="tz-meta-row">${inner}</div>` : '';
+  };
+
+  const slidesGrid = (slides) => {
+    if (!slides?.length) return '';
+    const cards = slides.map((s, i) => {
+      const blocks = (s.blocks || []).map(b => {
+        if (b.type === 'image') {
+          if (b.url) return `<span class="tz-card-sublabel">Изображение</span><div class="tz-card-image"><img src="${esc(b.url)}" onclick="window.open('${esc(b.url)}','_blank')"></div>${b.description ? `<span class="tz-card-text">${esc(b.description)}</span>` : ''}`;
+          return `<span class="tz-card-sublabel">Изображение</span><div class="tz-card-image"><span>${esc(b.description || 'Изображение')}</span></div>`;
+        }
+        if (b.type === 'text') return `<span class="tz-card-sublabel">${esc(b.tag || '')}</span><span class="tz-card-text">${esc(b.content || '')}</span>`;
         return '';
       }).join('');
-      return `<div style="margin-bottom:10px;padding:8px;background:var(--surface);border-radius:8px;border:1px solid var(--border)"><div style="font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:4px">СЛАЙД ${i+1} ${s.status==='discuss'?'💬 Нужно обсудить':''}</div>${blocks}</div>`;
+      return `<div class="tz-card">${s.status === 'discuss' ? '<span class="tz-card-discuss">💬</span>' : ''}<span class="tz-card-title">Слайд ${i+1}</span>${blocks}</div>`;
     }).join('');
-    rows.push(['Слайды', slidesHtml]);
+    return `<div class="tz-section"><span class="tz-label">Слайды</span><div class="tz-grid">${cards}</div></div>`;
+  };
+
+  const sections = [];
+
+  // ── Соцсети ──
+  if (ex.platform || ex['cg-postfmt']?.length || postIndices.length) {
+    sections.push(metaRow(
+      tagSection('Платформа', ex.platform),
+      ex['cg-postfmt']?.length ? tagSection('Форматы', ex['cg-postfmt']) : '',
+      ex.resolution ? tagSection('Разрешение', ex.resolution) : ''
+    ));
+    if (postIndices.length) {
+      const cards = postIndices.map(i => `<div class="tz-card">
+        <span class="tz-card-title">Пост ${i}</span>
+        <span class="tz-card-sublabel">Текст</span>
+        <span class="tz-card-text">${esc(ex['c'+i])}</span>
+        <span class="tz-card-sublabel">Файл</span>
+        <div class="tz-card-image"><span>Изображение</span></div>
+      </div>`).join('');
+      sections.push(`<div class="tz-section"><span class="tz-label">Контент</span><div class="tz-grid">${cards}</div></div>`);
+    }
   }
 
-  if (ex['print-category']) rows.push(['Категория', esc(ex['print-category'])]);
-  if (ex['print-selected-types']) rows.push(['Тип', esc(ex['print-selected-types'])]);
-  if (ex['print-selected-format']) rows.push(['Формат', esc(ex['print-selected-format'])]);
-  if (ex['print-custom-size']) rows.push(['Размер', esc(ex['print-custom-size'])]);
-  if (ex['print-qty']) rows.push(['Тираж', esc(ex['print-qty']) + ' шт']);
-  if (ex['print-reflink']) rows.push(['Референс', `<a href="${esc(ex['print-reflink'])}" target="_blank" style="color:var(--accent)">Открыть →</a>`]);
-  if (ex['print-reffile-url']) rows.push(['Файл референса', `<a href="${esc(ex['print-reffile-url'])}" target="_blank" style="color:var(--accent)">Открыть →</a>`]);
-  if (ex['print-matfiles-urls']?.length) rows.push(['Доп. материалы', ex['print-matfiles-urls'].map((u,i)=>`<a href="${esc(u)}" target="_blank" style="color:var(--accent);display:block">📎 Файл ${i+1}</a>`).join('')]);
-  if (ex.checks?.some(c=>c.toLowerCase().includes('двусторон')||c==='duplex')) rows.push(['Печать', 'Двусторонняя']);
-
-  if (ex['outdoor-scenario']) rows.push(['Сценарий', esc({new:'Новый макет',edits:'Внести правки',adapt:'Адаптация'}[ex['outdoor-scenario']]||ex['outdoor-scenario'])]);
-  if (ex['outdoor-types']) rows.push(['Носители', esc(ex['outdoor-types'])]);
-  if (ex['outdoor-width']||ex['outdoor-height']||ex['outdoor-dpi']) {
-    const dims=[];
-    if(ex['outdoor-width']&&ex['outdoor-height']) dims.push(`${esc(ex['outdoor-width'])} × ${esc(ex['outdoor-height'])} мм`);
-    else if(ex['outdoor-width']) dims.push(`ш ${esc(ex['outdoor-width'])} мм`);
-    else if(ex['outdoor-height']) dims.push(`в ${esc(ex['outdoor-height'])} мм`);
-    if(ex['outdoor-dpi']) dims.push(`${esc(ex['outdoor-dpi'])} dpi`);
-    rows.push(['Размер / Разрешение', dims.join(' · ')]);
-  }
-  if (ex['outdoor-anim-desc']) rows.push(['Анимация', esc(ex['outdoor-anim-desc'])]);
-  if (ex['outdoor-flink']) rows.push(['Файл для правок', `<a href="${esc(ex['outdoor-flink'])}" target="_blank" style="color:var(--accent)">Открыть →</a>`]);
-  if (ex['outdoor-edit-notes']) rows.push(['Правки', `<div style="white-space:pre-line">${esc(ex['outdoor-edit-notes'])}</div>`]);
-  if (ex['outdoor-flink-adapt']) rows.push(['Оригинальный файл', `<a href="${esc(ex['outdoor-flink-adapt'])}" target="_blank" style="color:var(--accent)">Открыть →</a>`]);
-  if (ex['outdoor-source']) rows.push(['Исходный макет', `📎 ${esc(ex['outdoor-source'])}`]);
-  if (ex['outdoor-adapt-types']) rows.push(['Форматы адаптации', esc(ex['outdoor-adapt-types'])]);
-  if (ex['outdoor-adapt-sizes']) { try { const _sz=JSON.parse(ex['outdoor-adapt-sizes']); rows.push(['Размеры адаптации', Object.entries(_sz).map(([_t,_d])=>`<span style="display:block;font-size:12px">${esc(_t)}: ${_d.w&&_d.h?`${esc(_d.w)} × ${esc(_d.h)} мм`:_d.w?`ш ${esc(_d.w)} мм`:`в ${esc(_d.h)} мм`}</span>`).join('')]); } catch(e){} }
-  if (ex['outdoor-reflink']) rows.push(['Референс стиля', `<a href="${esc(ex['outdoor-reflink'])}" target="_blank" style="color:var(--accent)">Открыть →</a>`]);
-  if (ex['outdoor-reffile']) rows.push(['Файл референса', `📎 ${esc(ex['outdoor-reffile'])}`]);
-  if (ex['outdoor-blocks']) { try { const _obs=JSON.parse(ex['outdoor-blocks']); if(_obs.length) rows.push(['Контент макета', `<div style="padding:8px;background:var(--surface);border-radius:8px;border:1px solid var(--border)">${_obs.map(_b=>{ if(_b.type==='image') return _b.url?`<div style="margin-top:6px"><img src="${esc(_b.url)}" style="max-width:100%;border-radius:6px;cursor:pointer" onclick="window.open('${esc(_b.url)}','_blank')"><div style="font-size:11px;color:var(--text-muted);margin-top:3px">${esc(_b.description||'')}</div></div>`:`<div style="font-size:12px;color:var(--text-dim);margin-top:4px">🖼 ${esc(_b.description||'Изображение')}</div>`; const _tl=OUTDOOR_BLOCK_TAGS.find(_t=>_t.id===_b.tag)?.label||_b.tag||''; return `<div style="font-size:12px;color:var(--text-dim);margin-top:4px"><b>${esc(_tl)}</b>${_b.content?' — '+esc(_b.content):''}</div>`; }).join('')}</div>`]); } catch(e){} }
-  if (ex['outdoor-matfiles']?.length) rows.push(['Доп. материалы', ex['outdoor-matfiles'].map(f=>`<span style="display:block">📎 ${esc(f)}</span>`).join('')]);
-
-  if (ex['landing-scenario']) rows.push(['Сценарий', esc({new:'Создать новый',edits:'Внести правки',adapt:'Адаптировать'}[ex['landing-scenario']]||ex['landing-scenario'])]);
-  if (ex['landing-flink']) rows.push(['Ссылка на файл', `<a href="${esc(ex['landing-flink'])}" target="_blank" style="color:var(--accent)">Открыть →</a>`]);
-  if (ex['landing-flink-adapt']) rows.push(['Ссылка для адаптации', `<a href="${esc(ex['landing-flink-adapt'])}" target="_blank" style="color:var(--accent)">Открыть →</a>`]);
-  if (ex['landing-adapt-notes']) rows.push(['Заметки адаптации', `<div style="white-space:pre-line">${esc(ex['landing-adapt-notes'])}</div>`]);
-  if (ex['landing-reffile']) rows.push(['Файл референса', `📎 ${esc(ex['landing-reffile'])}`]);
-  if (ex['landing-reflink']) rows.push(['Ссылка на оригинал', `<a href="${esc(ex['landing-reflink'])}" target="_blank" style="color:var(--accent)">Открыть →</a>`]);
-  if (ex['landing-files']?.length) rows.push(['Файлы', ex['landing-files'].map(f=>`<span style="display:block">📎 ${esc(f)}</span>`).join('')]);
-  if (ex['landing-matfiles']?.length) rows.push(['Доп. материалы', ex['landing-matfiles'].map(f=>`<span style="display:block">📎 ${esc(f)}</span>`).join('')]);
-  const landingSections = ex['landing-sections-new'] || ex['landing-sections-edits'] || ex['landing-sections-adapt'];
-  if (landingSections) {
-    try {
-      const secs = JSON.parse(landingSections);
-      rows.push(['Секции лендинга', secs.map((s,i)=>`<span style="display:block;font-size:12px">Блок ${i+1}: ${esc(s.type||'')}</span>`).join('')]);
-    } catch(e) {}
+  // ── Презентация ──
+  if (ex['pres-scenario']) {
+    const sLabel = {new:'Создать новую', edits:'Внести правки', adapt:'Адаптировать'}[ex['pres-scenario']] || ex['pres-scenario'];
+    sections.push(tagSection('Сценарий', sLabel));
+    if (ex['pres-scenario'] === 'new') {
+      sections.push(metaRow(
+        ex.slides ? tagSection('Слайдов', String(ex.slides)) : '',
+        ex.orient ? tagSection('Ориентация', ex.orient) : ''
+      ));
+      sections.push(slidesGrid(parsedSlides));
+      sections.push(linkSection('Ссылка на файл', ex['pres-flink']));
+      sections.push(linkSection('Референс стиля', ex['pres-reflink']));
+      if (ex['pres-reffile']) sections.push(`<div class="tz-section"><span class="tz-label">Файл референса</span><p class="tz-text">📎 ${esc(ex['pres-reffile'])}</p></div>`);
+    } else {
+      sections.push(linkSection('Ссылка на файл', ex['pres-flink']));
+      sections.push(linkSection('Ссылка для адаптации', ex['pres-flink-adapt']));
+      sections.push(textSection('Заметки адаптации', ex['adapt-notes']));
+      sections.push(slidesGrid(parsedSlides));
+      sections.push(linkSection('Референс стиля', ex['pres-reflink']));
+      if (ex['pres-reffile']) sections.push(`<div class="tz-section"><span class="tz-label">Файл референса</span><p class="tz-text">📎 ${esc(ex['pres-reffile'])}</p></div>`);
+    }
+    if (ex['pres-matfiles']?.length) sections.push(fileSection('Доп. материалы', ex['pres-matfiles'].map(f => ({url: f, name: f}))));
   }
 
-  if (ex['campaign-object']) rows.push(['Объект', esc(ex['campaign-object'])]);
-  if (ex['campaign-goal']) rows.push(['Цель кампании', `<div style="white-space:pre-line">${esc(ex['campaign-goal'])}</div>`]);
-  if (ex['campaign-reflink']) rows.push(['Референс стиля', `<a href="${esc(ex['campaign-reflink'])}" target="_blank" style="color:var(--accent)">Открыть →</a>`]);
-  if (ex['campaign-reffile-url']) rows.push(['Файл референса', `<a href="${esc(ex['campaign-reffile-url'])}" target="_blank" style="color:var(--accent)">Открыть →</a>`]);
-  if (ex['campaign-matfiles-urls']?.length) rows.push(['Доп. материалы', ex['campaign-matfiles-urls'].map((u,i)=>`<a href="${esc(u)}" target="_blank" style="color:var(--accent);display:block">📎 Файл ${i+1}</a>`).join('')]);
-  if (ex.checks?.length && ex['campaign-object']) rows.push(['Носители', esc(ex.checks.join(', '))]);
+  // ── Полиграфия ──
+  if (ex['print-category'] || ex['print-selected-types']) {
+    sections.push(metaRow(
+      tagSection('Категория', ex['print-category']),
+      tagSection('Тип', ex['print-selected-types']),
+      tagSection('Формат', ex['print-selected-format']),
+      ex['print-custom-size'] ? tagSection('Размер', ex['print-custom-size']) : ''
+    ));
+    if (ex['print-qty']) sections.push(tagSection('Тираж', ex['print-qty'] + ' шт'));
+    if (hasDuplex) sections.push(tagSection('Печать', 'Двусторонняя'));
+    sections.push(linkSection('Референс', ex['print-reflink']));
+    sections.push(linkSection('Файл референса', ex['print-reffile-url']));
+    if (ex['print-matfiles-urls']?.length) sections.push(fileSection('Доп. материалы', ex['print-matfiles-urls'].map((u, i) => ({url: u, name: `Файл ${i+1}`}))));
+  }
 
-  if (!rows.length) return '';
+  // ── Наружная реклама ──
+  if (ex['outdoor-scenario']) {
+    const oLabel = {new:'Новый макет', edits:'Внести правки', adapt:'Адаптация'}[ex['outdoor-scenario']] || ex['outdoor-scenario'];
+    sections.push(tagSection('Сценарий', oLabel));
+    sections.push(metaRow(
+      ex['outdoor-types'] ? tagSection('Носители', ex['outdoor-types']) : '',
+      outdoorDims.length ? tagSection('Размер / Разрешение', outdoorDims.join(' · ')) : ''
+    ));
+    sections.push(linkSection('Референс стиля', ex['outdoor-reflink']));
+    sections.push(linkSection('Файл для правок', ex['outdoor-flink']));
+    sections.push(linkSection('Оригинальный файл', ex['outdoor-flink-adapt']));
+    sections.push(textSection('Анимация', ex['outdoor-anim-desc']));
+    sections.push(textSection('Правки', ex['outdoor-edit-notes']));
+    if (ex['outdoor-source']) sections.push(`<div class="tz-section"><span class="tz-label">Исходный макет</span><p class="tz-text">📎 ${esc(ex['outdoor-source'])}</p></div>`);
+    if (ex['outdoor-adapt-types']) sections.push(tagSection('Форматы адаптации', ex['outdoor-adapt-types']));
+    if (outdoorAdaptSizes) {
+      const sizesHtml = Object.entries(outdoorAdaptSizes).map(([_t, _d]) => `<span style="display:block;font-size:12px">${esc(_t)}: ${_d.w&&_d.h ? `${esc(_d.w)} × ${esc(_d.h)} мм` : _d.w ? `ш ${esc(_d.w)} мм` : `в ${esc(_d.h)} мм`}</span>`).join('');
+      sections.push(`<div class="tz-section"><span class="tz-label">Размеры адаптации</span><div class="tz-text">${sizesHtml}</div></div>`);
+    }
+    if (ex['outdoor-reffile']) sections.push(`<div class="tz-section"><span class="tz-label">Файл референса</span><p class="tz-text">📎 ${esc(ex['outdoor-reffile'])}</p></div>`);
+    if (outdoorBlocks?.length) {
+      const cards = outdoorBlocks.map(b => {
+        if (b.type === 'image') {
+          return b.url
+            ? `<div class="tz-card"><span class="tz-card-title">${esc(b.description||'Изображение')}</span><div class="tz-card-image"><img src="${esc(b.url)}" onclick="window.open('${esc(b.url)}','_blank')"></div></div>`
+            : `<div class="tz-card"><span class="tz-card-title">🖼 ${esc(b.description||'Изображение')}</span></div>`;
+        }
+        const tl = (typeof OUTDOOR_BLOCK_TAGS !== 'undefined' ? OUTDOOR_BLOCK_TAGS : []).find(_t => _t.id === b.tag)?.label || b.tag || '';
+        return `<div class="tz-card"><span class="tz-card-title">${esc(tl)}</span>${b.content ? `<span class="tz-card-sublabel">Текст</span><span class="tz-card-text">${esc(b.content)}</span>` : ''}</div>`;
+      }).join('');
+      sections.push(`<div class="tz-section"><span class="tz-label">Контент макета</span><div class="tz-grid">${cards}</div></div>`);
+    }
+    if (ex['outdoor-matfiles']?.length) sections.push(fileSection('Доп. материалы', ex['outdoor-matfiles'].map(f => ({url: f, name: f}))));
+  }
 
-  const html = rows.map(([label, val]) => `
-    <div style="margin-bottom:10px">
-      <div style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;margin-bottom:3px">${label}</div>
-      <div style="font-size:13px;color:var(--text)">${val}</div>
-    </div>`).join('');
+  // ── Лендинг ──
+  if (ex['landing-scenario']) {
+    const lLabel = {new:'Создать новый', edits:'Внести правки', adapt:'Адаптировать'}[ex['landing-scenario']] || ex['landing-scenario'];
+    sections.push(tagSection('Сценарий', lLabel));
+    sections.push(linkSection('Ссылка на файл', ex['landing-flink']));
+    sections.push(linkSection('Ссылка для адаптации', ex['landing-flink-adapt']));
+    sections.push(linkSection('Ссылка на оригинал', ex['landing-reflink']));
+    if (ex['landing-reffile']) sections.push(`<div class="tz-section"><span class="tz-label">Файл референса</span><p class="tz-text">📎 ${esc(ex['landing-reffile'])}</p></div>`);
+    sections.push(textSection('Заметки адаптации', ex['landing-adapt-notes']));
+    if (parsedLandingSections?.length) {
+      const items = parsedLandingSections.map((s, i) => `<div class="tz-section-item">
+        <span class="tz-section-number">${i+1}</span>
+        <div class="tz-section-body">
+          <span class="tz-section-name">${esc(s.type||'')}</span>
+          ${s.desc ? `<span class="tz-section-desc">${esc(s.desc)}</span>` : ''}
+        </div>
+      </div>`).join('');
+      sections.push(`<div class="tz-section"><span class="tz-label">Секции</span><div class="tz-sections-list">${items}</div></div>`);
+    }
+    if (ex['landing-files']?.length) sections.push(fileSection('Файлы', ex['landing-files'].map(f => ({url: f, name: f}))));
+    if (ex['landing-matfiles']?.length) sections.push(fileSection('Доп. материалы', ex['landing-matfiles'].map(f => ({url: f, name: f}))));
+  }
 
-  return `<div class="tm-tz-wrap">
-    <div class="tm-tz-header" onclick="tmToggleTZ(this)">
-      <span class="tm-field-label">ТЗ от постановщика</span>
-      <svg class="tm-tz-chevron open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9095A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  // ── Рекламная кампания ──
+  if (ex['campaign-object']) {
+    sections.push(tagSection('Объект', ex['campaign-object']));
+    sections.push(metaRow(
+      ex['cg-plat']?.length ? tagSection('Тип', ex['cg-plat']) : '',
+      ex.posts ? tagSection('Постов', String(ex.posts)) : '',
+      ex.stories && ex.stories !== '0' ? tagSection('Сторис', String(ex.stories)) : '',
+      ex.slides ? tagSection('Слайдов', String(ex.slides)) : ''
+    ));
+    if (ex.checks?.length) sections.push(tagSection('Носители', ex.checks));
+    sections.push(textSection('Цель кампании', ex['campaign-goal']));
+    sections.push(linkSection('Референс стиля', ex['campaign-reflink']));
+    sections.push(linkSection('Файл референса', ex['campaign-reffile-url']));
+    if (ex['campaign-matfiles-urls']?.length) sections.push(fileSection('Доп. материалы', ex['campaign-matfiles-urls'].map((u, i) => ({url: u, name: `Файл ${i+1}`}))));
+  }
+
+  // ── Правки (общий тип) ──
+  if (ex.what) {
+    sections.push(textSection('Что исправить', ex.what));
+    sections.push(linkSection('Файл', ex.flink, 'Скачать →'));
+  }
+
+  // ── Общие поля ──
+  if (t.references) sections.push(linkSection('Референс', t.references, 'Открыть ссылку →'));
+  if (ex.refLink) sections.push(linkSection('Референс стиля', ex.refLink));
+  if (ex.matFiles?.length) sections.push(fileSection('Доп. материалы', ex.matFiles));
+  if (ex.dur) sections.push(tagSection('Длительность', ex.dur + ' сек'));
+  if (ex.fileformat) sections.push(tagSection('Формат файла', ex.fileformat));
+  if (ex.format) sections.push(tagSection('Формат', ex.format));
+  if (ex.size) sections.push(tagSection('Размер', ex.size));
+  if (ex.qty) sections.push(tagSection('Тираж', ex.qty + ' шт'));
+  if (ex.budget) sections.push(tagSection('Бюджет', Number(ex.budget).toLocaleString('ru') + '₽'));
+  if (ex['cg-brand']?.length) sections.push(tagSection('Категория', ex['cg-brand']));
+  if (ex.sections) sections.push(tagSection('Секций', String(ex.sections)));
+
+  const content = sections.filter(Boolean).join('');
+  if (!content) return '';
+
+  return `<div class="tz-block">
+    <div class="tz-header" onclick="tmToggleTZ(this)">
+      <span class="tz-title">Техническое задание</span>
+      <svg class="tz-chevron open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9095A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
-    <div class="tm-tz-content open">${html}</div>
+    <div class="tz-content open">${content}</div>
   </div>`;
 }
 
 function tmToggleTZ(headerEl){
-  const wrap=headerEl.closest('.tm-tz-wrap');
-  const content=wrap.querySelector('.tm-tz-content');
-  const chevron=wrap.querySelector('.tm-tz-chevron');
+  const wrap=headerEl.closest('.tz-block');
+  const content=wrap.querySelector('.tz-content');
+  const chevron=wrap.querySelector('.tz-chevron');
   const open=!content.classList.contains('open');
   content.classList.toggle('open',open);
   chevron.classList.toggle('open',open);
