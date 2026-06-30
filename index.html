@@ -17,7 +17,10 @@
   --error:#DC2626;--error-bg:#FEE2E2;
   --warning:#D97706;--warning-bg:#FEF3C7;
   --success:#16A34A;--success-bg:#F0FDF4;
-  --new:#4285f4;--progress:#fbbc04;--review:#ea4335;--done:#34a853;
+  --new:#4285f4;--new-bg:#e8f0fe;--new-text:#1a73e8;
+  --progress:#fbbc04;--progress-bg:#fef9e7;--progress-text:#f29900;
+  --review:#ea4335;--review-bg:#fce8e6;--review-text:#d93025;
+  --done:#34a853;--done-bg:#e6f4ea;--done-text:#1e8e3e;
   --r:12px;--rs:8px;--r-xl:25px;
   --sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
   --sh-md:0 4px 16px rgba(0,0,0,.10),0 2px 6px rgba(0,0,0,.06);
@@ -142,18 +145,18 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 
 /* hero */
 .create-hero{background:linear-gradient(90deg,#e8f0fe 0%,#f0e6ff 100%);border-radius:16px;padding:48px;margin-bottom:32px}
-.create-hero-title{font-size:32px;font-weight:700;color:#1a1a2e;margin-bottom:12px;letter-spacing:-.02em;line-height:1.2}
-.create-hero-sub{font-size:16px;color:#5f6368;line-height:1.5}
+.create-hero-title{font-size:32px;font-weight:700;color:var(--text);margin-bottom:12px;letter-spacing:-.02em;line-height:1.2}
+.create-hero-sub{font-size:16px;color:var(--text-dim);line-height:1.5}
 
 /* type grid */
 .type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:24px}
-.type-card{background:#fff;border:2px solid transparent;border-radius:12px;padding:24px;min-height:160px;cursor:pointer;transition:box-shadow .2s,transform .2s,border-color .15s;user-select:none;box-shadow:0 2px 8px rgba(0,0,0,.08);display:flex;flex-direction:column;position:relative}
-.type-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.12);transform:translateY(-2px)}
+.type-card{background:var(--card);border:2px solid transparent;border-radius:var(--r);padding:24px;min-height:160px;cursor:pointer;transition:box-shadow .2s,transform .2s,border-color .15s;user-select:none;box-shadow:var(--sh);display:flex;flex-direction:column;position:relative}
+.type-card:hover{box-shadow:var(--sh-lg);transform:translateY(-2px)}
 .type-card.sel{border-color:var(--accent)}
 .type-card-icon{font-size:48px;margin-bottom:12px;line-height:1;display:block}
-.type-card-name{font-size:16px;font-weight:700;color:#1a1a2e;margin-bottom:6px}
-.type-card-desc{font-size:13px;color:#5f6368;line-height:1.4;flex:1}
-.type-card-arrow{position:absolute;bottom:20px;right:20px;font-size:18px;font-weight:700;line-height:1}
+.type-card-name{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px}
+.type-card-desc{font-size:13px;color:var(--text-dim);line-height:1.4;flex:1}
+.type-card-arrow{position:absolute;bottom:20px;right:20px;font-size:18px;font-weight:700;line-height:1;color:var(--text-muted)}
 
 /* form card */
 .form-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;box-shadow:var(--sh);animation:fadeIn .3s ease}
@@ -191,10 +194,10 @@ label.field-label{display:block;color:var(--text-dim);font-size:11px;font-weight
 /* ── STATUS BADGES ── */
 .sbadge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;border-radius:100px;padding:3px 10px;white-space:nowrap}
 .sbadge::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.s-new{background:#e8f0fe;color:#1a73e8}.s-new::before{background:var(--new)}
-.s-progress{background:#fef9e7;color:#f29900}.s-progress::before{background:var(--progress)}
-.s-review{background:#fce8e6;color:#d93025}.s-review::before{background:var(--review)}
-.s-done{background:#e6f4ea;color:#1e8e3e}.s-done::before{background:var(--done)}
+.s-new{background:var(--new-bg);color:var(--new-text)}.s-new::before{background:var(--new)}
+.s-progress{background:var(--progress-bg);color:var(--progress-text)}.s-progress::before{background:var(--progress)}
+.s-review{background:var(--review-bg);color:var(--review-text)}.s-review::before{background:var(--review)}
+.s-done{background:var(--done-bg);color:var(--done-text)}.s-done::before{background:var(--done)}
 .pbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px;letter-spacing:.03em;text-transform:uppercase}
 .pbadge-urgent{background:var(--error-bg);color:var(--error)}
 .pbadge-high{background:var(--warning-bg);color:var(--warning)}
