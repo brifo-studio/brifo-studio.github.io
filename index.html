@@ -337,6 +337,7 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 .tz-files{display:flex;flex-direction:column;gap:6px}
 .tz-file{font-size:13px;color:var(--accent);text-decoration:none}
 .tz-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.tz-grid-3{grid-template-columns:repeat(3,1fr);gap:12px}
 .tz-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--rs);padding:16px;display:flex;flex-direction:column;gap:6px;position:relative;box-shadow:var(--sh)}
 .tz-card-title{font-size:14px;font-weight:700;color:var(--text);padding-bottom:10px;border-bottom:1px solid var(--border-secondary);margin-bottom:4px}
 .tz-card-sublabel{font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em}
@@ -2751,10 +2752,8 @@ function buildTZBlock(t) {
         <span class="tz-card-title">Пост ${i}</span>
         <span class="tz-card-sublabel">Текст</span>
         <span class="tz-card-text">${esc(ex['c'+i])}</span>
-        <span class="tz-card-sublabel">Файл</span>
-        <div class="tz-card-image"><span>Изображение</span></div>
       </div>`).join('');
-      sections.push(`<div class="tz-section"><span class="tz-label">Контент</span><div class="tz-grid">${cards}</div></div>`);
+      sections.push(`<div class="tz-section"><span class="tz-label">Контент</span><div class="tz-grid tz-grid-3">${cards}</div></div>`);
     }
   }
 
