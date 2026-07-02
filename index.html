@@ -577,8 +577,8 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
   .tm-body{display:flex!important;flex-direction:column;grid-template-columns:unset!important;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1;min-height:0}
   /* main: let parent body handle scroll, no own overflow */
   .tm-main{overflow:visible!important;overflow-y:visible!important;padding:16px}
-  /* sidebar (Активность): inline after main content, no scroll cap */
-  .tm-sidebar{overflow:visible!important;max-height:none!important;border-radius:14px!important;margin:0 16px 16px 16px!important;cursor:default}
+  /* sidebar (Активность): flatten — no card look, flows as regular section */
+  .tm-sidebar{background:transparent!important;border:none!important;border-radius:0!important;margin:0!important;padding:0 16px 20px!important;overflow:visible!important;max-height:none!important;cursor:default;display:block!important}
   /* content cards: stack to 1 column */
   .tz-grid,.tz-grid-3{grid-template-columns:1fr!important;gap:10px!important}
   .tz-meta-row{flex-direction:column!important;gap:10px!important}
@@ -592,9 +592,9 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
   #tm-activity-feed{display:none}
   .tm-comment-input-wrap{display:block!important}
   .tm-sidebar{cursor:default!important}
-  .tm-sidebar-title{cursor:default!important;user-select:auto;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border-secondary)}
+  .tm-sidebar-title{cursor:default!important;user-select:auto;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;padding-bottom:0;border-bottom:none;border-top:1px solid var(--border-secondary);padding-top:16px}
   .tm-comment-textarea{min-height:110px}
-  .tm-comment-input-wrap{border-top:none;padding-top:0;margin-top:0;padding-bottom:4px}
+  .tm-comment-input-wrap{border-top:none!important;padding-top:0;margin-top:0;padding-bottom:0}
 }
 @media(max-width:700px){
   .form-row,.form-row-3{grid-template-columns:1fr}
