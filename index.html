@@ -2170,11 +2170,11 @@ function peSelectDino(id){
 }
 
 async function dAuthConfirm(){
-  if(!pendingDesignerColor||!pendingDesignerName||!dAuthSelectedDino)return;
+  if(!pendingDesignerColor||!pendingDesignerName)return;
   const name=pendingDesignerName;
   const color=pendingDesignerColor;
   const displayName=document.getElementById('dauth-display-name').value.trim()||name;
-  const dino=dAuthSelectedDino;
+  const dino=dAuthSelectedDino||DINOS[0].id;
   try{
     await setDoc(doc(db,'designers',name),{name,color,displayName,dino,lastSeen:serverTimestamp()},{merge:true});
   }catch(e){}
