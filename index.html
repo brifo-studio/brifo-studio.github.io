@@ -53,23 +53,24 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 .btn-sm{padding:6px 14px;font-size:12px}
 
 /* ── LOGIN ── */
-#login{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:linear-gradient(160deg,#f8f9fa 0%,#e8f0fe 45%,#fce8e6 100%);position:relative}
-.logo{font-size:22px;font-weight:700;color:var(--text);margin-bottom:16px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center;gap:10px}
-.logo span{color:var(--accent)}
-.logo-sub{color:var(--text-dim);font-size:14px;margin-bottom:40px;text-align:center;max-width:380px;line-height:1.6}
+#login{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:linear-gradient(150deg,#1a1060 0%,#3d27b0 35%,#5B4CF5 65%,#3a7bd5 100%);position:relative;overflow:hidden}
+#login::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(150,120,255,.25) 0%,transparent 70%);pointer-events:none}
+.logo{font-size:22px;font-weight:700;color:#fff;margin-bottom:12px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center;gap:10px}
+.logo span{color:rgba(255,255,255,.8)}
+.logo-sub{color:rgba(255,255,255,.65);font-size:14px;margin-bottom:36px;text-align:center;max-width:380px;line-height:1.6}
 
 /* designer corner btn */
-.designer-corner-btn{position:absolute;top:20px;left:20px;display:flex;align-items:center;gap:7px;padding:11px 16px;background:var(--card);border:1px solid var(--border);border-radius:100px;font-size:13px;color:var(--text-dim);cursor:pointer;transition:all .18s;box-shadow:var(--sh)}
-.designer-corner-btn:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--sh-md)}
+.designer-corner-btn{position:absolute;top:20px;left:20px;display:flex;align-items:center;gap:7px;padding:11px 16px;background:rgba(255,255,255,.12);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.2);border-radius:100px;font-size:13px;color:rgba(255,255,255,.85);cursor:pointer;transition:all .18s;box-shadow:0 2px 12px rgba(0,0,0,.15)}
+.designer-corner-btn:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.4);color:#fff}
 .designer-corner-btn .dc-icon{font-size:15px}
 
 /* client card */
-.client-entry-card{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:40px 48px;text-align:center;cursor:pointer;transition:all .22s;box-shadow:var(--sh);max-width:320px;width:100%;animation:fadeUp .2s ease}
-.client-entry-card:hover{border-color:var(--accent);box-shadow:var(--sh-md);transform:translateY(-3px)}
+.client-entry-card{background:#fff;border:none;border-radius:20px;padding:40px 44px;text-align:center;cursor:pointer;transition:all .25s;box-shadow:0 20px 60px rgba(0,0,0,.25),0 4px 16px rgba(0,0,0,.12);max-width:320px;width:100%;animation:fadeUp .25s ease}
+.client-entry-card:hover{box-shadow:0 28px 72px rgba(0,0,0,.32),0 6px 20px rgba(0,0,0,.15);transform:translateY(-4px)}
 .client-entry-card .ce-icon{width:64px;height:64px;border-radius:50%;background:var(--accent-lt);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px}
 .client-entry-card h2{font-size:20px;font-weight:700;color:var(--text);margin:0 0 6px}
 .client-entry-card p{font-size:13px;color:var(--text-dim);margin:0 0 24px;line-height:1.5}
-.client-entry-card .ce-btn{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;border-radius:8px;padding:10px 24px;font-size:14px;font-weight:600}
+.client-entry-card .ce-btn{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;border-radius:10px;padding:11px 26px;font-size:14px;font-weight:600;box-shadow:0 4px 14px rgba(91,76,245,.4)}
 
 /* client name modal */
 .name-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;z-index:200;animation:fadeIn .15s ease}
