@@ -2622,7 +2622,7 @@ function subscribeClientKanban(){
     ['new','progress','review','done'].forEach(s=>{
       const el = document.getElementById('col-'+s+'-c');
       const cnt = document.getElementById('cnt-'+s+'-c');
-      if(el) el.innerHTML = cols[s].length ? cols[s].map(taskCard).join('') : emptyCol();
+      if(el) el.innerHTML = cols[s].length ? cols[s].map(t=>taskCard(t)).join('') : emptyCol();
       if(cnt) cnt.textContent = cols[s].length;
     });
   });
@@ -2729,7 +2729,7 @@ function renderKanban(allTasks, boardId){
     ];
     board.innerHTML=colDefs.map(col=>{
       const cards=cols[col.id].length
-        ?cols[col.id].map(taskCard).join('')
+        ?cols[col.id].map(t=>taskCard(t)).join('')
         :emptyCol();
       return `<div class="kcol">
         <div class="kcol-head">
@@ -2745,7 +2745,7 @@ function renderKanban(allTasks, boardId){
 
   ['new','progress','review','done'].forEach(s=>{
     document.getElementById('col-'+s).innerHTML=
-      cols[s].length?cols[s].map(taskCard).join(''):emptyCol();
+      cols[s].length?cols[s].map(t=>taskCard(t)).join(''):emptyCol();
     document.getElementById('cnt-'+s).textContent=cols[s].length;
   });
   ['new','progress','review','done'].forEach(s=>{
