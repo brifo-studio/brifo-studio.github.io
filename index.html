@@ -265,6 +265,7 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 .kanban{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:20px;overflow-x:auto;min-height:0}
 /* kanban transition */
 .kanban-wrap{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.archive-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;padding:20px;overflow-y:auto;flex:1;align-content:start}
 @keyframes slideIn{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
 @keyframes slideOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(-10px)}}
 .kanban-entering{animation:slideIn .2s ease forwards}
@@ -292,6 +293,8 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 .tcard-type{font-size:10px;font-weight:700;color:var(--text-muted);letter-spacing:.6px;text-transform:uppercase}
 .tcard-row1 .pbadge{padding:4px 8px;border-radius:15px;font-size:10px;font-weight:700}
 .tcard-title{font-size:16px;font-weight:700;color:var(--text);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tcard-client{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-muted)}
+.tcard-client svg{width:11px;height:11px;flex-shrink:0}
 .tcard-divider{height:1px;background:var(--border-secondary);width:100%}
 .tcard-row3{display:flex;justify-content:space-between;align-items:center}
 .tcard-designer{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--text-dim)}
@@ -960,6 +963,9 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
       <div class="ds-nav-item" data-f="mine" onclick="setFilter('mine',this)">
         <span class="ds-nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> Мои задачи
       </div>
+      <div class="ds-nav-item" data-f="archive" onclick="setFilter('archive',this)">
+        <span class="ds-nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="5" rx="1"/><path d="M4 9v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9"/><line x1="10" y1="13" x2="14" y2="13"/></svg></span> Архив
+      </div>
     </div>
   </div>
 
@@ -975,7 +981,7 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
         Выйти
       </button>
     </div>
-    <div class="kanban-wrap">
+    <div class="kanban-wrap" id="kanban-wrap">
       <div class="kanban" id="kanban-board">
     <div class="kcol">
       <div class="kcol-topbar" style="background:var(--new)"></div>
@@ -1015,6 +1021,9 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
     </div>
       </div><!-- /kanban -->
     </div><!-- /kanban-wrap -->
+    <div class="kanban-wrap hidden" id="archive-wrap">
+      <div class="archive-grid" id="archive-list"></div>
+    </div><!-- /archive-wrap -->
   </div><!-- /designer-main -->
 </div><!-- /designer -->
 
@@ -2296,6 +2305,16 @@ function setFilter(f, el){
   filterMode=f;
   closeMobSidebar();
   document.querySelectorAll('.ds-nav-item').forEach(b=>b.classList.toggle('active',b.dataset.f===f));
+  const kanbanWrap=document.getElementById('kanban-wrap');
+  const archiveWrap=document.getElementById('archive-wrap');
+  if(f==='archive'){
+    kanbanWrap.classList.add('hidden');
+    archiveWrap.classList.remove('hidden');
+    renderArchive();
+    return;
+  }
+  archiveWrap.classList.add('hidden');
+  kanbanWrap.classList.remove('hidden');
   const board=document.getElementById('kanban-board');
   board.classList.add('kanban-leaving');
   setTimeout(()=>{
@@ -2673,7 +2692,18 @@ function subscribeKanban(){
     lastTasks=[];
     snap.forEach(d=>lastTasks.push({id:d.id,...d.data()}));
     renderKanban(lastTasks);
+    renderArchive();
   });
+}
+
+function renderArchive(){
+  const el=document.getElementById('archive-list');
+  if(!el)return;
+  const archived=lastTasks.filter(t=>t.closed)
+    .sort((a,b)=>(b.closedAt?.seconds||b.createdAt?.seconds||0)-(a.closedAt?.seconds||a.createdAt?.seconds||0));
+  el.innerHTML=archived.length
+    ?archived.map(t=>taskCard(t,true)).join('')
+    :'<div class="empty"><div class="empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="5" rx="1"/><path d="M4 9v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9"/><line x1="10" y1="13" x2="14" y2="13"/></svg></div><p>Архив пуст</p></div>';
 }
 
 function renderKanban(allTasks, boardId){
@@ -2775,7 +2805,7 @@ function pluralRu(n,[one,few,many]){
   return many;
 }
 
-function taskCard(t){
+function taskCard(t,readonly){
   const dColor=getDesignerColor(t.assignedTo);
   const pBadge=t.priority==='urgent'?'<span class="pbadge pbadge-urgent">Срочный</span>':
                t.priority==='high'?'<span class="pbadge pbadge-high">Высокий</span>':
@@ -2790,13 +2820,13 @@ function taskCard(t){
   if(t.deadline){
     const d=new Date(t.deadline+'T00:00:00'),now=new Date();
     now.setHours(0,0,0,0);
-    const isOverdue=d<now&&t.status!=='done';
+    const isOverdue=!readonly&&d<now&&t.status!=='done';
     const dateStr=fmtDlShort(t.deadline);
     dlHtml=`${CALENDAR_SVG}<span>${dateStr}</span>${isOverdue?'<span class="tcard-dl-overdue">Просрочено</span>':''}`;
   }
-  return `<div class="tcard" draggable="true" data-id="${t.id}"
+  return `<div class="tcard" ${readonly?'':'draggable="true"'} data-id="${t.id}"
     style="border-left:3px solid ${dColor}"
-    ondragstart="cardDragStart(event,'${t.id}')" ondragend="cardDragEnd(event)"
+    ${readonly?'':`ondragstart="cardDragStart(event,'${t.id}')" ondragend="cardDragEnd(event)"`}
     onclick="openTaskModal('${t.id}')">
     <div class="tcard-content">
       <div class="tcard-row1">
@@ -2804,6 +2834,7 @@ function taskCard(t){
         ${pBadge}
       </div>
       <div class="tcard-title">${esc(t.title)}</div>
+      <div class="tcard-client"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Постановщик: ${esc(t.clientName||'—')}</div>
       <div class="tcard-divider"></div>
       <div class="tcard-row3">
         <div class="tcard-designer">
@@ -3230,7 +3261,7 @@ function openTaskModal(id){
       <button class="tm-btn-ghost" onclick="closeTaskModal()">Закрыть</button>
       <span style="margin-left:auto;display:flex;align-items:center;gap:8px">
         ${user.name===t.clientName?`<button class="tm-btn-ghost" style="padding:8px 14px;font-size:13px" onclick="openTaskEdit(event,'${id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>Полное редактирование</button>`:''}
-        <button class="tm-btn-archive" onclick="archiveTask()">✕ Закрыть задачу</button>
+        ${t.closed?'<span style="font-size:12px;color:var(--text-muted);font-weight:600">Задача закрыта</span>':'<button class="tm-btn-archive" onclick="archiveTask()">✕ Закрыть задачу</button>'}
       </span>`.trim()
     :`<button class="tm-btn-ghost" style="margin-left:auto" onclick="closeTaskModal()">Закрыть</button>`;
 
@@ -3270,9 +3301,9 @@ function closeTaskModal(e){
 
 async function archiveTask(){
   if(!taskModalId)return;
-  if(!confirm('Закрыть задачу? Она исчезнет с доски для всех участников.'))return;
+  if(!confirm('Закрыть задачу? Она уйдёт с доски в архив для всех участников.'))return;
   try{
-    await updateDoc(doc(db,'tasks',taskModalId),{closed:true});
+    await updateDoc(doc(db,'tasks',taskModalId),{closed:true,closedAt:serverTimestamp()});
     delete seenData[taskModalId];
     saveSeenData();
     closeTaskModal();
