@@ -1022,6 +1022,7 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
       </div><!-- /kanban -->
     </div><!-- /kanban-wrap -->
     <div class="kanban-wrap hidden" id="archive-wrap">
+      <div style="padding:16px 20px 0;font-size:12px;color:var(--text-muted)">Показаны задачи, закрытые за последние 14 дней</div>
       <div class="archive-grid" id="archive-list"></div>
     </div><!-- /archive-wrap -->
   </div><!-- /designer-main -->
@@ -2696,10 +2697,13 @@ function subscribeKanban(){
   });
 }
 
+const ARCHIVE_RETENTION_DAYS=14;
+
 function renderArchive(){
   const el=document.getElementById('archive-list');
   if(!el)return;
-  const archived=lastTasks.filter(t=>t.closed)
+  const cutoff=Date.now()-ARCHIVE_RETENTION_DAYS*24*60*60*1000;
+  const archived=lastTasks.filter(t=>t.closed&&(!t.closedAt?.seconds||t.closedAt.seconds*1000>=cutoff))
     .sort((a,b)=>(b.closedAt?.seconds||b.createdAt?.seconds||0)-(a.closedAt?.seconds||a.createdAt?.seconds||0));
   el.innerHTML=archived.length
     ?archived.map(t=>taskCard(t,true)).join('')
@@ -2817,10 +2821,15 @@ function taskCard(t,readonly){
     commentCount>0?`<span class="tcard-activity-item tcard-activity-comments"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 0 2 2z"/></svg><span>${commentCount} ${pluralRu(commentCount,['комментарий','комментария','комментариев'])}</span></span>`:'',
   ].filter(Boolean).join('');
   let dlHtml='<span style="color:#9CA3AF;font-size:12px">Без дедлайна</span>';
-  if(t.deadline){
+  if(readonly){
+    const closedDate=t.closedAt?.toDate?t.closedAt.toDate():(t.closedAt?.seconds?new Date(t.closedAt.seconds*1000):null);
+    dlHtml=closedDate
+      ?`${CALENDAR_SVG}<span>Закрыта ${closedDate.toLocaleDateString('ru',{day:'numeric',month:'short'})}</span>`
+      :'<span style="color:#9CA3AF;font-size:12px">Дата закрытия неизвестна</span>';
+  } else if(t.deadline){
     const d=new Date(t.deadline+'T00:00:00'),now=new Date();
     now.setHours(0,0,0,0);
-    const isOverdue=!readonly&&d<now&&t.status!=='done';
+    const isOverdue=d<now&&t.status!=='done';
     const dateStr=fmtDlShort(t.deadline);
     dlHtml=`${CALENDAR_SVG}<span>${dateStr}</span>${isOverdue?'<span class="tcard-dl-overdue">Просрочено</span>':''}`;
   }
