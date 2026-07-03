@@ -16,7 +16,7 @@
   --accent:#5B4CF5;--accent-lt:#EEF0FF;--accent-dark:#4338CA;
   --bg:#F4F5F7;--surface:#FFFFFF;--surface-2:#F8F9FA;--card:#FFFFFF;
   --border:#E8E9F0;--border-secondary:#F0F1F5;--border-strong:#D1D5DB;
-  --text:#0D0E14;--text-dim:#6B7280;--text-muted:#717485;--text-body:#374151;
+  --text:#0D0E14;--text-dim:#6B7280;--text-muted:#64687A;--text-body:#374151;
   --card-hover:#F0F1F5;
   --error:#DC2626;--error-bg:#FEE2E2;
   --warning:#D97706;--warning-bg:#FEF3C7;
@@ -37,6 +37,7 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 ::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.3)}
 .hidden{display:none!important}
 button{cursor:pointer;border:none;outline:none;font-family:inherit;font-size:14px;transition:all .2s;display:inline-flex;align-items:center;gap:6px;touch-action:manipulation}
+button:disabled,button[disabled]{cursor:not-allowed;opacity:.5;pointer-events:none}
 input,select,textarea{font-family:inherit;font-size:14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;width:100%;padding:10px 12px}
 input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(91,76,245,.12)}
 select option{background:var(--surface);color:var(--text)}
@@ -65,7 +66,7 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 .logo-sub{display:none}
 
 /* designer btn — below card */
-.designer-corner-btn{position:static;display:inline-flex;align-items:center;gap:7px;padding:11px 20px;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border:1.5px solid rgba(91,76,245,.2);border-radius:100px;font-size:13px;font-weight:500;color:var(--accent);cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(91,76,245,.1);margin-top:16px}
+.designer-corner-btn{position:static;display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:11px 20px;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border:1.5px solid rgba(91,76,245,.2);border-radius:100px;font-size:13px;font-weight:500;color:var(--accent);cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(91,76,245,.1);margin-top:16px}
 .designer-corner-btn:hover{background:#fff;border-color:var(--accent);box-shadow:0 4px 16px rgba(91,76,245,.2);transform:translateY(-1px)}
 .designer-corner-btn .dc-icon{font-size:15px}
 
@@ -93,7 +94,7 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 
 /* designer auth modal */
 .dauth-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;z-index:200;animation:fadeIn .15s ease}
-.dauth-modal{background:var(--card);border-radius:14px;padding:28px;width:380px;box-shadow:0 8px 32px rgba(0,0,0,.15);animation:fadeUp .18s ease}
+.dauth-modal{background:var(--card);border-radius:14px;padding:28px;width:380px;max-height:88vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,.15);animation:fadeUp .18s ease}
 .dauth-modal h3{font-size:18px;font-weight:700;margin:0 0 4px;color:var(--text)}
 .dauth-modal .dauth-sub{font-size:13px;color:var(--text-muted);margin:0 0 20px}
 .dauth-steps{display:flex;gap:5px;margin-bottom:20px}
@@ -101,7 +102,7 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 .dauth-dot.active{background:var(--accent);width:18px}
 
 /* designer list in modal */
-.designer-list{display:flex;flex-direction:column;gap:6px;margin-bottom:4px}
+.designer-list{display:flex;flex-direction:column;gap:6px;margin-bottom:4px;max-height:40vh;overflow-y:auto}
 .dp-card{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:all .18s;background:var(--card)}
 .dp-card:hover{border-color:var(--accent);background:var(--accent-lt)}
 .dp-card.sel{border-color:var(--accent);background:var(--accent-lt)}
@@ -126,7 +127,7 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 .dino-opt.active{border-color:var(--accent);background:var(--accent-lt)}
 .dino-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .color-swatches{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
-.cswatch{width:40px;height:40px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:all .15s;position:relative}
+.cswatch{width:44px;height:44px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:all .15s;position:relative}
 .cswatch.active{border-color:rgba(0,0,0,.25);box-shadow:inset 0 0 0 3px var(--surface)}
 .display-name-field{margin-bottom:20px}
 
@@ -214,6 +215,8 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 .mini-info{flex:1;min-width:0}
 .mini-title{font-weight:500;font-size:13px;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mini-meta{font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mini-meta .task-type-icon{width:16px;height:16px;border-radius:4px}
+.mini-meta .task-type-icon svg{width:10px;height:10px}
 .mini-empty{color:var(--text-muted);font-size:12px;text-align:center;padding:8px}
 
 /* ── STATUS BADGES ── */
@@ -246,10 +249,11 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 .ds-name{font-size:15px;font-weight:700;color:var(--text);letter-spacing:-.01em}
 .ds-edit-hint{font-size:11px;color:var(--text-muted);margin-top:1px}
 .ds-nav{flex:1;padding:12px 8px;display:flex;flex-direction:column;gap:4px}
-.ds-nav-item{display:flex;align-items:center;gap:10px;padding:12px 12px;border-radius:10px;font-size:13px;font-weight:600;color:var(--text-dim);cursor:pointer;transition:all .15s;user-select:none}
+.ds-nav-item{display:flex;align-items:center;gap:10px;min-height:44px;padding:12px 12px;border-radius:10px;font-size:13px;font-weight:600;color:var(--text-dim);cursor:pointer;transition:all .15s;user-select:none;box-sizing:border-box}
 .ds-nav-item:hover{background:var(--bg);color:var(--text)}
 .ds-nav-item.active{background:linear-gradient(135deg,var(--accent) 0%,#7C3AED 100%);color:#fff;box-shadow:0 4px 12px rgba(91,76,245,.3)}
-.ds-nav-icon{font-size:16px;flex-shrink:0}
+.ds-nav-icon{font-size:16px;flex-shrink:0;display:inline-flex}
+.ds-nav-icon svg{width:16px;height:16px;stroke:currentColor}
 .ds-footer{padding:12px 8px 20px;border-top:1px solid var(--border-secondary)}
 .topbar-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:10px 20px;border-bottom:1px solid var(--border-secondary);flex-shrink:0;background:var(--surface)}
 .topbar-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--rs);font-size:13px;font-weight:600;border:none;cursor:pointer;transition:all .15s;font-family:var(--font);white-space:nowrap;line-height:1}
@@ -348,8 +352,9 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 .tz-title{font-size:18px;font-weight:700;color:var(--text)}
 .tz-chevron{transition:transform .2s}
 .tz-chevron.open{transform:rotate(180deg)}
-.tz-content{display:none;flex-direction:column;gap:20px}
-.tz-content.open{display:flex}
+.tz-content{display:grid;grid-template-rows:0fr;transition:grid-template-rows .2s ease}
+.tz-content.open{grid-template-rows:1fr}
+.tz-content-inner{overflow:hidden;min-height:0;display:flex;flex-direction:column;gap:20px}
 .tz-meta-row{display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap}
 .tz-section{display:flex;flex-direction:column;gap:8px}
 .tz-label{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em}
@@ -425,6 +430,7 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 /* ── EMPTY / LOADING ── */
 .empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 16px;color:var(--text-muted);gap:6px;text-align:center}
 .empty-icon{font-size:28px;opacity:.5}
+.empty-icon svg{width:28px;height:28px;display:block}
 .empty p{font-size:12px}
 .loading{display:flex;align-items:center;justify-content:center;padding:48px;gap:12px;color:var(--text-muted);font-size:13px;flex-direction:column}
 .spinner{width:28px;height:28px;border:2.5px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
@@ -745,7 +751,7 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 <!-- Client name modal -->
 <div id="client-name-modal" class="name-modal-overlay hidden">
   <div class="name-modal" style="position:relative">
-    <button onclick="document.getElementById('client-name-modal').classList.add('hidden')" style="position:absolute;top:12px;right:12px;background:none;border:none;font-size:18px;color:var(--text-muted);cursor:pointer;line-height:1;padding:4px">✕</button>
+    <button class="modal-close-btn" aria-label="Закрыть" style="position:absolute;top:8px;right:8px" onclick="document.getElementById('client-name-modal').classList.add('hidden')">✕</button>
     <h3>Как вас зовут?</h3>
     <p>Имя будет видно дизайнерам в задаче</p>
     <div class="fg" style="margin-bottom:16px">
@@ -954,10 +960,10 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
     </div>
     <div class="ds-nav">
       <div class="ds-nav-item active" data-f="all" onclick="setFilter('all',this)">
-        <span class="ds-nav-icon">📋</span> Все задачи
+        <span class="ds-nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span> Все задачи
       </div>
       <div class="ds-nav-item" data-f="mine" onclick="setFilter('mine',this)">
-        <span class="ds-nav-icon">👤</span> Мои задачи
+        <span class="ds-nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> Мои задачи
       </div>
     </div>
   </div>
@@ -1068,7 +1074,7 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 
 <!-- ═══════════════ PRES FULLSCREEN ═══════════════ -->
 <div id="pres-fullscreen-modal" class="pres-fullscreen-overlay hidden" onclick="presFullscreenBgClick(event)">
-  <button class="pres-fullscreen-close" onclick="presCloseFullscreen()">✕</button>
+  <button class="pres-fullscreen-close" aria-label="Закрыть" onclick="presCloseFullscreen()">✕</button>
   <div class="pres-fullscreen-inner" id="pres-fullscreen-inner" onclick="event.stopPropagation()"></div>
   <div class="pres-fullscreen-hint">Кликните по изображению, чтобы добавить пометку · Esc — закрыть</div>
 </div>
@@ -2143,7 +2149,6 @@ function dAuthSelectColor(color){
   document.querySelectorAll('#dauth-color-swatches .cswatch').forEach(el=>{
     el.classList.toggle('active', el.dataset.color===color);
   });
-  document.getElementById('dauth-photo-circle').style.background = color;
   updateDAuthStep2Btn();
 }
 
@@ -2655,7 +2660,7 @@ function wlBlock(d,tasks){
           <div class="mini-info">
             <div class="mini-title">${esc(t.title)}</div>
             <div class="mini-meta">
-              <span>${t.typeEmoji||''} ${esc(t.typeName||'')}</span>
+              <span style="display:inline-flex;align-items:center;gap:4px">${getTypeIcon(t.typeName)}${esc(t.typeName||'')}</span>
               ${t.deadline?`<span>📅 ${fmtDl(t.deadline)}</span>`:''}
               ${t.priority==='urgent'?'<span class="p-urgent">СРОЧНО</span>':t.priority==='high'?'<span class="p-high">ВЫСОКИЙ</span>':''}
             </div>
@@ -2723,7 +2728,7 @@ function renderKanban(allTasks, boardId){
 }
 
 function emptyCol(){
-  return '<div class="empty"><div class="empty-icon">📭</div><p>Нет задач</p></div>';
+  return '<div class="empty"><div class="empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div><p>Нет задач</p></div>';
 }
 
 function getDesignerColor(name){
@@ -3141,7 +3146,7 @@ function buildTZBlock(t) {
       <span class="tz-title">Техническое задание</span>
       <svg class="tz-chevron open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9095A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
-    <div class="tz-content open">${content}</div>
+    <div class="tz-content open"><div class="tz-content-inner">${content}</div></div>
   </div>`;
 }
 
@@ -3707,7 +3712,7 @@ function campaignAddMatFiles(input){
   });
   list.innerHTML=campaignMatFiles.map((f,i)=>
     `<div class="pres-file-row"><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(f.name)}</span>
-     <button type="button" class="btn-ghost btn-sm" style="padding:2px 8px;font-size:11px" onclick="campaignRemoveMatFile(${i})">✕</button></div>`
+     <button type="button" class="btn-ghost btn-sm" style="padding:2px 8px;font-size:11px" aria-label="Удалить" onclick="campaignRemoveMatFile(${i})">✕</button></div>`
   ).join('');
 }
 
@@ -3716,7 +3721,7 @@ function campaignRemoveMatFile(i){
   const list=document.getElementById('f-campaign-matfiles-list');
   if(list)list.innerHTML=campaignMatFiles.map((f,idx)=>
     `<div class="pres-file-row"><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(f.name)}</span>
-     <button type="button" class="btn-ghost btn-sm" style="padding:2px 8px;font-size:11px" onclick="campaignRemoveMatFile(${idx})">✕</button></div>`
+     <button type="button" class="btn-ghost btn-sm" style="padding:2px 8px;font-size:11px" aria-label="Удалить" onclick="campaignRemoveMatFile(${idx})">✕</button></div>`
   ).join('');
 }
 
@@ -3791,7 +3796,7 @@ function renderPrintMatList(){
   if(!list)return;
   list.innerHTML=printMatFiles.map((f,i)=>
     `<div class="pres-file-row"><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(f.name)}</span>
-     <button type="button" class="btn-ghost btn-sm" style="padding:2px 8px;font-size:11px" onclick="printRemoveMatFile(${i})">✕</button></div>`
+     <button type="button" class="btn-ghost btn-sm" style="padding:2px 8px;font-size:11px" aria-label="Удалить" onclick="printRemoveMatFile(${i})">✕</button></div>`
   ).join('');
 }
 
@@ -3817,7 +3822,7 @@ function renderPresFiles(){
   list.innerHTML=presFiles.map((f,i)=>`
     <div style="display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);padding:6px 10px;font-size:12px">
       <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(f.name)}</span>
-      <button type="button" onclick="presRemoveFile(${i})" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px" title="Удалить">✕</button>
+      <button type="button" onclick="presRemoveFile(${i})" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px" title="Удалить" aria-label="Удалить">✕</button>
     </div>`).join('');
 }
 
@@ -3840,7 +3845,7 @@ function presClearRefFile(){
 function renderPresRefFile(){
   const html=presRefFile?`<div class="pres-file-row">
     <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(presRefFile.name)}</span>
-    <button type="button" onclick="presClearRefFile()" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px" title="Удалить">✕</button>
+    <button type="button" onclick="presClearRefFile()" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px" title="Удалить" aria-label="Удалить">✕</button>
   </div>`:'';
   document.querySelectorAll('.pres-ref-file-display').forEach(el=>el.innerHTML=html);
 }
@@ -3860,7 +3865,7 @@ function renderPresMatFiles(){
   const html=presMatFiles.map((f,i)=>`
     <div class="pres-file-row">
       <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(f.name)}</span>
-      <button type="button" onclick="presRemoveMatFile(${i})" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px" title="Удалить">✕</button>
+      <button type="button" onclick="presRemoveMatFile(${i})" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px" title="Удалить" aria-label="Удалить">✕</button>
     </div>`).join('');
   document.querySelectorAll('.pres-mat-files-list').forEach(el=>el.innerHTML=html);
 }
@@ -3940,7 +3945,7 @@ function renderPresBlock(slide,block){
           onblur="presUpdateBlock('${sid}','${bid}',this.textContent)">${esc(block.content)}</div>
         <div class="pres-tag-row">${tagBtns}</div>
       </div>
-      <button type="button" class="pres-block-del" onclick="presRemoveBlock('${sid}','${bid}')" title="Удалить блок">✕</button>
+      <button type="button" class="pres-block-del" onclick="presRemoveBlock('${sid}','${bid}')" title="Удалить блок" aria-label="Удалить блок">✕</button>
     </div>`;
   }
   // ── image block ──
@@ -3958,7 +3963,7 @@ function renderPresBlock(slide,block){
         <div class="pres-annot-body">
           <div class="pres-annot-text" contenteditable="true"
             onblur="presUpdateAnnot('${sid}','${bid}','${a.id}',this.textContent)">${esc(a.text)}</div>
-          <button type="button" class="pres-annot-del" onclick="event.stopPropagation();presRemoveAnnot('${sid}','${bid}','${a.id}')">✕</button>
+          <button type="button" class="pres-annot-del" aria-label="Удалить пометку" onclick="event.stopPropagation();presRemoveAnnot('${sid}','${bid}','${a.id}')">✕</button>
         </div>
         <div class="pres-annot-arrow"></div>
       </div>`).join('');
@@ -3998,7 +4003,7 @@ function renderPresBlock(slide,block){
           onchange="presUpdateBlockDesc('${sid}','${bid}',this.value)">
         ${imgInner}
       </div>
-      <button type="button" class="pres-block-del" onclick="presRemoveBlock('${sid}','${bid}')" title="Удалить блок">✕</button>
+      <button type="button" class="pres-block-del" onclick="presRemoveBlock('${sid}','${bid}')" title="Удалить блок" aria-label="Удалить блок">✕</button>
     </div>
   </div>`;
 }
@@ -4188,7 +4193,7 @@ function refreshPresFullscreen(){
       <div class="pres-annot-body">
         <div class="pres-annot-text" contenteditable="true"
           onblur="presUpdateAnnot('${slideId}','${blockId}','${a.id}',this.textContent)">${esc(a.text)}</div>
-        <button type="button" class="pres-annot-del" onclick="event.stopPropagation();presRemoveAnnot('${slideId}','${blockId}','${a.id}')">✕</button>
+        <button type="button" class="pres-annot-del" aria-label="Удалить пометку" onclick="event.stopPropagation();presRemoveAnnot('${slideId}','${blockId}','${a.id}')">✕</button>
       </div>
       <div class="pres-annot-arrow"></div>
     </div>`).join('');
@@ -4411,7 +4416,7 @@ function renderLandingBlock(section,block){
           onblur="landingUpdateBlock('${sid}','${bid}',this.textContent)">${esc(block.content)}</div>
         <div class="pres-tag-row">${tagBtns}</div>
       </div>
-      <button type="button" class="pres-block-del" onclick="landingRemoveBlock('${sid}','${bid}')" title="Удалить блок">✕</button>
+      <button type="button" class="pres-block-del" onclick="landingRemoveBlock('${sid}','${bid}')" title="Удалить блок" aria-label="Удалить блок">✕</button>
     </div>`;
   }
   let imgInner;
@@ -4427,7 +4432,7 @@ function renderLandingBlock(section,block){
         <div class="pres-annot-body">
           <div class="pres-annot-text" contenteditable="true"
             onblur="landingUpdateAnnot('${sid}','${bid}','${a.id}',this.textContent)">${esc(a.text)}</div>
-          <button type="button" class="pres-annot-del" onclick="event.stopPropagation();landingRemoveAnnot('${sid}','${bid}','${a.id}')">✕</button>
+          <button type="button" class="pres-annot-del" aria-label="Удалить пометку" onclick="event.stopPropagation();landingRemoveAnnot('${sid}','${bid}','${a.id}')">✕</button>
         </div>
         <div class="pres-annot-arrow"></div>
       </div>`).join('');
@@ -4460,7 +4465,7 @@ function renderLandingBlock(section,block){
           value="${esc(block.description)}" onchange="landingUpdateBlockDesc('${sid}','${bid}',this.value)">
         ${imgInner}
       </div>
-      <button type="button" class="pres-block-del" onclick="landingRemoveBlock('${sid}','${bid}')" title="Удалить блок">✕</button>
+      <button type="button" class="pres-block-del" onclick="landingRemoveBlock('${sid}','${bid}')" title="Удалить блок" aria-label="Удалить блок">✕</button>
     </div>
   </div>`;
 }
@@ -4505,7 +4510,7 @@ function landingClearRefFile(){landingRefFile=null;renderLandingRefFile();}
 function renderLandingRefFile(){
   const html=landingRefFile?`<div class="pres-file-row">
     <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(landingRefFile.name)}</span>
-    <button type="button" onclick="landingClearRefFile()" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
+    <button type="button" aria-label="Удалить" onclick="landingClearRefFile()" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
   </div>`:'';
   document.querySelectorAll('.land-ref-file-display').forEach(el=>el.innerHTML=html);
 }
@@ -4516,7 +4521,7 @@ function landingRemoveMatFile(i){landingMatFiles.splice(i,1);renderLandingMatFil
 function renderLandingMatFiles(){
   const html=landingMatFiles.map((f,i)=>`<div class="pres-file-row">
     <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(f.name)}</span>
-    <button type="button" onclick="landingRemoveMatFile(${i})" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
+    <button type="button" aria-label="Удалить" onclick="landingRemoveMatFile(${i})" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
   </div>`).join('');
   document.querySelectorAll('.land-mat-files-list').forEach(el=>el.innerHTML=html);
 }
@@ -4527,7 +4532,7 @@ function landingRemoveFile(i){landingFiles.splice(i,1);renderLandingFiles();}
 function renderLandingFiles(){
   const html=landingFiles.map((f,i)=>`<div style="display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);padding:6px 10px;font-size:12px">
     <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(f.name)}</span>
-    <button type="button" onclick="landingRemoveFile(${i})" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
+    <button type="button" aria-label="Удалить" onclick="landingRemoveFile(${i})" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
   </div>`).join('');
   document.querySelectorAll('.land-files-list').forEach(el=>el.innerHTML=html);
 }
@@ -4566,7 +4571,7 @@ function refreshLandingFullscreen(){
       <div class="pres-annot-body">
         <div class="pres-annot-text" contenteditable="true"
           onblur="landingUpdateAnnot('${sectionId}','${blockId}','${a.id}',this.textContent)">${esc(a.text)}</div>
-        <button type="button" class="pres-annot-del" onclick="event.stopPropagation();landingRemoveAnnot('${sectionId}','${blockId}','${a.id}')">✕</button>
+        <button type="button" class="pres-annot-del" aria-label="Удалить пометку" onclick="event.stopPropagation();landingRemoveAnnot('${sectionId}','${blockId}','${a.id}')">✕</button>
       </div>
       <div class="pres-annot-arrow"></div>
     </div>`).join('');
@@ -4736,7 +4741,7 @@ function renderOutdoorBlock(block,idx){
         <div class="pres-annot-body">
           <div class="pres-annot-text" contenteditable="true"
             onblur="outdoorUpdateAnnot('${bid}','${a.id}',this.textContent)">${esc(a.text)}</div>
-          <button type="button" class="pres-annot-del" onclick="event.stopPropagation();outdoorRemoveAnnot('${bid}','${a.id}')">✕</button>
+          <button type="button" class="pres-annot-del" aria-label="Удалить пометку" onclick="event.stopPropagation();outdoorRemoveAnnot('${bid}','${a.id}')">✕</button>
         </div>
         <div class="pres-annot-arrow"></div>
       </div>`).join('');
@@ -4773,7 +4778,7 @@ function renderOutdoorBlock(block,idx){
       ${contentHtml}
     </div>
     <button type="button" onclick="outdoorRemoveBlock('${bid}')"
-      style="align-self:flex-start;margin:12px 10px 0 0;background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px;cursor:pointer" title="Удалить">✕</button>
+      style="align-self:flex-start;margin:12px 10px 0 0;background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px;cursor:pointer" title="Удалить" aria-label="Удалить">✕</button>
   </div>`;
 }
 
@@ -4793,7 +4798,7 @@ function outdoorClearRefFile(){outdoorRefFile=null;renderOutdoorRefFile();}
 function renderOutdoorRefFile(){
   const html=outdoorRefFile?`<div class="pres-file-row">
     <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(outdoorRefFile.name)}</span>
-    <button type="button" onclick="outdoorClearRefFile()" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
+    <button type="button" aria-label="Удалить" onclick="outdoorClearRefFile()" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
   </div>`:'';
   document.querySelectorAll('.outdoor-ref-file-display').forEach(el=>el.innerHTML=html);
 }
@@ -4804,7 +4809,7 @@ function outdoorRemoveMatFile(i){outdoorMatFiles.splice(i,1);renderOutdoorMatFil
 function renderOutdoorMatFiles(){
   const html=outdoorMatFiles.map((f,i)=>`<div class="pres-file-row">
     <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(f.name)}</span>
-    <button type="button" onclick="outdoorRemoveMatFile(${i})" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
+    <button type="button" aria-label="Удалить" onclick="outdoorRemoveMatFile(${i})" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
   </div>`).join('');
   document.querySelectorAll('.outdoor-mat-files-list').forEach(el=>el.innerHTML=html);
 }
@@ -4813,7 +4818,7 @@ function outdoorClearSourceFile(){outdoorSourceFile=null;renderOutdoorSourceFile
 function renderOutdoorSourceFile(){
   const html=outdoorSourceFile?`<div class="pres-file-row">
     <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(outdoorSourceFile.name)}</span>
-    <button type="button" onclick="outdoorClearSourceFile()" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
+    <button type="button" aria-label="Удалить" onclick="outdoorClearSourceFile()" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
   </div>`:'';
   document.querySelectorAll('.outdoor-source-display').forEach(el=>el.innerHTML=html);
 }
@@ -4852,7 +4857,7 @@ function refreshOutdoorFullscreen(){
       <div class="pres-annot-body">
         <div class="pres-annot-text" contenteditable="true"
           onblur="outdoorUpdateAnnot('${blockId}','${a.id}',this.textContent)">${esc(a.text)}</div>
-        <button type="button" class="pres-annot-del" onclick="event.stopPropagation();outdoorRemoveAnnot('${blockId}','${a.id}')">✕</button>
+        <button type="button" class="pres-annot-del" aria-label="Удалить пометку" onclick="event.stopPropagation();outdoorRemoveAnnot('${blockId}','${a.id}')">✕</button>
       </div>
       <div class="pres-annot-arrow"></div>
     </div>`).join('');
@@ -4885,7 +4890,7 @@ function renderOutdoorEditMockup(){
       <div class="pres-annot-body">
         <div class="pres-annot-text" contenteditable="true"
           onblur="outdoorEditMockupUpdateAnnot('${a.id}',this.textContent)">${esc(a.text)}</div>
-        <button type="button" class="pres-annot-del" onclick="event.stopPropagation();outdoorEditMockupRemoveAnnot('${a.id}')">✕</button>
+        <button type="button" class="pres-annot-del" aria-label="Удалить пометку" onclick="event.stopPropagation();outdoorEditMockupRemoveAnnot('${a.id}')">✕</button>
       </div>
       <div class="pres-annot-arrow"></div>
     </div>`).join('');
@@ -4977,7 +4982,7 @@ function _refreshOutdoorEditMockupFullscreen(){
       <div class="pres-annot-body">
         <div class="pres-annot-text" contenteditable="true"
           onblur="outdoorEditMockupUpdateAnnot('${a.id}',this.textContent)">${esc(a.text)}</div>
-        <button type="button" class="pres-annot-del" onclick="event.stopPropagation();outdoorEditMockupRemoveAnnot('${a.id}')">✕</button>
+        <button type="button" class="pres-annot-del" aria-label="Удалить пометку" onclick="event.stopPropagation();outdoorEditMockupRemoveAnnot('${a.id}')">✕</button>
       </div>
       <div class="pres-annot-arrow"></div>
     </div>`).join('');
