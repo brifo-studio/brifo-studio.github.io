@@ -217,6 +217,7 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 .mini-meta{font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .mini-meta .task-type-icon{width:16px;height:16px;border-radius:4px}
 .mini-meta .task-type-icon svg{width:10px;height:10px}
+.mini-meta svg{width:12px;height:12px;stroke:currentColor;stroke-width:2;fill:none;flex-shrink:0}
 .mini-empty{color:var(--text-muted);font-size:12px;text-align:center;padding:8px}
 
 /* ── STATUS BADGES ── */
@@ -254,7 +255,6 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 .ds-nav-item.active{background:linear-gradient(135deg,var(--accent) 0%,#7C3AED 100%);color:#fff;box-shadow:0 4px 12px rgba(91,76,245,.3)}
 .ds-nav-icon{font-size:16px;flex-shrink:0;display:inline-flex}
 .ds-nav-icon svg{width:16px;height:16px;stroke:currentColor}
-.ds-footer{padding:12px 8px 20px;border-top:1px solid var(--border-secondary)}
 .topbar-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:10px 20px;border-bottom:1px solid var(--border-secondary);flex-shrink:0;background:var(--surface)}
 .topbar-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--rs);font-size:13px;font-weight:600;border:none;cursor:pointer;transition:all .15s;font-family:var(--font);white-space:nowrap;line-height:1}
 .topbar-btn-switch{background:rgba(255,255,255,.9);backdrop-filter:blur(8px);color:var(--accent);border:1.5px solid rgba(91,76,245,.2);box-shadow:0 1px 4px rgba(91,76,245,.1);font-weight:600}
@@ -341,12 +341,6 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 .tm-desc-textarea{display:block;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:14px;font-family:inherit;color:var(--text);outline:none;width:100%;resize:vertical;min-height:80px;line-height:1.5;background:var(--surface);box-sizing:border-box;transition:border-color .2s}
 .tm-desc-textarea:focus{border-color:var(--accent)}
 .tm-desc-text{font-size:14px;color:var(--text);line-height:1.6;white-space:pre-line;word-break:break-word}
-.tm-tz-wrap{background:var(--surface-2);border-radius:var(--r);padding:16px;border:1px solid var(--border-secondary)}
-.tm-tz-header{display:flex;justify-content:space-between;align-items:center;cursor:pointer}
-.tm-tz-chevron{transition:transform .15s;flex-shrink:0}
-.tm-tz-chevron.open{transform:rotate(180deg)}
-.tm-tz-content{display:none;margin-top:12px}
-.tm-tz-content.open{display:block}
 .tz-block{border-radius:var(--r);overflow:hidden}
 .tz-header{display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:0 0 16px 0}
 .tz-title{font-size:18px;font-weight:700;color:var(--text)}
@@ -472,6 +466,7 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 .pres-canvas-empty{flex:1;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:12px;pointer-events:none}
 .pres-block{display:flex;align-items:flex-start;gap:7px;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:8px 10px}
 .pres-block-icon{font-size:14px;flex-shrink:0;margin-top:2px;user-select:none}
+.pres-block-icon svg{width:14px;height:14px;display:block;stroke:var(--text-dim)}
 .pres-block-content{flex:1;min-width:0;font-size:13px;color:var(--text);outline:none;min-height:22px;word-break:break-word;white-space:pre-wrap;caret-color:var(--accent)}
 .pres-block-content:empty::before{content:attr(data-placeholder);color:var(--text-muted);pointer-events:none;font-style:italic;white-space:pre-wrap}
 .pres-block-content:focus{background:transparent}
@@ -855,7 +850,7 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 
   <div class="tabs">
     <button class="tab-btn active" data-tab="create" onclick="switchTab('create')">＋ Создать задачу</button>
-    <button class="tab-btn" data-tab="workload" onclick="switchTab('workload')">📋 Задачи</button>
+    <button class="tab-btn" data-tab="workload" onclick="switchTab('workload')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>Задачи</button>
   </div>
 
   <!-- CREATE -->
@@ -1026,7 +1021,7 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 <!-- ═══════════════ EDIT MODAL ═══════════════ -->
 <div id="edit-modal" class="modal-overlay hidden" onclick="closeModal(event)">
   <div class="modal-box" onclick="event.stopPropagation()">
-    <div class="modal-title">✏️ Редактировать задачу</div>
+    <div class="modal-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>Редактировать задачу</div>
     <div class="fg">
       <label class="field-label">Название</label>
       <input id="em-title" type="text">
@@ -1063,7 +1058,7 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
   <div class="edit-task-modal" onclick="event.stopPropagation()">
     <div class="edit-task-header">
       <div>
-        <div class="edit-task-title">✏️ Редактировать задачу</div>
+        <div class="edit-task-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>Редактировать задачу</div>
         <div id="et-creator-line" style="font-size:12px;color:var(--text-muted);margin-top:3px"></div>
       </div>
       <button class="btn-ghost btn-sm" onclick="closeTaskEditOverlay()">✕ Закрыть</button>
@@ -1231,7 +1226,7 @@ const TYPE_FIELDS = {
               <textarea id="f-c${i+1}" class="scard-desc" placeholder="Описание контента…"></textarea>
               <label class="file-btn">
                 <input type="file" accept=".jpg,.jpeg,.png,.pdf" onchange="handlePostImg(this,${i+1})">
-                📎 Прикрепить файл
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>Прикрепить файл
                 <span class="file-fname"></span>
               </label>
               <div class="post-img-preview"></div>
@@ -1241,9 +1236,9 @@ const TYPE_FIELDS = {
     </div>`,
   pres:`
     <div class="pres-scenario-btns">
-      <button type="button" class="pres-scen-btn" data-scenario="new" onclick="selectPresScenario('new')">🆕 Создать новую</button>
-      <button type="button" class="pres-scen-btn" data-scenario="edits" onclick="selectPresScenario('edits')">✏️ Внести правки</button>
-      <button type="button" class="pres-scen-btn" data-scenario="adapt" onclick="selectPresScenario('adapt')">🔄 Адаптировать под новый объект</button>
+      <button type="button" class="pres-scen-btn" data-scenario="new" onclick="selectPresScenario('new')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M12 5v14M5 12h14"/></svg>Создать новую</button>
+      <button type="button" class="pres-scen-btn" data-scenario="edits" onclick="selectPresScenario('edits')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>Внести правки</button>
+      <button type="button" class="pres-scen-btn" data-scenario="adapt" onclick="selectPresScenario('adapt')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>Адаптировать под новый объект</button>
     </div>
     <input type="hidden" id="f-pres-scenario">
     <div id="pres-new-section" class="hidden">
@@ -1258,7 +1253,7 @@ const TYPE_FIELDS = {
             </div>
             <label class="pres-file-btn">
               <input type="file" accept=".jpg,.jpeg,.png,.pdf,.pptx" onchange="presSetRefFile(this)">
-              📎 Загрузить файл
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>Загрузить файл
             </label>
           </div>
           <div class="pres-ref-file-display" style="margin-top:6px"></div>
@@ -1268,7 +1263,7 @@ const TYPE_FIELDS = {
           <p class="pres-ref-hint">Логотипы, фото объекта, тексты, брендбук — всё что нужно дизайнеру</p>
           <label class="pres-file-btn pres-file-btn-full">
             <input type="file" multiple accept=".jpg,.jpeg,.png,.pdf,.pptx,.ai,.eps,.zip" onchange="presAddMatFiles(this)">
-            📁 Добавить файлы
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>Добавить файлы
           </label>
           <div class="pres-mat-files-list" style="margin-top:8px;display:flex;flex-direction:column;gap:5px"></div>
         </div>
@@ -1282,7 +1277,7 @@ const TYPE_FIELDS = {
       <div id="pres-editor-edit"></div>
       <div class="fg">
         <input type="file" id="f-pres-files" multiple accept=".jpg,.jpeg,.png,.pdf,.pptx" style="display:none" onchange="presAddFiles(this)">
-        <button type="button" class="btn-ghost" onclick="document.getElementById('f-pres-files').click()">📎 Прикрепить файлы</button>
+        <button type="button" class="btn-ghost" onclick="document.getElementById('f-pres-files').click()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>Прикрепить файлы</button>
         <div id="f-pres-files-list" style="margin-top:8px;display:flex;flex-direction:column;gap:5px"></div>
       </div>
       <div class="pres-ref-section">
@@ -1295,7 +1290,7 @@ const TYPE_FIELDS = {
             </div>
             <label class="pres-file-btn">
               <input type="file" accept=".jpg,.jpeg,.png,.pdf,.pptx" onchange="presSetRefFile(this)">
-              📎 Загрузить файл
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>Загрузить файл
             </label>
           </div>
           <div class="pres-ref-file-display" style="margin-top:6px"></div>
@@ -1305,7 +1300,7 @@ const TYPE_FIELDS = {
           <p class="pres-ref-hint">Логотипы, фото объекта, тексты, брендбук — всё что нужно дизайнеру</p>
           <label class="pres-file-btn pres-file-btn-full">
             <input type="file" multiple accept=".jpg,.jpeg,.png,.pdf,.pptx,.ai,.eps,.zip" onchange="presAddMatFiles(this)">
-            📁 Добавить файлы
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>Добавить файлы
           </label>
           <div class="pres-mat-files-list" style="margin-top:8px;display:flex;flex-direction:column;gap:5px"></div>
         </div>
@@ -1324,7 +1319,7 @@ const TYPE_FIELDS = {
       <div id="pres-editor-adapt"></div>
       <div class="fg">
         <input type="file" id="f-pres-files-adapt" multiple accept=".jpg,.jpeg,.png,.pdf,.pptx" style="display:none" onchange="presAddFiles(this)">
-        <button type="button" class="btn-ghost" onclick="document.getElementById('f-pres-files-adapt').click()">📎 Прикрепить файлы</button>
+        <button type="button" class="btn-ghost" onclick="document.getElementById('f-pres-files-adapt').click()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>Прикрепить файлы</button>
         <div id="f-pres-files-list" style="margin-top:8px;display:flex;flex-direction:column;gap:5px"></div>
       </div>
       <div class="pres-ref-section">
@@ -1337,7 +1332,7 @@ const TYPE_FIELDS = {
             </div>
             <label class="pres-file-btn">
               <input type="file" accept=".jpg,.jpeg,.png,.pdf,.pptx" onchange="presSetRefFile(this)">
-              📎 Загрузить файл
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>Загрузить файл
             </label>
           </div>
           <div class="pres-ref-file-display" style="margin-top:6px"></div>
@@ -1347,7 +1342,7 @@ const TYPE_FIELDS = {
           <p class="pres-ref-hint">Логотипы, фото объекта, тексты, брендбук — всё что нужно дизайнеру</p>
           <label class="pres-file-btn pres-file-btn-full">
             <input type="file" multiple accept=".jpg,.jpeg,.png,.pdf,.pptx,.ai,.eps,.zip" onchange="presAddMatFiles(this)">
-            📁 Добавить файлы
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>Добавить файлы
           </label>
           <div class="pres-mat-files-list" style="margin-top:8px;display:flex;flex-direction:column;gap:5px"></div>
         </div>
@@ -1355,9 +1350,9 @@ const TYPE_FIELDS = {
     </div>`,
   landing:`
     <div class="pres-scenario-btns">
-      <button type="button" class="pres-scen-btn" data-scenario="new" onclick="selectLandingScenario('new')">🆕 Создать новый</button>
-      <button type="button" class="pres-scen-btn" data-scenario="edits" onclick="selectLandingScenario('edits')">✏️ Внести правки</button>
-      <button type="button" class="pres-scen-btn" data-scenario="adapt" onclick="selectLandingScenario('adapt')">🔄 Адаптировать</button>
+      <button type="button" class="pres-scen-btn" data-scenario="new" onclick="selectLandingScenario('new')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M12 5v14M5 12h14"/></svg>Создать новый</button>
+      <button type="button" class="pres-scen-btn" data-scenario="edits" onclick="selectLandingScenario('edits')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>Внести правки</button>
+      <button type="button" class="pres-scen-btn" data-scenario="adapt" onclick="selectLandingScenario('adapt')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>Адаптировать</button>
     </div>
     <input type="hidden" id="f-landing-scenario">
     <div id="landing-new-section" class="hidden">
@@ -1371,7 +1366,7 @@ const TYPE_FIELDS = {
       <div id="landing-editor-edit"></div>
       <div class="fg">
         <input type="file" id="f-landing-files-edit" multiple accept=".jpg,.jpeg,.png,.pdf" style="display:none" onchange="landingAddFiles(this)">
-        <button type="button" class="btn-ghost" onclick="document.getElementById('f-landing-files-edit').click()">📎 Прикрепить файлы</button>
+        <button type="button" class="btn-ghost" onclick="document.getElementById('f-landing-files-edit').click()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>Прикрепить файлы</button>
         <div class="land-files-list" style="margin-top:8px;display:flex;flex-direction:column;gap:5px"></div>
       </div>
       <div class="pres-ref-section">
@@ -1384,7 +1379,7 @@ const TYPE_FIELDS = {
             </div>
             <label class="pres-file-btn">
               <input type="file" accept=".jpg,.jpeg,.png,.pdf" onchange="landingSetRefFile(this)">
-              📎 Загрузить файл
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>Загрузить файл
             </label>
           </div>
           <div class="land-ref-file-display" style="margin-top:6px"></div>
@@ -1394,7 +1389,7 @@ const TYPE_FIELDS = {
           <p class="pres-ref-hint">Логотипы, фото, тексты, брендбук — всё что нужно дизайнеру</p>
           <label class="pres-file-btn pres-file-btn-full">
             <input type="file" multiple accept=".jpg,.jpeg,.png,.pdf,.ai,.eps,.zip" onchange="landingAddMatFiles(this)">
-            📁 Добавить файлы
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>Добавить файлы
           </label>
           <div class="land-mat-files-list" style="margin-top:8px;display:flex;flex-direction:column;gap:5px"></div>
         </div>
@@ -1412,7 +1407,7 @@ const TYPE_FIELDS = {
       <div id="landing-editor-adapt"></div>
       <div class="fg">
         <input type="file" id="f-landing-files-adapt" multiple accept=".jpg,.jpeg,.png,.pdf" style="display:none" onchange="landingAddFiles(this)">
-        <button type="button" class="btn-ghost" onclick="document.getElementById('f-landing-files-adapt').click()">📎 Прикрепить файлы</button>
+        <button type="button" class="btn-ghost" onclick="document.getElementById('f-landing-files-adapt').click()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>Прикрепить файлы</button>
         <div class="land-files-list" style="margin-top:8px;display:flex;flex-direction:column;gap:5px"></div>
       </div>
       <div class="pres-ref-section">
@@ -1425,7 +1420,7 @@ const TYPE_FIELDS = {
             </div>
             <label class="pres-file-btn">
               <input type="file" accept=".jpg,.jpeg,.png,.pdf" onchange="landingSetRefFile(this)">
-              📎 Загрузить файл
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>Загрузить файл
             </label>
           </div>
           <div class="land-ref-file-display" style="margin-top:6px"></div>
@@ -1435,7 +1430,7 @@ const TYPE_FIELDS = {
           <p class="pres-ref-hint">Логотипы, фото, тексты, брендбук — всё что нужно дизайнеру</p>
           <label class="pres-file-btn pres-file-btn-full">
             <input type="file" multiple accept=".jpg,.jpeg,.png,.pdf,.ai,.eps,.zip" onchange="landingAddMatFiles(this)">
-            📁 Добавить файлы
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>Добавить файлы
           </label>
           <div class="land-mat-files-list" style="margin-top:8px;display:flex;flex-direction:column;gap:5px"></div>
         </div>
@@ -1443,9 +1438,9 @@ const TYPE_FIELDS = {
     </div>`,
   outdoor:`
     <div class="pres-scenario-btns">
-      <button type="button" class="pres-scen-btn" data-scenario="new" onclick="selectOutdoorScenario('new')">🆕 Новый макет</button>
-      <button type="button" class="pres-scen-btn" data-scenario="edits" onclick="selectOutdoorScenario('edits')">✏️ Внести правки</button>
-      <button type="button" class="pres-scen-btn" data-scenario="adapt" onclick="selectOutdoorScenario('adapt')">🔄 Адаптация под форматы</button>
+      <button type="button" class="pres-scen-btn" data-scenario="new" onclick="selectOutdoorScenario('new')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M12 5v14M5 12h14"/></svg>Новый макет</button>
+      <button type="button" class="pres-scen-btn" data-scenario="edits" onclick="selectOutdoorScenario('edits')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>Внести правки</button>
+      <button type="button" class="pres-scen-btn" data-scenario="adapt" onclick="selectOutdoorScenario('adapt')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>Адаптация под форматы</button>
     </div>
     <input type="hidden" id="f-outdoor-scenario">
     <div id="outdoor-new-section" class="hidden">
@@ -1474,7 +1469,7 @@ const TYPE_FIELDS = {
         <div id="outdoor-editor-new"></div>
         <div class="outdoor-block-actions">
           <button type="button" class="btn-ghost btn-sm" onclick="outdoorAddBlock('text')">+ Текст</button>
-          <button type="button" class="btn-ghost btn-sm" onclick="outdoorAddBlock('image')">🖼 Изображение</button>
+          <button type="button" class="btn-ghost btn-sm" onclick="outdoorAddBlock('image')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Изображение</button>
         </div>
       </div>
       <div class="pres-ref-section">
@@ -1487,7 +1482,7 @@ const TYPE_FIELDS = {
             </div>
             <label class="pres-file-btn">
               <input type="file" accept=".jpg,.jpeg,.png,.pdf" onchange="outdoorSetRefFile(this)">
-              📎 Загрузить файл
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>Загрузить файл
             </label>
           </div>
           <div class="outdoor-ref-file-display" style="margin-top:6px"></div>
@@ -1497,7 +1492,7 @@ const TYPE_FIELDS = {
           <p class="pres-ref-hint">Логотипы, фото, брендбук — всё что нужно дизайнеру</p>
           <label class="pres-file-btn pres-file-btn-full">
             <input type="file" multiple accept=".jpg,.jpeg,.png,.pdf,.ai,.eps,.zip" onchange="outdoorAddMatFiles(this)">
-            📁 Добавить файлы
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>Добавить файлы
           </label>
           <div class="outdoor-mat-files-list" style="margin-top:8px;display:flex;flex-direction:column;gap:5px"></div>
         </div>
@@ -1527,7 +1522,7 @@ const TYPE_FIELDS = {
             </div>
             <label class="pres-file-btn">
               <input type="file" accept=".jpg,.jpeg,.png,.pdf" onchange="outdoorSetRefFile(this)">
-              📎 Загрузить файл
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>Загрузить файл
             </label>
           </div>
           <div class="outdoor-ref-file-display" style="margin-top:6px"></div>
@@ -1537,7 +1532,7 @@ const TYPE_FIELDS = {
           <p class="pres-ref-hint">Логотипы, фото, брендбук — всё что нужно дизайнеру</p>
           <label class="pres-file-btn pres-file-btn-full">
             <input type="file" multiple accept=".jpg,.jpeg,.png,.pdf,.ai,.eps,.zip" onchange="outdoorAddMatFiles(this)">
-            📁 Добавить файлы
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>Добавить файлы
           </label>
           <div class="outdoor-mat-files-list" style="margin-top:8px;display:flex;flex-direction:column;gap:5px"></div>
         </div>
@@ -1548,7 +1543,7 @@ const TYPE_FIELDS = {
         <label class="field-label">Оригинальный макет</label>
         <label class="pres-file-btn">
           <input type="file" accept=".jpg,.jpeg,.png,.pdf,.ai,.eps,.psd" onchange="outdoorSetSourceFile(this)">
-          📁 Загрузить макет
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>Загрузить макет
         </label>
         <div class="outdoor-source-display" style="margin-top:6px"></div>
       </div>
@@ -1563,7 +1558,7 @@ const TYPE_FIELDS = {
           <p class="pres-ref-hint">Логотипы, фото, брендбук — всё что нужно дизайнеру</p>
           <label class="pres-file-btn pres-file-btn-full">
             <input type="file" multiple accept=".jpg,.jpeg,.png,.pdf,.ai,.eps,.zip" onchange="outdoorAddMatFiles(this)">
-            📁 Добавить файлы
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>Добавить файлы
           </label>
           <div class="outdoor-mat-files-list" style="margin-top:8px;display:flex;flex-direction:column;gap:5px"></div>
         </div>
@@ -1606,7 +1601,7 @@ const TYPE_FIELDS = {
         </div>
         <label class="pres-file-btn" style="flex-shrink:0">
           <input type="file" id="f-print-reffile" accept=".jpg,.jpeg,.png,.pdf" onchange="printSetRefFile(this)">
-          📎 Загрузить файл
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>Загрузить файл
         </label>
       </div>
       <div id="f-print-reffile-display" style="margin-top:6px;font-size:12px;color:var(--accent)"></div>
@@ -1616,7 +1611,7 @@ const TYPE_FIELDS = {
       <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px">Логотип, фото, брендбук</p>
       <label class="pres-file-btn pres-file-btn-full">
         <input type="file" id="f-print-matfiles" multiple accept=".jpg,.jpeg,.png,.pdf,.ai,.eps,.zip" onchange="printAddMatFiles(this)">
-        📁 Добавить файлы
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>Добавить файлы
       </label>
       <div id="f-print-matfiles-list" style="margin-top:8px;display:flex;flex-direction:column;gap:5px"></div>
     </div>`,
@@ -1662,7 +1657,7 @@ const TYPE_FIELDS = {
         </div>
         <label class="pres-file-btn" style="flex-shrink:0">
           <input type="file" id="f-campaign-reffile" accept=".jpg,.jpeg,.png,.pdf" onchange="campaignSetRefFile(this)">
-          📎 Загрузить файл
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>Загрузить файл
         </label>
       </div>
       <div id="f-campaign-reffile-display" style="margin-top:6px;font-size:12px;color:var(--accent)"></div>
@@ -1672,7 +1667,7 @@ const TYPE_FIELDS = {
       <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px">Логотип объекта, фото, старые макеты</p>
       <label class="pres-file-btn pres-file-btn-full">
         <input type="file" id="f-campaign-matfiles" multiple accept=".jpg,.jpeg,.png,.pdf,.ai,.eps,.zip" onchange="campaignAddMatFiles(this)">
-        📁 Добавить файлы
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>Добавить файлы
       </label>
       <div id="f-campaign-matfiles-list" style="margin-top:8px;display:flex;flex-direction:column;gap:5px"></div>
     </div>`,
@@ -2402,7 +2397,7 @@ function selectType(id){
   selType=id;
   document.querySelectorAll('.type-card').forEach(c=>c.classList.toggle('sel',c.dataset.type===id));
   const t=TYPES.find(x=>x.id===id);
-  document.getElementById('form-heading').innerHTML=`${t.e} ${t.n}`;
+  document.getElementById('form-heading').innerHTML=`${getTypeIcon(t.n)} ${t.n}`;
   document.getElementById('dyn-fields').innerHTML=TYPE_FIELDS[id]||'';
   document.getElementById('f-title').parentElement.style.display = (id==='post'||id==='campaign') ? 'none' : '';
   document.getElementById('f-refs').parentElement.style.display = (id==='pres'||id==='landing'||id==='outdoor'||id==='campaign'||id==='print') ? 'none' : '';
@@ -2641,7 +2636,7 @@ function renderWorkload(tasks,container){
   allDesigners.forEach(d=>{html+=wlBlock(d,byD[d.name]||[]);});
   const none=byD['__none__']||[];
   if(none.length)html+=wlBlock({name:'Без исполнителя',color:'#9aa0a6'},none);
-  container.innerHTML=html||'<div class="empty"><div class="empty-icon">🎉</div><p>Нет активных задач</p></div>';
+  container.innerHTML=html||'<div class="empty"><div class="empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><p>Нет активных задач</p></div>';
 }
 
 function wlBlock(d,tasks){
@@ -2655,13 +2650,13 @@ function wlBlock(d,tasks){
     </div>
     <div class="wl-body">
       ${tasks.length===0
-        ?'<div class="mini-empty">✅ Свободен</div>'
+        ?'<div class="mini-empty" style="display:flex;align-items:center;justify-content:center;gap:5px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Свободен</div>'
         :tasks.map(t=>`<div class="mini-card">
           <div class="mini-info">
             <div class="mini-title">${esc(t.title)}</div>
             <div class="mini-meta">
               <span style="display:inline-flex;align-items:center;gap:4px">${getTypeIcon(t.typeName)}${esc(t.typeName||'')}</span>
-              ${t.deadline?`<span>📅 ${fmtDl(t.deadline)}</span>`:''}
+              ${t.deadline?`<span style="display:inline-flex;align-items:center;gap:4px">${CALENDAR_SVG}${fmtDl(t.deadline)}</span>`:''}
               ${t.priority==='urgent'?'<span class="p-urgent">СРОЧНО</span>':t.priority==='high'?'<span class="p-high">ВЫСОКИЙ</span>':''}
             </div>
           </div>
@@ -2957,7 +2952,7 @@ function buildTZBlock(t) {
     const links = files.map(f => {
       const url = f.url || f;
       const name = f.name || (typeof f === 'string' ? f : 'Файл');
-      return `<a href="${esc(url)}" target="_blank" class="tz-file">📎 ${esc(name)}</a>`;
+      return `<a href="${esc(url)}" target="_blank" class="tz-file"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>${esc(name)}</a>`;
     }).join('');
     return `<div class="tz-section"><span class="tz-label">${label}</span><div class="tz-files">${links}</div></div>`;
   };
@@ -2978,7 +2973,7 @@ function buildTZBlock(t) {
         if (b.type === 'text') return `<span class="tz-card-sublabel">${esc(b.tag || '')}</span><span class="tz-card-text">${esc(b.content || '')}</span>`;
         return '';
       }).join('');
-      return `<div class="tz-card">${s.status === 'discuss' ? '<span class="tz-card-discuss">💬</span>' : ''}<span class="tz-card-title">Слайд ${i+1}</span>${blocks}</div>`;
+      return `<div class="tz-card">${s.status === 'discuss' ? '<span class="tz-card-discuss"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>' : ''}<span class="tz-card-title">Слайд ${i+1}</span>${blocks}</div>`;
     }).join('');
     return `<div class="tz-section"><span class="tz-label">Слайды</span><div class="tz-grid">${cards}</div></div>`;
   };
@@ -3018,14 +3013,14 @@ function buildTZBlock(t) {
       sections.push(slidesGrid(parsedSlides));
       sections.push(linkSection('Ссылка на файл', ex['pres-flink']));
       sections.push(linkSection('Референс стиля', ex['pres-reflink']));
-      if (ex['pres-reffile']) sections.push(`<div class="tz-section"><span class="tz-label">Файл референса</span><p class="tz-text">📎 ${esc(ex['pres-reffile'])}</p></div>`);
+      if (ex['pres-reffile']) sections.push(`<div class="tz-section"><span class="tz-label">Файл референса</span><p class="tz-text"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>${esc(ex['pres-reffile'])}</p></div>`);
     } else {
       sections.push(linkSection('Ссылка на файл', ex['pres-flink']));
       sections.push(linkSection('Ссылка для адаптации', ex['pres-flink-adapt']));
       sections.push(textSection('Заметки адаптации', ex['adapt-notes']));
       sections.push(slidesGrid(parsedSlides));
       sections.push(linkSection('Референс стиля', ex['pres-reflink']));
-      if (ex['pres-reffile']) sections.push(`<div class="tz-section"><span class="tz-label">Файл референса</span><p class="tz-text">📎 ${esc(ex['pres-reffile'])}</p></div>`);
+      if (ex['pres-reffile']) sections.push(`<div class="tz-section"><span class="tz-label">Файл референса</span><p class="tz-text"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>${esc(ex['pres-reffile'])}</p></div>`);
     }
     if (ex['pres-matfiles']?.length) sections.push(fileSection('Доп. материалы', ex['pres-matfiles'].map(f => ({url: f, name: f}))));
   }
@@ -3058,19 +3053,19 @@ function buildTZBlock(t) {
     sections.push(linkSection('Оригинальный файл', ex['outdoor-flink-adapt']));
     sections.push(textSection('Анимация', ex['outdoor-anim-desc']));
     sections.push(textSection('Правки', ex['outdoor-edit-notes']));
-    if (ex['outdoor-source']) sections.push(`<div class="tz-section"><span class="tz-label">Исходный макет</span><p class="tz-text">📎 ${esc(ex['outdoor-source'])}</p></div>`);
+    if (ex['outdoor-source']) sections.push(`<div class="tz-section"><span class="tz-label">Исходный макет</span><p class="tz-text"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>${esc(ex['outdoor-source'])}</p></div>`);
     if (ex['outdoor-adapt-types']) sections.push(tagSection('Форматы адаптации', ex['outdoor-adapt-types']));
     if (outdoorAdaptSizes) {
       const sizesHtml = Object.entries(outdoorAdaptSizes).map(([_t, _d]) => `<span style="display:block;font-size:12px">${esc(_t)}: ${_d.w&&_d.h ? `${esc(_d.w)} × ${esc(_d.h)} мм` : _d.w ? `ш ${esc(_d.w)} мм` : `в ${esc(_d.h)} мм`}</span>`).join('');
       sections.push(`<div class="tz-section"><span class="tz-label">Размеры адаптации</span><div class="tz-text">${sizesHtml}</div></div>`);
     }
-    if (ex['outdoor-reffile']) sections.push(`<div class="tz-section"><span class="tz-label">Файл референса</span><p class="tz-text">📎 ${esc(ex['outdoor-reffile'])}</p></div>`);
+    if (ex['outdoor-reffile']) sections.push(`<div class="tz-section"><span class="tz-label">Файл референса</span><p class="tz-text"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>${esc(ex['outdoor-reffile'])}</p></div>`);
     if (outdoorBlocks?.length) {
       const cards = outdoorBlocks.map(b => {
         if (b.type === 'image') {
           return b.url
             ? `<div class="tz-card"><span class="tz-card-title">${esc(b.description||'Изображение')}</span><div class="tz-card-image"><img src="${esc(b.url)}" onclick="window.open('${esc(b.url)}','_blank')"></div></div>`
-            : `<div class="tz-card"><span class="tz-card-title">🖼 ${esc(b.description||'Изображение')}</span></div>`;
+            : `<div class="tz-card"><span class="tz-card-title" style="display:inline-flex;align-items:center;gap:4px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>${esc(b.description||'Изображение')}</span></div>`;
         }
         const tl = (typeof OUTDOOR_BLOCK_TAGS !== 'undefined' ? OUTDOOR_BLOCK_TAGS : []).find(_t => _t.id === b.tag)?.label || b.tag || '';
         return `<div class="tz-card"><span class="tz-card-title">${esc(tl)}</span>${b.content ? `<span class="tz-card-sublabel">Текст</span><span class="tz-card-text">${esc(b.content)}</span>` : ''}</div>`;
@@ -3087,7 +3082,7 @@ function buildTZBlock(t) {
     sections.push(linkSection('Ссылка на файл', ex['landing-flink']));
     sections.push(linkSection('Ссылка для адаптации', ex['landing-flink-adapt']));
     sections.push(linkSection('Ссылка на оригинал', ex['landing-reflink']));
-    if (ex['landing-reffile']) sections.push(`<div class="tz-section"><span class="tz-label">Файл референса</span><p class="tz-text">📎 ${esc(ex['landing-reffile'])}</p></div>`);
+    if (ex['landing-reffile']) sections.push(`<div class="tz-section"><span class="tz-label">Файл референса</span><p class="tz-text"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>${esc(ex['landing-reffile'])}</p></div>`);
     sections.push(textSection('Заметки адаптации', ex['landing-adapt-notes']));
     if (parsedLandingSections?.length) {
       const items = parsedLandingSections.map((s, i) => `<div class="tz-section-item">
@@ -3217,7 +3212,7 @@ function openTaskModal(id){
       <input id="tm-result-link" type="url" class="tm-text-input" placeholder="https://figma.com/..." value="${esc(result.link||'')}">
     </div>
     <div>
-      ${result.fileUrl ? `<div style="margin-bottom:8px"><a href="${esc(result.fileUrl)}" target="_blank" style="color:var(--accent);font-size:13px">📎 ${esc(result.fileName||'Файл')}</a></div>` : ''}
+      ${result.fileUrl ? `<div style="margin-bottom:8px"><a href="${esc(result.fileUrl)}" target="_blank" style="color:var(--accent);font-size:13px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>${esc(result.fileName||'Файл')}</a></div>` : ''}
       <input type="file" id="tm-result-file" style="display:none" onchange="tmFileSelected(this)">
       <button type="button" class="tm-upload-btn" onclick="document.getElementById('tm-result-file').click()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
@@ -3226,7 +3221,7 @@ function openTaskModal(id){
     </div>
   ` : `
     ${result.link ? `<div style="margin-bottom:8px"><a href="${result.link}" target="_blank" style="color:var(--accent);font-size:13px">Открыть результат →</a></div>` : ''}
-    ${result.fileUrl ? `<div><a href="${result.fileUrl}" target="_blank" style="color:var(--accent);font-size:13px">📎 ${esc(result.fileName||'Скачать')}</a></div>` : ''}
+    ${result.fileUrl ? `<div><a href="${result.fileUrl}" target="_blank" style="color:var(--accent);font-size:13px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>${esc(result.fileName||'Скачать')}</a></div>` : ''}
     ${!result.link && !result.fileUrl ? '<div style="font-size:13px;color:#9095A6">Результат ещё не загружен</div>' : ''}
   `}`;
 
@@ -3234,7 +3229,7 @@ function openTaskModal(id){
     ?`<button class="tm-btn-primary" onclick="saveTaskModal()">Сохранить</button>
       <button class="tm-btn-ghost" onclick="closeTaskModal()">Закрыть</button>
       <span style="margin-left:auto;display:flex;align-items:center;gap:8px">
-        ${user.name===t.clientName?`<button class="tm-btn-ghost" style="padding:8px 14px;font-size:13px" onclick="openTaskEdit(event,'${id}')">✏️ Полное редактирование</button>`:''}
+        ${user.name===t.clientName?`<button class="tm-btn-ghost" style="padding:8px 14px;font-size:13px" onclick="openTaskEdit(event,'${id}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>Полное редактирование</button>`:''}
         <button class="tm-btn-archive" onclick="archiveTask()">✕ Закрыть задачу</button>
       </span>`.trim()
     :`<button class="tm-btn-ghost" style="margin-left:auto" onclick="closeTaskModal()">Закрыть</button>`;
@@ -3520,7 +3515,7 @@ function openTaskEdit(event, id){
   // Populate type and fields
   selType=t.type;
   document.querySelectorAll('.type-card').forEach(c=>c.classList.toggle('sel',c.dataset.type===t.type));
-  document.getElementById('form-heading').innerHTML=(t.typeEmoji||'')+'&nbsp;'+esc(t.typeName||t.type);
+  document.getElementById('form-heading').innerHTML=getTypeIcon(t.typeName)+'&nbsp;'+esc(t.typeName||t.type);
   document.getElementById('dyn-fields').innerHTML=TYPE_FIELDS[t.type]||'';
   document.getElementById('f-title').parentElement.style.display=(t.type==='post'||t.type==='campaign')?'none':'';
   document.getElementById('f-refs').parentElement.style.display=(t.type==='pres'||t.type==='landing'||t.type==='outdoor'||t.type==='campaign'||t.type==='print')?'none':'';
@@ -3821,7 +3816,7 @@ function renderPresFiles(){
   if(!list)return;
   list.innerHTML=presFiles.map((f,i)=>`
     <div style="display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);padding:6px 10px;font-size:12px">
-      <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(f.name)}</span>
+      <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>${esc(f.name)}</span>
       <button type="button" onclick="presRemoveFile(${i})" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px" title="Удалить" aria-label="Удалить">✕</button>
     </div>`).join('');
 }
@@ -3844,7 +3839,7 @@ function presClearRefFile(){
 
 function renderPresRefFile(){
   const html=presRefFile?`<div class="pres-file-row">
-    <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(presRefFile.name)}</span>
+    <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>${esc(presRefFile.name)}</span>
     <button type="button" onclick="presClearRefFile()" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px" title="Удалить" aria-label="Удалить">✕</button>
   </div>`:'';
   document.querySelectorAll('.pres-ref-file-display').forEach(el=>el.innerHTML=html);
@@ -3864,7 +3859,7 @@ function presRemoveMatFile(i){
 function renderPresMatFiles(){
   const html=presMatFiles.map((f,i)=>`
     <div class="pres-file-row">
-      <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(f.name)}</span>
+      <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>${esc(f.name)}</span>
       <button type="button" onclick="presRemoveMatFile(${i})" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px" title="Удалить" aria-label="Удалить">✕</button>
     </div>`).join('');
   document.querySelectorAll('.pres-mat-files-list').forEach(el=>el.innerHTML=html);
@@ -3938,7 +3933,7 @@ function renderPresBlock(slide,block){
       `<button type="button" class="pres-tag-btn${block.tag===t.id?' active':''}" onclick="presSetBlockTag('${sid}','${bid}','${t.id}')">${t.label}</button>`
     ).join('');
     return `<div class="pres-block">
-      <span class="pres-block-icon">📝</span>
+      <span class="pres-block-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="10" x2="3" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="17" y1="18" x2="3" y2="18"/></svg></span>
       <div style="flex:1;min-width:0">
         <div class="pres-block-content" contenteditable="true"
           data-placeholder="${esc(ph)}"
@@ -3971,7 +3966,7 @@ function renderPresBlock(slide,block){
       ?`<div class="pres-img-clickzone" onclick="presImageClick(event,'${sid}','${bid}')"></div>`:'';
     const annotBtn=block.annotMode
       ?`<button type="button" class="pres-annot-mode-btn active" onclick="presToggleAnnotMode('${sid}','${bid}')">✓ Готово</button>`
-      :`<button type="button" class="pres-annot-mode-btn" onclick="presToggleAnnotMode('${sid}','${bid}')">📍 Добавить пометку</button>`;
+      :`<button type="button" class="pres-annot-mode-btn" onclick="presToggleAnnotMode('${sid}','${bid}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Добавить пометку</button>`;
     imgInner=`
       <div class="pres-img-preview-wrap"
         ondragover="presAnnotDragOver(event)"
@@ -3990,12 +3985,12 @@ function renderPresBlock(slide,block){
   } else {
     imgInner=`<label class="pres-img-upload" onclick="activateImgBlock('pres','${sid}','${bid}')">
       <input type="file" accept=".jpg,.jpeg,.png" onchange="presImageFileChange('${sid}','${bid}',this)">
-      📁 Загрузить файл <span style="color:var(--text-muted);font-size:10px;opacity:.7">· Ctrl+V</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>Загрузить файл <span style="color:var(--text-muted);font-size:10px;opacity:.7">· Ctrl+V</span>
     </label>`;
   }
   return `<div class="pres-block pres-block-img">
     <div style="display:flex;gap:7px;align-items:flex-start;width:100%">
-      <span class="pres-block-icon">🖼️</span>
+      <span class="pres-block-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></span>
       <div style="flex:1;min-width:0">
         <input type="text" class="pres-img-desc"
           placeholder="Описание изображения, например: Рендер фасада…"
@@ -4019,7 +4014,9 @@ function renderPresEditor(){
   if(!editor)return;
   editor.innerHTML=presSlides.map((slide,idx)=>{
     const statusCls=slide.status==='discuss'?'pres-status-discuss':'pres-status-ready';
-    const statusLabel=slide.status==='discuss'?'💬 Нужно обсудить':'✅ Готово к работе';
+    const statusLabel=slide.status==='discuss'
+      ?'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Нужно обсудить'
+      :'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Готово к работе';
     return `<div class="pres-slide-wrap">
       <div class="pres-slide-header">
         <span>Слайд ${idx+1}</span>
@@ -4034,7 +4031,7 @@ function renderPresEditor(){
       </div>
       <div class="pres-slide-actions">
         <button type="button" class="btn-ghost btn-sm" onclick="presAddBlock('${slide.id}','text')">+ Текст</button>
-        <button type="button" class="btn-ghost btn-sm" onclick="presAddBlock('${slide.id}','image')">🖼 Изображение</button>
+        <button type="button" class="btn-ghost btn-sm" onclick="presAddBlock('${slide.id}','image')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Изображение</button>
       </div>
       <button type="button" class="pres-add-after" onclick="presAddSlide('${slide.id}')">+ Добавить слайд</button>
     </div>`;
@@ -4409,7 +4406,7 @@ function renderLandingBlock(section,block){
       `<button type="button" class="pres-tag-btn${block.tag===t.id?' active':''}" onclick="landingSetBlockTag('${sid}','${bid}','${t.id}')">${t.label}</button>`
     ).join('');
     return `<div class="pres-block">
-      <span class="pres-block-icon">📝</span>
+      <span class="pres-block-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="10" x2="3" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="17" y1="18" x2="3" y2="18"/></svg></span>
       <div style="flex:1;min-width:0">
         <div class="pres-block-content" contenteditable="true"
           data-placeholder="${esc(ph)}"
@@ -4439,7 +4436,7 @@ function renderLandingBlock(section,block){
     const clickzone=block.annotMode?`<div class="pres-img-clickzone" onclick="landingImageClick(event,'${sid}','${bid}')"></div>`:'';
     const annotBtn=block.annotMode
       ?`<button type="button" class="pres-annot-mode-btn active" onclick="landingToggleAnnotMode('${sid}','${bid}')">✓ Готово</button>`
-      :`<button type="button" class="pres-annot-mode-btn" onclick="landingToggleAnnotMode('${sid}','${bid}')">📍 Добавить пометку</button>`;
+      :`<button type="button" class="pres-annot-mode-btn" onclick="landingToggleAnnotMode('${sid}','${bid}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Добавить пометку</button>`;
     imgInner=`
       <div class="pres-img-preview-wrap" ondragover="landingAnnotDragOver(event)" ondrop="landingAnnotDrop(event,'${sid}','${bid}')" onclick="activateImgBlock('landing','${sid}','${bid}')">
         <img src="${esc(block.url)}" class="pres-img-preview" alt="">
@@ -4454,12 +4451,12 @@ function renderLandingBlock(section,block){
   } else {
     imgInner=`<label class="pres-img-upload" onclick="activateImgBlock('landing','${sid}','${bid}')">
       <input type="file" accept=".jpg,.jpeg,.png" onchange="landingImageFileChange('${sid}','${bid}',this)">
-      📁 Загрузить файл <span style="color:var(--text-muted);font-size:10px;opacity:.7">· Ctrl+V</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>Загрузить файл <span style="color:var(--text-muted);font-size:10px;opacity:.7">· Ctrl+V</span>
     </label>`;
   }
   return `<div class="pres-block pres-block-img">
     <div style="display:flex;gap:7px;align-items:flex-start;width:100%">
-      <span class="pres-block-icon">🖼️</span>
+      <span class="pres-block-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></span>
       <div style="flex:1;min-width:0">
         <input type="text" class="pres-img-desc" placeholder="Описание изображения…"
           value="${esc(block.description)}" onchange="landingUpdateBlockDesc('${sid}','${bid}',this.value)">
@@ -4491,7 +4488,7 @@ function renderLandingEditor(){
           </div>
           <div class="land-block-actions">
             <button type="button" class="btn-ghost btn-sm" onclick="landingAddBlock('${section.id}','text')">+ Текст</button>
-            <button type="button" class="btn-ghost btn-sm" onclick="landingAddBlock('${section.id}','image')">🖼 Изображение</button>
+            <button type="button" class="btn-ghost btn-sm" onclick="landingAddBlock('${section.id}','image')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Изображение</button>
           </div>
         </div>
       </div>
@@ -4509,7 +4506,7 @@ function landingSetRefFile(input){
 function landingClearRefFile(){landingRefFile=null;renderLandingRefFile();}
 function renderLandingRefFile(){
   const html=landingRefFile?`<div class="pres-file-row">
-    <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(landingRefFile.name)}</span>
+    <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>${esc(landingRefFile.name)}</span>
     <button type="button" aria-label="Удалить" onclick="landingClearRefFile()" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
   </div>`:'';
   document.querySelectorAll('.land-ref-file-display').forEach(el=>el.innerHTML=html);
@@ -4520,7 +4517,7 @@ function landingAddMatFiles(input){
 function landingRemoveMatFile(i){landingMatFiles.splice(i,1);renderLandingMatFiles();}
 function renderLandingMatFiles(){
   const html=landingMatFiles.map((f,i)=>`<div class="pres-file-row">
-    <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(f.name)}</span>
+    <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>${esc(f.name)}</span>
     <button type="button" aria-label="Удалить" onclick="landingRemoveMatFile(${i})" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
   </div>`).join('');
   document.querySelectorAll('.land-mat-files-list').forEach(el=>el.innerHTML=html);
@@ -4531,7 +4528,7 @@ function landingAddFiles(input){
 function landingRemoveFile(i){landingFiles.splice(i,1);renderLandingFiles();}
 function renderLandingFiles(){
   const html=landingFiles.map((f,i)=>`<div style="display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);padding:6px 10px;font-size:12px">
-    <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(f.name)}</span>
+    <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>${esc(f.name)}</span>
     <button type="button" aria-label="Удалить" onclick="landingRemoveFile(${i})" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
   </div>`).join('');
   document.querySelectorAll('.land-files-list').forEach(el=>el.innerHTML=html);
@@ -4748,7 +4745,7 @@ function renderOutdoorBlock(block,idx){
     const clickzone=block.annotMode?`<div class="pres-img-clickzone" onclick="outdoorImageClick(event,'${bid}')"></div>`:'';
     const annotBtn=block.annotMode
       ?`<button type="button" class="pres-annot-mode-btn active" onclick="outdoorToggleAnnotMode('${bid}')">✓ Готово</button>`
-      :`<button type="button" class="pres-annot-mode-btn" onclick="outdoorToggleAnnotMode('${bid}')">📍 Добавить пометку</button>`;
+      :`<button type="button" class="pres-annot-mode-btn" onclick="outdoorToggleAnnotMode('${bid}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Добавить пометку</button>`;
     contentHtml=`
       <input type="text" class="pres-img-desc" placeholder="Описание…"
         value="${esc(block.description)}" onchange="outdoorUpdateBlockDesc('${bid}',this.value)">
@@ -4768,7 +4765,7 @@ function renderOutdoorBlock(block,idx){
         value="${esc(block.description)}" onchange="outdoorUpdateBlockDesc('${bid}',this.value)">
       <label class="pres-img-upload" onclick="activateImgBlock('outdoor',null,'${bid}')">
         <input type="file" accept=".jpg,.jpeg,.png" onchange="outdoorImageFileChange('${bid}',this)">
-        📁 Загрузить файл <span style="color:var(--text-muted);font-size:10px;opacity:.7">· Ctrl+V</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>Загрузить файл <span style="color:var(--text-muted);font-size:10px;opacity:.7">· Ctrl+V</span>
       </label>`;
   }
   return `<div class="outdoor-block-card">
@@ -4797,7 +4794,7 @@ function outdoorSetRefFile(input){outdoorRefFile=input.files[0]||null;input.valu
 function outdoorClearRefFile(){outdoorRefFile=null;renderOutdoorRefFile();}
 function renderOutdoorRefFile(){
   const html=outdoorRefFile?`<div class="pres-file-row">
-    <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(outdoorRefFile.name)}</span>
+    <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>${esc(outdoorRefFile.name)}</span>
     <button type="button" aria-label="Удалить" onclick="outdoorClearRefFile()" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
   </div>`:'';
   document.querySelectorAll('.outdoor-ref-file-display').forEach(el=>el.innerHTML=html);
@@ -4808,7 +4805,7 @@ function outdoorAddMatFiles(input){
 function outdoorRemoveMatFile(i){outdoorMatFiles.splice(i,1);renderOutdoorMatFiles();}
 function renderOutdoorMatFiles(){
   const html=outdoorMatFiles.map((f,i)=>`<div class="pres-file-row">
-    <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(f.name)}</span>
+    <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>${esc(f.name)}</span>
     <button type="button" aria-label="Удалить" onclick="outdoorRemoveMatFile(${i})" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
   </div>`).join('');
   document.querySelectorAll('.outdoor-mat-files-list').forEach(el=>el.innerHTML=html);
@@ -4817,7 +4814,7 @@ function outdoorSetSourceFile(input){outdoorSourceFile=input.files[0]||null;inpu
 function outdoorClearSourceFile(){outdoorSourceFile=null;renderOutdoorSourceFile();}
 function renderOutdoorSourceFile(){
   const html=outdoorSourceFile?`<div class="pres-file-row">
-    <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">📄 ${esc(outdoorSourceFile.name)}</span>
+    <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>${esc(outdoorSourceFile.name)}</span>
     <button type="button" aria-label="Удалить" onclick="outdoorClearSourceFile()" style="background:none;color:var(--text-muted);font-size:14px;padding:0 4px;line-height:1;border-radius:4px">✕</button>
   </div>`:'';
   document.querySelectorAll('.outdoor-source-display').forEach(el=>el.innerHTML=html);
@@ -4880,7 +4877,7 @@ function renderOutdoorEditMockup(){
   if(!outdoorEditMockup.url){
     c.innerHTML=`<label class="pres-file-btn" style="display:inline-flex">
       <input type="file" accept=".jpg,.jpeg,.png,.pdf" onchange="outdoorEditMockupFileChange(this)">
-      📁 Загрузить макет
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;flex-shrink:0"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>Загрузить макет
     </label>`;
     return;
   }
@@ -4898,7 +4895,7 @@ function renderOutdoorEditMockup(){
     ?`<div class="pres-img-clickzone" onclick="outdoorEditMockupClick(event)"></div>`:'';
   const annotBtn=outdoorEditMockup.annotMode
     ?`<button type="button" class="pres-annot-mode-btn active" onclick="outdoorEditMockupToggleAnnotMode()">✓ Готово</button>`
-    :`<button type="button" class="pres-annot-mode-btn" onclick="outdoorEditMockupToggleAnnotMode()">📍 Добавить пометку</button>`;
+    :`<button type="button" class="pres-annot-mode-btn" onclick="outdoorEditMockupToggleAnnotMode()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Добавить пометку</button>`;
   c.innerHTML=`
     <div class="pres-img-preview-wrap"
       ondragover="outdoorAnnotDragOver(event)"
