@@ -59,30 +59,76 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 .btn-sm{padding:6px 14px;font-size:12px}
 
 /* ── LOGIN ── */
-#login{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px 64px;background:linear-gradient(160deg,#f8f7ff 0%,#edeaff 45%,#e2d8ff 100%);position:relative;overflow:hidden}
-#login::before{content:'';position:absolute;width:900px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(91,76,245,.09) 0%,transparent 70%);bottom:-180px;left:50%;transform:translateX(-50%);pointer-events:none}
+#login{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 24px 64px;background:linear-gradient(160deg,#f8f7ff 0%,#f3eeff 45%,#ede4ff 100%);position:relative;overflow:hidden}
+#login::before{content:'';position:absolute;width:900px;height:600px;border-radius:50%;background:radial-gradient(ellipse,rgba(91,76,245,.14) 0%,rgba(236,72,153,.06) 45%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
 .logo{display:none}
 .logo-sub{display:none}
 
-/* designer btn — below card */
-.designer-corner-btn{position:static;display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:11px 20px;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border:1.5px solid rgba(91,76,245,.2);border-radius:100px;font-size:13px;font-weight:500;color:var(--accent);cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(91,76,245,.1);margin-top:16px}
-.designer-corner-btn:hover{background:#fff;border-color:var(--accent);box-shadow:0 4px 16px rgba(91,76,245,.2);transform:translateY(-1px)}
-.designer-corner-btn .dc-icon{font-size:15px}
+/* top-left brand mark */
+.login-logo{position:absolute;top:28px;left:32px;display:flex;align-items:center;gap:8px;font-size:20px;font-weight:800;color:var(--text);letter-spacing:-.02em;z-index:3}
+.login-logo svg{width:22px;height:22px;color:var(--accent);flex-shrink:0}
 
-/* client card */
-.client-entry-card{background:#fff;border:none;border-radius:20px;padding:0;text-align:center;cursor:pointer;transition:transform .25s cubic-bezier(.4,0,.2,1),box-shadow .25s cubic-bezier(.4,0,.2,1);box-shadow:0 8px 40px rgba(91,76,245,.15),0 2px 12px rgba(0,0,0,.06);max-width:360px;width:100%;animation:fadeUp .25s ease;overflow:hidden}
-.client-entry-card:hover{box-shadow:0 20px 64px rgba(91,76,245,.22),0 4px 16px rgba(0,0,0,.08);transform:translateY(-4px)}
-.ce-card-header{background:linear-gradient(145deg,#4a38d6 0%,#5B4CF5 55%,#6b79ef 100%);padding:36px 36px 30px;display:flex;flex-direction:column;align-items:center;gap:10px}
-.ce-card-header-sub{color:rgba(255,255,255,.88);font-size:13px;line-height:1.5}
-.ce-card-body{padding:28px 36px 32px}
-.client-entry-card .ce-icon{width:52px;height:52px;border-radius:50%;background:var(--accent-lt);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
-.client-entry-card .ce-icon svg{width:24px;height:24px;color:var(--accent)}
-/* login illustration */
-.collab-hero{display:flex;justify-content:center;margin-bottom:20px;width:100%;max-width:360px}
-.collab-hero svg{width:100%;height:auto}
-.client-entry-card h2{font-size:19px;font-weight:700;color:var(--text);margin:0 0 6px}
-.client-entry-card p{font-size:13px;color:var(--text-dim);margin:0 0 22px;line-height:1.5}
-.client-entry-card .ce-btn{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;border-radius:10px;padding:12px 28px;font-size:14px;font-weight:600;box-shadow:0 4px 14px rgba(91,76,245,.35)}
+/* heading */
+.login-hero{position:relative;z-index:2;text-align:center;max-width:640px;margin-bottom:36px}
+.login-hero h1{font-size:44px;font-weight:800;color:var(--text);letter-spacing:-.03em;line-height:1.15;margin-bottom:14px}
+.login-hero h1 span{display:block;background:linear-gradient(90deg,var(--accent) 0%,#9333EA 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.login-hero p{font-size:16px;color:var(--text-dim);line-height:1.5}
+
+/* two-card chooser */
+.login-cards{position:relative;z-index:2;display:flex;gap:20px;width:100%;max-width:760px;background:rgba(255,255,255,.6);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.7);border-radius:28px;padding:14px;box-shadow:0 20px 60px rgba(91,76,245,.14),0 4px 16px rgba(0,0,0,.04)}
+.login-card{flex:1;display:flex;align-items:center;gap:16px;padding:24px;border-radius:20px;cursor:pointer;text-align:left;transition:transform .2s cubic-bezier(.4,0,.2,1),box-shadow .2s ease;min-height:44px}
+.login-card:hover{transform:translateY(-3px)}
+.login-card-primary{background:linear-gradient(135deg,#7C5CFC 0%,#5B4CF5 55%,#4338CA 100%);color:#fff;box-shadow:0 12px 32px rgba(91,76,245,.35)}
+.login-card-primary:hover{box-shadow:0 18px 44px rgba(91,76,245,.42)}
+.login-card-secondary{background:#fff;border:1.5px solid var(--border);color:var(--text)}
+.login-card-secondary:hover{border-color:var(--accent);box-shadow:0 12px 32px rgba(91,76,245,.12)}
+.lc-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.login-card-primary .lc-icon{background:rgba(255,255,255,.18)}
+.login-card-secondary .lc-icon{background:var(--accent-lt)}
+.lc-icon svg{width:24px;height:24px}
+.login-card-primary .lc-icon svg{color:#fff}
+.login-card-secondary .lc-icon svg{color:var(--accent)}
+.login-card-body{flex:1;min-width:0}
+.login-card h3{font-size:17px;font-weight:700;margin-bottom:4px;letter-spacing:-.01em}
+.login-card p{font-size:13px;line-height:1.4}
+.login-card-primary p{color:rgba(255,255,255,.82)}
+.login-card-secondary p{color:var(--text-dim)}
+.lc-arrow{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s}
+.login-card-primary .lc-arrow{background:rgba(255,255,255,.18)}
+.login-card-secondary .lc-arrow{background:var(--accent-lt)}
+.lc-arrow svg{width:16px;height:16px}
+.login-card-primary .lc-arrow svg{color:#fff}
+.login-card-secondary .lc-arrow svg{color:var(--accent)}
+.login-card:hover .lc-arrow{transform:translateX(3px)}
+
+/* floating decorative cards */
+.login-float{position:absolute;z-index:1;background:#fff;border-radius:14px;box-shadow:0 8px 24px rgba(91,76,245,.12),0 2px 8px rgba(0,0,0,.04);padding:12px 14px;pointer-events:none;animation:loginFloat 5s ease-in-out infinite}
+.lf-brief{top:15%;left:6%;width:150px;animation-delay:0s}
+.lf-team{top:22%;right:7%;width:150px;animation-delay:.6s}
+.lf-tasks{bottom:14%;left:4%;width:150px;animation-delay:1.1s}
+.lf-badge{position:absolute;z-index:1;width:52px;height:52px;border-radius:16px;background:#fff;box-shadow:0 8px 20px rgba(91,76,245,.14);display:flex;align-items:center;justify-content:center;pointer-events:none;animation:loginFloat 5s ease-in-out infinite}
+.lf-sparkle{bottom:32%;left:9%;animation-delay:1.6s}
+.lf-pen{top:38%;right:5%;animation-delay:.3s}
+.lf-image{bottom:12%;right:8%;width:110px;height:96px;border-radius:16px;background:linear-gradient(135deg,#c4b5fd 0%,#7C3AED 100%);box-shadow:0 8px 24px rgba(91,76,245,.2);animation-delay:.9s}
+.lf-title{font-size:10px;color:var(--text-muted);font-weight:600;margin-bottom:6px}
+.lf-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0}
+.lf-line{height:5px;border-radius:3px;background:var(--border);margin-top:5px}
+.lf-avatars{display:flex;align-items:center}
+.lf-avatars span{width:22px;height:22px;border-radius:50%;border:2px solid #fff;margin-left:-6px;font-size:9px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lf-avatars span:first-child{margin-left:0}
+.lf-progress{height:5px;border-radius:3px;background:var(--border-secondary);margin-top:8px;overflow:hidden}
+.lf-progress i{display:block;height:100%;width:76%;background:linear-gradient(90deg,var(--accent),#9333EA);border-radius:3px}
+.lf-check{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-dim);margin-top:5px}
+.lf-check svg{width:12px;height:12px;color:var(--accent);flex-shrink:0}
+.lf-check.pending svg{color:var(--border-strong)}
+@keyframes loginFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media(max-width:900px){.login-float,.lf-badge{display:none}}
+@media(max-width:640px){
+  .login-hero h1{font-size:32px}
+  .login-cards{flex-direction:column;background:transparent;backdrop-filter:none;border:none;box-shadow:none;padding:0;gap:14px}
+  .login-card{box-shadow:0 8px 28px rgba(91,76,245,.12)}
+  .login-card-primary{box-shadow:0 8px 28px rgba(91,76,245,.28)}
+}
 
 /* client name modal */
 .name-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;z-index:200;animation:fadeIn .15s ease}
@@ -698,51 +744,73 @@ label.field-label{display:block;color:var(--text-muted);font-size:11px;font-weig
 
 <!-- ═══════════════ LOGIN ═══════════════ -->
 <div id="login">
-  <div class="collab-hero">
-    <svg viewBox="0 0 320 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="collab-av-sh" x="-40%" y="-40%" width="180%" height="180%">
-          <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="rgba(91,76,245,.13)"/>
-        </filter>
-      </defs>
-      <path d="M92 69 Q116 52 139 40" stroke="#5B4CF5" stroke-opacity=".22" stroke-width="1.5" stroke-dasharray="5 3.5" fill="none"/>
-      <path d="M181 40 Q204 52 228 69" stroke="#5B4CF5" stroke-opacity=".22" stroke-width="1.5" stroke-dasharray="5 3.5" fill="none"/>
-      <path d="M97 85 Q160 110 223 85" stroke="#5B4CF5" stroke-opacity=".1" stroke-width="1" stroke-dasharray="5 3.5" fill="none"/>
-      <circle cx="116" cy="54" r="13" fill="#edeaff"/>
-      <path d="M111 48h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-3l-2 3 0-3h-5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z" fill="#5B4CF5" opacity=".75"/>
-      <circle cx="204" cy="54" r="13" fill="#edeaff"/>
-      <path d="M199 54l3 3 7-7" stroke="#5B4CF5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".8"/>
-      <circle cx="65" cy="85" r="32" fill="white" filter="url(#collab-av-sh)"/>
-      <circle cx="65" cy="72" r="10" fill="#c4baf8"/>
-      <ellipse cx="65" cy="97" rx="19" ry="13" fill="#c4baf8"/>
-      <circle cx="160" cy="28" r="24" fill="white" filter="url(#collab-av-sh)"/>
-      <circle cx="160" cy="17" r="8" fill="#5B4CF5"/>
-      <ellipse cx="160" cy="38" rx="14" ry="10" fill="#5B4CF5"/>
-      <circle cx="255" cy="85" r="32" fill="white" filter="url(#collab-av-sh)"/>
-      <circle cx="255" cy="72" r="10" fill="#8b7ff5"/>
-      <ellipse cx="255" cy="97" rx="19" ry="13" fill="#8b7ff5"/>
-    </svg>
+  <div class="login-logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+    brifo
   </div>
 
-  <div class="client-entry-card" onclick="openClientEntry()">
-    <div class="ce-card-header">
-      <img src="brifo/brifo white.svg" alt="brifo" style="height:72px;width:auto;display:block">
-      <div class="ce-card-header-sub">Создайте задачу — дизайнеры возьмут в работу</div>
-    </div>
-    <div class="ce-card-body">
-      <div class="ce-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
+  <!-- floating decorative cards -->
+  <div class="login-float lf-brief" aria-hidden="true">
+    <div class="lf-title">БРИФ ПРОЕКТА</div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <svg class="lf-dot" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3"><circle cx="12" cy="12" r="9" stroke-dasharray="34 34" stroke-dashoffset="10"/></svg>
+      <div style="flex:1">
+        <div class="lf-line" style="width:70%;margin-top:0"></div>
+        <div class="lf-line" style="width:45%"></div>
       </div>
-      <h2>Поставить задачу</h2>
-      <p>Создайте ТЗ для дизайнера — укажите формат, сроки и детали</p>
-      <div class="ce-btn">Начать →</div>
     </div>
   </div>
+  <div class="login-float lf-team" aria-hidden="true">
+    <div class="lf-title">КОМАНДА</div>
+    <div class="lf-avatars">
+      <span style="background:#5B4CF5">А</span>
+      <span style="background:#EC4899">Л</span>
+      <span style="background:#F59E0B">Д</span>
+      <span style="background:var(--accent-lt);color:var(--accent)">+3</span>
+    </div>
+  </div>
+  <div class="login-float lf-tasks" aria-hidden="true">
+    <div class="lf-title">ЗАДАЧИ</div>
+    <div class="lf-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Бриф готов</div>
+    <div class="lf-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Дизайнер назначен</div>
+    <div class="lf-check pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="9"/></svg>На проверке</div>
+    <div class="lf-progress"><i></i></div>
+  </div>
+  <div class="lf-badge lf-sparkle" aria-hidden="true">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+  </div>
+  <div class="lf-badge lf-pen" aria-hidden="true">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+  </div>
+  <div class="login-float lf-image" aria-hidden="true"></div>
 
-  <button class="designer-corner-btn" onclick="openDesignerAuth()">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
-    Войти как дизайнер
-  </button>
+  <div class="login-hero">
+    <h1>Выберите,<span>как начать работу</span></h1>
+    <p>Два режима. Одна платформа. Бриф, задачи и дизайн — в потоке.</p>
+  </div>
+
+  <div class="login-cards">
+    <div class="login-card login-card-primary" onclick="openClientEntry()" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openClientEntry();}">
+      <div class="lc-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+      </div>
+      <div class="login-card-body">
+        <h3>Войти как постановщик задач</h3>
+        <p>Создавайте брифы, ставьте задачи и управляйте процессом</p>
+      </div>
+      <div class="lc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+    </div>
+    <div class="login-card login-card-secondary" onclick="openDesignerAuth()" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openDesignerAuth();}">
+      <div class="lc-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+      </div>
+      <div class="login-card-body">
+        <h3>Войти как дизайнер</h3>
+        <p>Получайте задачи, создавайте дизайн и делитесь результатами</p>
+      </div>
+      <div class="lc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+    </div>
+  </div>
 
 </div>
 
