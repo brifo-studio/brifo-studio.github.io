@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="base.css">
+<style>
+  .sec{height:680px;background:#0B0B12;padding:96px;position:relative;overflow:hidden}
+  .glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(124,55,217,.25),transparent 70%);top:-200px;left:50%;transform:translateX(-50%);filter:blur(20px)}
+  .head{position:relative;max-width:760px;margin:0 auto 64px;text-align:center}
+  .head p{color:rgba(255,255,255,.55);font-size:17px;margin-top:14px;line-height:1.6}
+  .head .eyebrow{justify-content:center;display:flex}
+  .pillars{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .pillar{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:32px 26px;backdrop-filter:blur(6px)}
+  .pillar .num{font-size:13px;font-weight:800;color:#A9A0FF;margin-bottom:18px}
+  .pillar h4{font-size:18px;font-weight:800;color:#fff;margin-bottom:10px;line-height:1.3}
+  .pillar p{font-size:13.5px;color:rgba(255,255,255,.5);line-height:1.55}
+  .note{position:relative;margin-top:48px;text-align:center;font-size:15px;color:rgba(255,255,255,.4);max-width:640px;margin-left:auto;margin-right:auto;line-height:1.6}
+</style>
+<div class="sec">
+  <div class="glow"></div>
+  <div class="head">
+    <div class="eyebrow on-dark">Потенциал</div>
+    <h1 class="h on-dark" style="margin-top:14px;font-size:44px">Куда это может вырасти</h1>
+    <p>brifo решает задачу одной команды. Логика уже держит нагрузку — дальше это вопрос масштаба, а не архитектуры.</p>
+  </div>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="num">01</div>
+      <h4>Workspace для агентств</h4>
+      <p>Несколько постановщиков в одном пространстве, общая загрузка дизайнеров по всем клиентам разом.</p>
+    </div>
+    <div class="pillar">
+      <div class="num">02</div>
+      <h4>Умные брифы</h4>
+      <p>ИИ-валидация ТЗ перед отправкой — проверка на пропущенные поля до того, как задача попадёт к дизайнеру.</p>
+    </div>
+    <div class="pillar">
+      <div class="num">03</div>
+      <h4>Интеграции</h4>
+      <p>Хендофф результата в Figma, уведомления о статусах в Telegram и Slack — без захода в brifo.</p>
+    </div>
+    <div class="pillar">
+      <div class="num">04</div>
+      <h4>Аналитика студии</h4>
+      <p>Среднее время закрытия задачи, нагрузка по дизайнерам, узкие места по типам брифов.</p>
+    </div>
+  </div>
+  <div class="note">Ничего из этого не в проде — это гипотезы roadmap, а не обещания. Но система с самого начала спроектирована так, чтобы выдержать любой из этих сценариев.</div>
+</div>

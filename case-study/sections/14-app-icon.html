@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="base.css">
+<style>
+  .sec{height:1040px;background:radial-gradient(1200px 800px at 50% 40%,#1E1533,#0B0B12 70%);padding:96px;position:relative;overflow:hidden;display:flex;align-items:center}
+  .glow1{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(124,55,217,.35),transparent 70%);top:10%;left:-10%;filter:blur(10px)}
+  .glow2{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(91,76,245,.25),transparent 70%);bottom:-15%;right:5%;filter:blur(10px)}
+  .head{position:absolute;top:96px;left:96px;z-index:3;max-width:640px}
+  .head p{color:rgba(255,255,255,.55);font-size:17px;margin-top:14px;line-height:1.6;max-width:520px}
+  .stage{position:relative;z-index:2;width:100%;display:flex;align-items:center;justify-content:center;gap:140px;margin-top:40px}
+  .icon-tile{width:260px;height:260px;border-radius:64px;background:linear-gradient(150deg,#BA74FB,#6946F6 55%,#4338CA);position:relative;box-shadow:0 60px 100px rgba(105,70,246,.5),0 0 0 1px rgba(255,255,255,.06) inset;flex-shrink:0}
+  .icon-tile::before{content:'';position:absolute;inset:0;border-radius:64px;background:radial-gradient(circle at 30% 22%,rgba(255,255,255,.55),transparent 45%);mix-blend-mode:overlay}
+  .icon-tile svg{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);width:140px;height:auto}
+  .sizes{display:flex;align-items:center;gap:28px}
+  .sizes .sm{border-radius:22px;background:linear-gradient(150deg,#BA74FB,#6946F6 55%,#4338CA);box-shadow:0 20px 40px rgba(105,70,246,.4)}
+  .sizes .sm svg{display:block}
+  .phone-mini{width:220px;height:460px;border-radius:38px;background:#0d0d14;padding:8px;box-shadow:0 40px 80px rgba(0,0,0,.55);flex-shrink:0;position:relative}
+  .phone-mini .screen{width:100%;height:100%;border-radius:30px;background:linear-gradient(160deg,#BA74FB,#6946F6 60%,#4338CA);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .phone-mini .screen svg{width:64px}
+  .phone-mini .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:86px;height:18px;background:#0d0d14;border-radius:0 0 11px 11px;z-index:5}
+</style>
+<div class="sec">
+  <div class="glow1"></div><div class="glow2"></div>
+  <div class="head">
+    <div class="eyebrow on-dark">Айдентика · App icon</div>
+    <h1 class="h on-dark" style="margin-top:14px;font-size:42px">Тот же знак, доведённый до размера иконки</h1>
+    <p>Фирменный «b» не меняется от носителя к носителю — только контейнер вокруг него. На иконке это скруглённый квадрат, фирменный градиент и мягкий внутренний блик.</p>
+  </div>
+  <div class="stage">
+    <div class="icon-tile">
+      <svg viewBox="0 0 164 261" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50.0578 73.866C53.1102 72.9519 55.9946 71.2335 59.0115 70.0707C115.854 48.1354 167.337 100.204 150.867 157.359C129.556 231.311 14.3335 221.366 9.05884 143.719L9.09437 17.9248C11.4846 -0.838504 37.4542 -6.97882 47.2057 9.76573C48.207 11.4841 50.0578 16.0223 50.0578 17.8861V73.866ZM82.3453 165.179C103.476 171.213 119.423 151.665 116.51 131.513C111.664 97.9944 65.1744 92.6906 52.041 123.437C41.1429 148.952 62.3061 176.901 88.6407 178.723C90.7628 178.868 96.9774 179.427 97.6945 177.13C99.0834 172.663 95.0168 173.284 92.1065 172.356C88.589 171.236 83.4661 168.894 82.3453 165.176V165.179Z" fill="#fff"/><path d="M7.30664 206.784C11.6225 205.328 16.7752 206.825 18.9404 210.622C30.201 230.366 53.6074 243.054 80.1533 243.527H80.1523C107.382 244.002 131.307 232.022 144.286 211.605L144.522 211.255C147.052 207.715 152.321 206.564 156.5 208.366C160.914 210.269 162.973 215.044 160.409 219.077C152.37 231.723 140.699 242.035 126.609 248.989L125.238 249.651C112.02 255.903 96.9988 259.178 81.6826 259.178C81.0442 259.178 80.4063 259.172 79.7676 259.161V259.16C63.9256 258.878 48.5198 255.107 35.2148 248.236C21.5564 241.182 10.486 230.988 3.14648 218.679L2.44824 217.481C0.0879888 213.342 2.41118 208.668 6.8916 206.934L7.30664 206.784Z" fill="#fff"/></svg>
+    </div>
+    <div class="phone-mini">
+      <div class="notch"></div>
+      <div class="screen"><svg viewBox="0 0 164 261" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50.0578 73.866C53.1102 72.9519 55.9946 71.2335 59.0115 70.0707C115.854 48.1354 167.337 100.204 150.867 157.359C129.556 231.311 14.3335 221.366 9.05884 143.719L9.09437 17.9248C11.4846 -0.838504 37.4542 -6.97882 47.2057 9.76573C48.207 11.4841 50.0578 16.0223 50.0578 17.8861V73.866ZM82.3453 165.179C103.476 171.213 119.423 151.665 116.51 131.513C111.664 97.9944 65.1744 92.6906 52.041 123.437C41.1429 148.952 62.3061 176.901 88.6407 178.723C90.7628 178.868 96.9774 179.427 97.6945 177.13C99.0834 172.663 95.0168 173.284 92.1065 172.356C88.589 171.236 83.4661 168.894 82.3453 165.176V165.179Z" fill="#fff"/><path d="M7.30664 206.784C11.6225 205.328 16.7752 206.825 18.9404 210.622C30.201 230.366 53.6074 243.054 80.1533 243.527H80.1523C107.382 244.002 131.307 232.022 144.286 211.605L144.522 211.255C147.052 207.715 152.321 206.564 156.5 208.366C160.914 210.269 162.973 215.044 160.409 219.077C152.37 231.723 140.699 242.035 126.609 248.989L125.238 249.651C112.02 255.903 96.9988 259.178 81.6826 259.178C81.0442 259.178 80.4063 259.172 79.7676 259.161V259.16C63.9256 258.878 48.5198 255.107 35.2148 248.236C21.5564 241.182 10.486 230.988 3.14648 218.679L2.44824 217.481C0.0879888 213.342 2.41118 208.668 6.8916 206.934L7.30664 206.784Z" fill="#fff"/></svg></div>
+    </div>
+  </div>
+</div>

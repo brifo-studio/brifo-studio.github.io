@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="base.css">
+<style>
+  .sec{height:960px;background:linear-gradient(160deg,#EEF0FF,#F7F5FF 55%,#EEF0FF);padding:96px;display:flex;gap:56px}
+  .left{width:560px;flex-shrink:0}
+  .left h1{font-size:44px;margin:14px 0 18px}
+  .left p{font-size:17px;color:var(--text-muted);line-height:1.65;max-width:440px;margin-bottom:44px}
+  .orb-wrap{width:440px;height:440px;position:relative}
+  .orb{position:absolute;inset:0;border-radius:50%;background:
+    radial-gradient(circle at 32% 30%, #E4D9FF 0%, transparent 45%),
+    radial-gradient(circle at 68% 70%, #BA74FB 0%, transparent 55%),
+    linear-gradient(135deg,#D2C2FF,#6946F6 70%);
+    filter:blur(2px);box-shadow:0 40px 90px rgba(105,70,246,.35)}
+  .right{flex:1;display:flex;flex-direction:column;gap:24px}
+  .card{border-radius:24px;padding:28px 32px;color:#fff;position:relative;overflow:hidden}
+  .card .hex{font-size:13px;font-weight:700;opacity:.75;letter-spacing:.03em}
+  .card .name{font-size:20px;font-weight:800;margin-top:4px}
+  .wordcard{border-radius:24px;background:linear-gradient(120deg,#BA74FB,#6946F6 70%,#4338CA);display:flex;align-items:center;justify-content:center;flex:1;position:relative;overflow:hidden}
+  .wordcard img{height:70px}
+  .wordcard .deco{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%);top:-100px;right:-60px}
+</style>
+<div class="sec">
+  <div class="left">
+    <div class="eyebrow">Градиент</div>
+    <h1 class="h">Фиолетовый как ощущение, не как заливка</h1>
+    <p>Основной градиент бренда — от мягкого сиреневого к глубокому фиолетовому. Он лежит в логотипе, в акцентных кнопках, в фоне точки входа — один и тот же переход на всех носителях.</p>
+    <div class="orb-wrap"><div class="orb"></div></div>
+  </div>
+  <div class="right">
+    <div class="card" style="background:linear-gradient(120deg,#BA74FB,#6946F6)">
+      <div class="hex">#BA74FB → #6946F6</div>
+      <div class="name">Logo gradient</div>
+    </div>
+    <div class="card" style="background:linear-gradient(120deg,#5B4CF5,#7C3AED)">
+      <div class="hex">#5B4CF5 → #7C3AED</div>
+      <div class="name">Accent gradient</div>
+    </div>
+    <div class="card" style="background:linear-gradient(134deg,#FDA0EE 2%,#973CEC 49%,#6C63F7 100%)">
+      <div class="hex">#FDA0EE → #973CEC → #6C63F7</div>
+      <div class="name">Hero gradient</div>
+    </div>
+    <div class="wordcard">
+      <div class="deco"></div>
+      <img src="../../brifo/brifo white.svg">
+    </div>
+  </div>
+</div>

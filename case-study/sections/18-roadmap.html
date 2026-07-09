@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="base.css">
+<style>
+  .sec{height:900px;background:var(--bg);padding:100px 96px}
+  .head{margin-bottom:56px}
+  .grid{display:grid;grid-template-columns:1.3fr 1fr;gap:28px}
+  .col{border-radius:var(--r-xl);padding:48px 44px}
+  .col.done{background:var(--surface);box-shadow:var(--sh)}
+  .col.plan{background:var(--ink-dark);color:#fff}
+  .lbl{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:800;margin-bottom:28px}
+  .dot{width:10px;height:10px;border-radius:50%}
+  .col.done .dot{background:#16A34A}
+  .col.plan .dot{background:#A9A0FF}
+  ul{list-style:none}
+  li{padding:13px 0;font-size:17px;border-bottom:1px solid rgba(0,0,0,.06);display:flex;gap:12px}
+  .col.plan li{border-bottom:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.82)}
+  li:last-child{border:none}
+  li:before{content:'•';color:var(--accent)}
+  .col.plan li:before{color:#A9A0FF}
+</style>
+<div class="sec">
+  <div class="head">
+    <div class="eyebrow">Что дальше</div>
+    <h1 class="h" style="font-size:44px;margin-top:14px">Roadmap</h1>
+  </div>
+  <div class="grid">
+    <div class="col done">
+      <div class="lbl"><span class="dot"></span>Сделано</div>
+      <ul>
+        <li>Полное ТЗ по 9 типам задач</li>
+        <li>Cloudinary для всех загрузок</li>
+        <li>Realtime-канбан на Firestore</li>
+        <li>Новая дизайн-система (Golos Text, accent 5B4CF5)</li>
+        <li>Архив завершённых задач</li>
+      </ul>
+    </div>
+    <div class="col plan">
+      <div class="lbl"><span class="dot"></span>Запланировано</div>
+      <ul>
+        <li>Мобильная адаптация</li>
+        <li>Email-уведомления о статусах</li>
+        <li>PDF-выгрузка ТЗ</li>
+        <li>ИИ-валидация брифа перед отправкой</li>
+      </ul>
+    </div>
+  </div>
+</div>

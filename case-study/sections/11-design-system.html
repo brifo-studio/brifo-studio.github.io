@@ -1,0 +1,96 @@
+<link rel="stylesheet" href="base.css">
+<style>
+  .sec{height:1160px;background:#0B0B12;padding:96px}
+  .head{margin-bottom:56px}
+  .grid{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:stretch}
+  .type{background:linear-gradient(150deg,#15111F,#0F0C18);border-radius:var(--r-xl);padding:56px;border:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column}
+  .aa{font-size:220px;font-weight:900;color:#fff;line-height:.85;margin-bottom:14px}
+  .type .label{font-size:13px;color:rgba(255,255,255,.64);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:22px}
+  .weights{display:flex;gap:22px;flex-wrap:wrap}
+  .weights span{color:rgba(255,255,255,.8);font-size:20px}
+  .w4{font-weight:400}.w5{font-weight:500}.w6{font-weight:600}.w7{font-weight:700}.w9{font-weight:900}
+  .scale{margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08)}
+  .scale .label{margin-bottom:16px}
+  .srow{display:flex;align-items:baseline;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);font-family:var(--font)}
+  .srow:last-child{border-bottom:none}
+  .srow .rname{color:#fff;font-weight:700;font-size:15px}
+  .srow .rval{color:rgba(255,255,255,.5);font-size:13px;font-family:ui-monospace,Menlo,Consolas,monospace}
+  .srow.h1 .rname{font-size:22px}
+  .srow.label-row .rname{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.75);font-weight:700}
+  .right{display:flex;flex-direction:column;gap:32px}
+  .swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .sw{border-radius:14px;height:88px;display:flex;align-items:flex-end;padding:10px}
+  .sw span{font-size:11px;color:rgba(255,255,255,.9);font-weight:700;background:rgba(0,0,0,.25);padding:3px 7px;border-radius:6px}
+  .badges{display:flex;gap:12px}
+  .badge{padding:9px 18px;border-radius:99px;font-size:14px;font-weight:700}
+  .notes{color:rgba(255,255,255,.55);font-size:14.5px;line-height:2}
+  .notes b{color:#fff}
+  .solid-lbl{font-size:13px;color:rgba(255,255,255,.64);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:14px}
+  .solids{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+  .sol{border-radius:11px;height:64px;display:flex;flex-direction:column;justify-content:flex-end;padding:8px;border:1px solid rgba(255,255,255,.08)}
+  .sol b{font-size:10px;font-weight:700;line-height:1.3}
+  .sol span{font-size:9px;font-family:ui-monospace,Menlo,Consolas,monospace;opacity:.75}
+</style>
+<div class="sec">
+  <div class="head">
+    <div class="eyebrow on-dark">Дизайн-система</div>
+    <h1 class="h on-dark" style="margin-top:14px;font-size:44px">Цвет и типографика</h1>
+  </div>
+  <div class="grid">
+    <div class="type">
+      <div class="label">Typeface</div>
+      <div class="aa">Aa</div>
+      <div style="color:#fff;font-size:26px;font-weight:800;margin-bottom:22px">Golos Text</div>
+      <div class="weights">
+        <span class="w4">Regular</span><span class="w5">Medium</span><span class="w6">SemiBold</span><span class="w7">Bold</span><span class="w9">Black</span>
+      </div>
+      <div class="scale">
+        <div class="label">Type scale</div>
+        <div class="srow h1"><span class="rname">H1</span><span class="rval">26 / 700</span></div>
+        <div class="srow"><span class="rname">H2</span><span class="rval">18 / 700</span></div>
+        <div class="srow"><span class="rname">Subtitle</span><span class="rval">18 / 600</span></div>
+        <div class="srow"><span class="rname">Body</span><span class="rval">14 / 500</span></div>
+        <div class="srow"><span class="rname">Caption</span><span class="rval">13 / 500</span></div>
+        <div class="srow label-row"><span class="rname">Label</span><span class="rval">11 / 700 · UPPERCASE</span></div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="swatches">
+        <div class="sw" style="background:#5B4CF5"><span>Accent</span></div>
+        <div class="sw" style="background:#4338CA"><span>Accent Dark</span></div>
+        <div class="sw" style="background:#4285F4"><span>New</span></div>
+        <div class="sw" style="background:#FBBC04"><span>In progress</span></div>
+        <div class="sw" style="background:#EA4335"><span>Review</span></div>
+        <div class="sw" style="background:#34A853"><span>Done</span></div>
+        <div class="sw" style="background:#EEF0FF"><span style="color:#4338CA;background:none;padding:0">Accent Light</span></div>
+      </div>
+      <div class="badges">
+        <div class="badge" style="background:#FEE2E2;color:#DC2626">Срочно</div>
+        <div class="badge" style="background:#FEF3C7;color:#D97706">Высокий</div>
+        <div class="badge" style="background:#F0FDF4;color:#16A34A">Обычный</div>
+      </div>
+      <div>
+        <div class="solid-lbl">Solid palette</div>
+        <div class="solids">
+          <div class="sol" style="background:#5B4CF5;color:#fff"><b>Accent</b><span>#5B4CF5</span></div>
+          <div class="sol" style="background:#4338CA;color:#fff"><b>Accent Dark</b><span>#4338CA</span></div>
+          <div class="sol" style="background:#EEF0FF;color:#4338CA"><b>Accent Light</b><span>#EEF0FF</span></div>
+          <div class="sol" style="background:#0D0E14;color:#fff"><b>Text</b><span>#0D0E14</span></div>
+          <div class="sol" style="background:#6B7280;color:#fff"><b>Text Dim</b><span>#6B7280</span></div>
+          <div class="sol" style="background:#374151;color:#fff"><b>Text Body</b><span>#374151</span></div>
+          <div class="sol" style="background:#FFFFFF;color:#0D0E14"><b>Surface</b><span>#FFFFFF</span></div>
+          <div class="sol" style="background:#F4F5F7;color:#0D0E14"><b>Background</b><span>#F4F5F7</span></div>
+          <div class="sol" style="background:#E8E9F0;color:#0D0E14"><b>Border</b><span>#E8E9F0</span></div>
+          <div class="sol" style="background:#DC2626;color:#fff"><b>Error</b><span>#DC2626</span></div>
+          <div class="sol" style="background:#D97706;color:#fff"><b>Warning</b><span>#D97706</span></div>
+          <div class="sol" style="background:#16A34A;color:#fff"><b>Success</b><span>#16A34A</span></div>
+        </div>
+      </div>
+      <div class="notes">
+        <div>Radius: base <b>12px</b>, small <b>8px</b></div>
+        <div>Тень: <b>3 уровня</b> (sh / sh-md / sh-lg)</div>
+        <div>Карточки: белые, левый бордер <b>3px</b> = цвет дизайнера</div>
+      </div>
+    </div>
+  </div>
+</div>

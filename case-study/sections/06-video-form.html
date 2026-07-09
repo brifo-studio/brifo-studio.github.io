@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="base.css">
+<style>
+  .sec{height:980px;background:radial-gradient(800px 500px at 100% 0%,#EEF0FF,transparent 60%),var(--bg);padding:100px 96px}
+  .head{max-width:820px;margin-bottom:56px}
+  .row{display:flex;gap:64px;align-items:flex-start}
+  .shotbox{position:relative;width:913px;height:620px;overflow:hidden;border-radius:var(--r);box-shadow:var(--sh-lg);border:1px solid var(--border);flex-shrink:0}
+  .shotbox img{width:1600px;margin-top:-1130px;margin-left:-343px;display:block;max-width:none}
+  .dot{position:absolute;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(91,76,245,.5);transform:translate(-50%,-50%)}
+  .legend{padding-top:8px}
+  .legend .item{margin-bottom:34px}
+  .legend .item b{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--accent-lt);color:var(--accent-dark);font-size:13px;align-items:center;justify-content:center;margin-right:10px}
+  .legend h5{display:inline;font-size:17px;font-weight:800}
+  .legend p{font-size:14.5px;color:var(--text-muted);margin-top:8px;margin-left:36px;line-height:1.5}
+</style>
+<div class="sec">
+  <div class="head">
+    <div class="eyebrow">Интерфейс · 03</div>
+    <h1 class="h" style="font-size:44px;margin:14px 0 10px">Форма ТЗ подстраивается под тип задачи</h1>
+    <div class="sub" style="font-size:17px">На примере брифа на видео</div>
+  </div>
+  <div class="row">
+    <div class="shotbox">
+      <img src="../shots/video-form.png">
+      <div class="dot" style="left:34px;top:75px">1</div>
+      <div class="dot" style="left:34px;top:155px">2</div>
+      <div class="dot" style="left:34px;top:238px">3</div>
+      <div class="dot" style="left:34px;top:415px">4</div>
+    </div>
+    <div class="legend">
+      <div class="item"><b>1</b><h5>Платформа</h5><p>Pill-теги: YouTube, TikTok, Instagram, ВКонтакте, Rutube</p></div>
+      <div class="item"><b>2</b><h5>Ориентация</h5><p>16:9 / 9:16 / 1:1 — выбор форматом кадра</p></div>
+      <div class="item"><b>3</b><h5>Технические поля</h5><p>Разрешение и длительность — обычный текст/число</p></div>
+      <div class="item"><b>4</b><h5>Назначение</h5><p>Дизайнер, дедлайн и приоритет заполняются сразу при постановке</p></div>
+    </div>
+  </div>
+</div>

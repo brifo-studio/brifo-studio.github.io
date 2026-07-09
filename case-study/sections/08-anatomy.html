@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="base.css">
+<style>
+  .sec{height:940px;background:var(--surface);padding:100px 96px}
+  .head{max-width:820px;margin-bottom:64px}
+  .row{display:flex;gap:80px;align-items:center}
+  .cardbox{position:relative;width:600px;height:400px;overflow:hidden;border-radius:20px;box-shadow:var(--sh-lg);border:1px solid var(--border);flex-shrink:0;background:#fff}
+  .cardbox img{width:3200px;margin-top:-270px;margin-left:-540px;display:block;max-width:none}
+  .dot{position:absolute;width:32px;height:32px;border-radius:50%;color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.35);transform:translate(-50%,-50%)}
+  .d1{background:#B91C1C;left:34px;top:34px}
+  .d2{background:#B45309;left:566px;top:34px}
+  .d3{background:#4338CA;left:12px;top:200px}
+  .d4{background:#15803D;left:60px;top:378px}
+  .legend .item{margin-bottom:30px;display:flex;gap:14px;align-items:flex-start}
+  .legend b{flex-shrink:0;width:28px;height:28px;border-radius:50%;color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;margin-top:2px}
+  .legend .b1{background:#B91C1C}.legend .b2{background:#B45309}.legend .b3{background:#4338CA}.legend .b4{background:#15803D}
+  .legend h5{font-size:17px;font-weight:800;margin-bottom:6px}
+  .legend p{font-size:14.5px;color:var(--text-muted);line-height:1.5;max-width:340px}
+</style>
+<div class="sec">
+  <div class="head">
+    <div class="eyebrow">Анатомия карточки</div>
+    <h1 class="h" style="font-size:44px;margin-top:14px">Что реально видно на доске</h1>
+  </div>
+  <div class="row">
+    <div class="cardbox">
+      <img src="../shots/kanban-designer.png">
+      <div class="dot d1">1</div>
+      <div class="dot d2">2</div>
+      <div class="dot d3">3</div>
+      <div class="dot d4">4</div>
+    </div>
+    <div class="legend">
+      <div class="item"><b class="b1">1</b><div><h5>Тип задачи</h5><p>Иконка + название капсом — сразу понятно, что за бриф</p></div></div>
+      <div class="item"><b class="b2">2</b><div><h5>Приоритет</h5><p>Цветной бейдж: срочно / высокий / обычный — три уровня, не больше</p></div></div>
+      <div class="item"><b class="b3">3</b><div><h5>Цвет исполнителя</h5><p>Левый бордер карточки = персональный цвет дизайнера, который её ведёт</p></div></div>
+      <div class="item"><b class="b4">4</b><div><h5>Счётчики активности</h5><p>Число изменений и комментариев — видно, что задача живая</p></div></div>
+    </div>
+  </div>
+</div>

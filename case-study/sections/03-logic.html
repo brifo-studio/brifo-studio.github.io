@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="base.css">
+<style>
+  .sec{background:radial-gradient(900px 500px at 8% 0%,#EDE9FF,transparent 60%),#F4F5F7;padding:100px 96px 90px;height:850px;position:relative;overflow:hidden}
+  .head{position:relative;max-width:760px;margin-bottom:76px}
+  .chain{position:relative;display:flex;align-items:flex-start;gap:0;margin-bottom:84px}
+  .node{background:var(--surface);border-radius:22px;box-shadow:0 14px 34px rgba(20,10,60,.08);padding:26px 24px;width:236px;flex-shrink:0}
+  .node.first{background:linear-gradient(135deg,#8B5CF6,var(--accent-dark));color:#fff;box-shadow:0 22px 46px rgba(91,76,245,.4);transform:translateY(-18px);width:250px;padding:30px 26px}
+  .node:nth-child(3){transform:translateY(26px)}
+  .node:nth-child(5){transform:translateY(-8px)}
+  .node:nth-child(7){transform:translateY(20px)}
+  .node:nth-child(9){transform:translateY(-4px)}
+  .node h4{font-size:18px;font-weight:800;margin-bottom:6px}
+  .node p{font-size:13.5px;line-height:1.4;opacity:.75}
+  .node.first p{opacity:.85}
+  .arrow{flex-shrink:0;width:44px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:22px;font-weight:700;align-self:center}
+  .caps{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .cap{background:var(--surface);border-radius:var(--r);padding:40px 44px;box-shadow:var(--sh)}
+  .cap h5{font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;margin-bottom:22px}
+  .cap.p h5{color:var(--accent)}
+  .cap.d h5{color:#0891B2}
+  .cap ul{list-style:none}
+  .cap li{font-size:16.5px;padding:11px 0;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start}
+  .cap li:last-child{border:none}
+  .cap li.no{color:var(--text-dim)}
+  .cap li b{flex-shrink:0}
+</style>
+<div class="sec">
+  <div class="head">
+    <div class="eyebrow">Логика продукта</div>
+    <h1 class="h" style="margin-top:14px">Две роли, один поток задач</h1>
+  </div>
+  <div class="chain">
+    <div class="node first"><h4>Постановщик</h4><p>Выбирает тип задачи и заполняет бриф</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><h4>Бриф</h4><p>9 типов ТЗ: видео, соцсети, полиграфия…</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><h4>Канбан</h4><p>Дизайнер берёт задачу в работу</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><h4>Результат</h4><p>Ссылка / файл + смена статуса</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><h4>Фидбек</h4><p>Комментарии и правки в той же карточке</p></div>
+  </div>
+  <div class="caps">
+    <div class="cap p">
+      <h5>Постановщик может</h5>
+      <ul>
+        <li><b>✓</b> Создавать и редактировать брифы</li>
+        <li><b>✓</b> Видеть загрузку дизайнеров</li>
+        <li><b>✓</b> Комментировать задачи</li>
+        <li class="no"><b>—</b> НЕ двигает карточки, не меняет статус</li>
+      </ul>
+    </div>
+    <div class="cap d">
+      <h5>Дизайнер может</h5>
+      <ul>
+        <li><b>✓</b> Двигать карточки drag-and-drop</li>
+        <li><b>✓</b> Менять статус задачи</li>
+        <li><b>✓</b> Прикреплять результат работы</li>
+        <li><b>✓</b> Редактировать все поля</li>
+      </ul>
+    </div>
+  </div>
+</div>
